@@ -1,14 +1,10 @@
 THE PLACE OF THE LCOAL GROUP IN THE COSMIC WEB
 ==============================================
-
-**Sebastian Bustamante **
-
-*Universidad de Antioquia*
-
+**Sebastian Bustamante**
+(*Universidad de Antioquia*)
 
 **Jaime Forero-Romero**
-
-*Universidad de los Andes*
+(*Universidad de los Andes*)
 
 
 DESCRIPTION
