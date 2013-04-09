@@ -12,22 +12,25 @@ TEXEDIT = texmaker
 DATESTAMP=`date +'%Y-%m-%d'`
 
 
-make_pdf:	$(FILE_TEX).tex  
+pdflatex:	$(FILE_TEX).tex  
 		$(LATEX) $(FILE_TEX).tex 
 		#Backup of pdf file (one per day)
 		mkdir -p time-machine/${DATESTAMP}
 		cp ${FILE_TEX}.pdf time-machine/${DATESTAMP}/${FILE_TEX}.pdf
 
 clean:
-		rm -f $(FILE_TEX).{aux,bbl,ps,pdf,div,blg,log}
+		rm -f $(FILE_TEX).aux
+		rm -f $(FILE_TEX).out
+		rm -f $(FILE_TEX).bbl
+		rm -f $(FILE_TEX).log
 
-view_pdf: 
+view: 
 		$(VIEWER) $(FILE_TEX).pdf &
 
-edit_paper:
+edit:
 		$(TEXEDIT) $(FILE_TEX).tex &
 
-git_update:
+update:
 		git add \
 		./figures/* 	\
 		lg_env.tex	\
