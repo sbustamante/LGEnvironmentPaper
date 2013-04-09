@@ -1,4 +1,4 @@
-THE PLACE OF THE LCOAL GROUP IN THE COSMIC WEB
+THE PLACE OF THE LOCAL GROUP IN THE COSMIC WEB
 ==============================================
 **Sebastian Bustamante**
 *(Universidad de Antioquia)*
