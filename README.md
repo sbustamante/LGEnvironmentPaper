@@ -7,7 +7,7 @@ THE PLACE OF THE LOCAL GROUP IN THE COSMIC WEB
 *(Universidad de los Andes)*
 
 
-DESCRIPTION
+Description
 -----------------------------------------------------------------------------------------
 Here we make a study of the principal properties of the LG in a cosmological context. The 
 principal objective is to find a coherent sample of LG systems in the unconstrained 
@@ -16,7 +16,7 @@ constrained simulations CLUES. We obtain a privileged environment for these syst
 significant bias in some of their properties.
 
 
-DATA
+Results
 -----------------------------------------------------------------------------------------
 All results in this paper can be reproduced with the codes in the folder bench/codes and 
 with [these](https://www.dropbox.com/sh/fvnwk8eoekgmz2y/8dScrUcMUA) data.
