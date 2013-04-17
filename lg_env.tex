@@ -1,6 +1,6 @@
-\documentclass[usenatbib]{mn2e} 
+\documentclass[usenatbib]{latex/mn2e} 
 %External Packages and personalized macros
-\include{macros}
+\include{latex/macros}
 
 \begin{document}
 
@@ -10,17 +10,26 @@
 \title[LG Environment]{The place of the local group in the cosmic web}
 \author[S. Bustamante and J.E. Forero-Romero]{
 \parbox[t]{\textwidth}{\raggedright 
-  Sebastian Bustamante.$^{1}$ 
+  Sebastian Bustamante \thanks{sbustama@pegasus.udea.edu.co}$^{1}$ 
   Jaime E. Forero-Romero$^{2}$ 
 }
 \vspace*{6pt}\\
-$^{1}$Universidad de Antioquia
-$^{2}$Universidad de los Andes
+$^1$Instituto de F\'{\i}sica - FCEN, Universidad de Antioquia, Calle
+67 No. 53-108, Medell\'{\i}n, Colombia\\ 
+$^2$Departamento de F\'{i}sica, Universidad de los Andes, Cra. 1
+No. 18A-10, Edificio Ip, Bogot\'a, Colombia
 }
 
 \maketitle
 
 \begin{abstract}
+Here we make a study of the principal properties of the Local Group in a 
+cosmological context. The principal objective is to find a coherent 
+sample of LG systems in the unconstrained simulation Bolshoi based upon 
+the properties of hand construted LG systems in the constrained 
+simulations CLUES. We obtain a privileged environment for these systems 
+and significant bias in some of their properties. (\SRKED{draft!})
+
 
 \end{abstract}
 
@@ -44,14 +53,15 @@ so-called cosmic web is driven by gravitational instabilities. This makes
 that the mass assembly history of a galaxy is deeply connected with its 
 position in the cosmic web. There is an extensive body of literature on 
 the effects of the web environment on the observable properties of 
-galaxies. Starting from the seminal work of Dressler up to most recent 
-works that aim at reconstructing the dark matter distribution of hundreds 
-of thousands of galaxies from the Sloan Digital Sky Survey to find 
-environmental dependences. 
+galaxies. Starting from the seminal work of Dressler \SRKED{[reference here]} 
+up to most recent works that aim at reconstructing the dark matter 
+distribution of hundreds of thousands of galaxies from the Sloan Digital 
+Sky Survey to find environmental dependences. 
 
 
 In this paper we quantify the velocity shear environment of DM halo pairs
-representative of the LG. We perform this study in two kinds of 
+representative of the principal members of the Local Group (LG), the Milky 
+Way (MW) and Andromeda galaxy (M31). We perform this study in two kinds of 
 cosmological simulations: unconstrained simulations from random phases in 
 the initial conditions, together with constrained simulations, which have 
 been setup as to reproduce the large scale structure of the local universe
@@ -59,11 +69,16 @@ been setup as to reproduce the large scale structure of the local universe
 
 
 We pay special attention to the correlation of the present velocity shear 
-environment with the assembly properties of the pairs. The motivation to 
-have that focus is that it has been previously shown that the LG present 
-in three different realizations of the constrained simulations have 
-assembly histories biased towards early formation times and absence of 
-major mergers (ratio 1:10) in the last $10$ Gyr.
+environment with the assembly and the kinematics properties of the pairs. 
+The motivation to have that focus is that it has been previously shown that 
+the LG present in three different realizations of the constrained simulations 
+have assembly histories biased towards early formation times and absence of 
+major mergers (ratio 1:10) in the last $10$ Gyr. In the case of the kinematic
+properties, recent observational constrains to the galactocentric tangential 
+velocity of M31 has enabled to establish how typical is the LG in a 
+cosmological context \SRKED{[reference to Forero-Romero 2013-1]}, that is why
+we focus here how a specific kind of host environment biases these kinematics
+properties.
 
 
 %*************************************************************************
@@ -73,12 +88,12 @@ major mergers (ratio 1:10) in the last $10$ Gyr.
 
 
 We use two sets of simulations two identify the possible large scale 
-environment of the Local Group. This is  similar approach to the one 
-already used by . The first set of simulations are constrained, that aim 
-at reproducing the large scale environment around the local group as 
-described by observations. The second simulations is an unconstrained 
-cosmological volume that serve us as a benchmark of the results obtained 
-from the constrained realizations. In the following subsections we 
+environment of the Local Group. This is similar approach to the one 
+already used by \SRKED{[reference here]}. The first set of simulations are 
+constrained, that aim at reproducing the large scale environment around the 
+local group as described by observations. The second simulations is an 
+unconstrained cosmological volume that serve us as a benchmark of the results 
+obtained from the constrained realizations. In the following subsections we 
 describe the most relevant characteristics of these two simulations.
 
 
@@ -92,20 +107,21 @@ The CLUES simulations have constrained initial conditions. The design goal
 was being able to reproduce in a N-body simulation the density distribution 
 in the local universe on scales of $\sim5$ Mpc as accurate as the 
 observations allow. A full description of the methods and results in the 
-CLUES project was done by XXX, a summary  of the cosmological volumes we 
-use in this paper was presented by Foreero-Romero et al. 2011. 
+CLUES project was done by \SRKED{[reference here]}, a summary  of the 
+cosmological volumes we use in this paper was presented by 
+\SRKED{Forero-Romero et al. 2011.}
 
 
 The most relevant technical details are the following. We use three DM only
 simulations done in cubic volumes of $64$\hMpc (comoving) on a side. The 
 matter field is sampled with $1024^3$ particles, the integration was 
-performed using the Tree-PM MPI N-body code Gadget2 (REF). The cosmological 
-parameters are consitend with a WMAP5 and WMAP7 cosmologies with 
-$\Omega_{\rm m}=0.28$, $\Omega_{\Lambda}=0.72$, $h=0.73$, $n=0.73$ and 
-$\sigma_{8}=0.817$ (REF KOMATSU) for the matter density, cosmological 
-constant, dimensionless Hubble parameter, spectral index of primordial 
-density perturbations and normalization for the power spectrum. With these 
-parameters the mass of each particle in the simulation is 
+performed using the Tree-PM MPI N-body code Gadget2 \SRKED{[reference here]}. 
+The cosmological parameters are consistent with a WMAP5 and WMAP7 cosmologies 
+with $\Omega_{\rm m}=0.28$, $\Omega_{\Lambda}=0.72$, $h=0.73$, $n=0.73$ and 
+$\sigma_{8}=0.817$ \SRKED{[reference to Komatsu]} for the matter density, 
+cosmological constant, dimensionless Hubble parameter, spectral index of 
+primordial density perturbations and normalization for the power spectrum. 
+With these parameters the mass of each particle in the simulation is 
 $m_{\rm p}=1.89\times 10^{7}$\hMsun.
 
 
@@ -117,7 +133,9 @@ $m_{\rm p}=1.89\times 10^{7}$\hMsun.
 
 In this paper we have used the FOF catalogs available from the Multidark 
 database. We do not use the BDM to keep the consistency with the FOF 
-catalogs constructed in the CLUES simulations. 
+catalogs constructed in the CLUES simulations. \SRKED{Maybe we can include
+BDM catalog of Bolshoi for comparison and hardihood of our results.}
+\SRKED{Besides, more technical information about Bolshoi.}
 
 
 %-------------------------------------------------------------------------
@@ -368,8 +386,10 @@ that there is not an apparent condition with their individual masses.
 \begin{flushleft}
 \begin{center}
 
-\includegraphics[keepaspectratio=true,width=0.35\textheight]
-{./figures/Pairs_IPMF.pdf}
+\includegraphics[keepaspectratio=true,width=0.3\textheight]
+{./figures/IP_IMF.pdf}
+\includegraphics[keepaspectratio=true,width=0.3\textheight]
+{./figures/IP_Mass_Ratio.pdf}
 
 \captionof{figure}{\small Integrated distribution of mass ratio index for 
 isolated pairs sample (a).}
@@ -417,9 +437,12 @@ comoving size.
 % Lambda Histogram
 \begin{figure*}
 \begin{center}
-
-\includegraphics[keepaspectratio=true,width=0.75\textheight]
-{./figures/All_Lambda_Histogram.pdf}
+\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
+width=0.24\textheight]{./figures/Cells_Distro_L1.pdf}
+\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
+width=0.24\textheight]{./figures/Cells_Distro_L2.pdf}
+\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
+width=0.24\textheight]{./figures/Cells_Distro_L3.pdf}
 
 \caption{\small Integrated distribution of mass ratio index for isolated 
 pairs sample (a).}
@@ -501,7 +524,7 @@ cells for Bolshoi and $64^3$ for CLUES, or equivalently a resolution of
 $1.0 \mbox{Mpc h}^{-1} $ per cell, according to the physical size of the 
 pairs.)
 
-
+\SRKED{nota}
 %*************************************************************************
 \section{Results}
 \label{sec:Results}

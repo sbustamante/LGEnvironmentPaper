@@ -45,3 +45,11 @@ update:
 	
 		git commit -m "$(MSG)"
 
+help:
+		@echo -e 'Makefile Help:'
+		@echo -e '\tpdflatex:\t compile the pdf file'
+		@echo -e '\tclean:\t\t clean all temporal files'
+		@echo -e '\tview:\t\t view the pdf file with standard viewer ($(VIEWER))'
+		@echo -e '\tedit:\t\t edit the tex file with standard editor ($(TEXEDIT))'
+		@echo -e '\tupdate:\t\t update all files to github repository'
+		@echo -e '\thelp:\t\t this help!'
