@@ -53,9 +53,9 @@ galaxies: high-redshift - galaxies: star formation - line: formation
 
 The spatial distribution of galaxies describes a web-like pattern, the 
 so-called cosmic web. Today it is understood that such configuration
-is driven by gravitational instabilities. 
+is driven by gravitational instabilities. ...
 
-The study of the influence of this cosmic web on galaxy properties
+The study of the influence of the cosmic web on galaxy properties
 start with the seminal work of Dressler \SRKED{[reference here]} and
 extends to recent works using large observational surveys that look
 for signatures of the web into the evolution of galaxy
@@ -149,19 +149,23 @@ $m_{\rm p}=1.89\times 10^{7}$\hMsun.
 \label{subsec:Bolshoi_simulation}
 %-------------------------------------------------------------------------
 
+The Bolshoi simulations follows the non-linear evolution of a dark
+matter density field on a cubic volume of size $250$\hMpc
+sampled with $2048^3$ particles. The cosmological parameters in the
+simulation are $\Omega_{\rm m}=0.27$, $\Omega_{\Lambda}=0.73$,
+$h=0.70$, $n=0.95$ and $\sigma_{8}=0.82$ for the matter density, 
+cosmological constant, dimensionless Hubble parameter, spectral index
+of primordial density perturbations and normalization for the power
+spectrum. The mass of each particle in the simulation is $m_{\rm
+  p}=1.4\times 10^{8}$\hMsun.
 
-In this paper we have used the FOF catalogs available from the Multidark 
-database. We do not use the BDM to keep the consistency with the FOF 
-catalogs constructed in the CLUES simulations. \SRKED{Maybe we can include
-BDM catalog of Bolshoi for comparison and hardihood of our results.}
-\SRKED{Besides, more technical information about Bolshoi.}
+
 
 
 %-------------------------------------------------------------------------
 \subsection{Halos and Merger Trees}
 \label{subsec:halos_merger_trees}
 %-------------------------------------------------------------------------
-
 
 We identify halos with a Friends-of-Friends (REF) algorithm. These 
 catalogues also provide the basis for the mass aggregation history studies. 
@@ -171,15 +175,18 @@ two FOF halos corresponds to the epoch of first overlap, and not to the
 fusion and/or disruption of an accreted sub-halo with a dominant halo. 
 
 
-The linking length we use is $b=0.17$ times the mean inter-particle 
-separation, all objects with 20 particles or more are considered a bona 
+The linking length is $b=0.17$ times the mean inter-particle 
+separation. All objects with 20 particles or more are considered a bona 
 fide halo and are included in the construction of the merger tree, this 
 corresponds to a minimum halo mass of $M_{\rm min}=3.78\times 10^{8}$
 \hMsun in the CLUES volumes and $M_{\rm min}=2.70\times 10^{9}$\hMsun in 
 the Bolshoi simulation. 
 
 
-The identification was done for 80 snapshots in the redshift range $0<z<7$.
+The halo identification for the CLUES simulation was done for 80
+snapshots in the redshift range $0<z<7$ more or less evenly spaced in
+look-back time. For Bolshoi we use the information of XX snapshots in
+the same redshift range.
 
 
 %*************************************************************************
@@ -187,6 +194,23 @@ The identification was done for 80 snapshots in the redshift range $0<z<7$.
 \section{Algorithms to find the cosmic web}
 
 \subsection{The tidal web - T-web}
+The first algorithm  we use to identify the cosmic web is based on the
+diagonalization of the tidal tensor, defined as the Hessian of a
+normalized gravitational potential  
+
+\begin{equation}
+T_{\alpha\beta} = \frac{\partial^2\phi}{\partial x_{\alpha}\partial x_{\beta}}
+\end{equation}
+
+where the physical gravitational potential has been rescaled by a factor $4\pi
+G\bar{\rho}$ in such a way that $\phi$ satisfies the folowing equation
+
+\begin{equation}
+\nabla^2\phi = \delta,
+\end{equation}
+ where $\bar{\rho}$ is the average density in the
+Universe, $G$ is the gravitational constant and $\delta$ is the
+dimensionless matter overdensity.
 
 \subsection{The velocity  web - V-web}
 \label{sec:Vweb}
