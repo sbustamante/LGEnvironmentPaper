@@ -1,0 +1,40 @@
+*******************************************************************************
+NAME:	
+	_Head.py 
+FUNCTION:
+	Common header, this contains all functions and calls to c program 
+	necessary to all calculates. This file also contains the path to data
+	files, not included in the github repository of this papers.
+INPUT:
+	--
+OUTPUT:
+	--
+*******************************************************************************
+
+
+
+*******************************************************************************
+NAME:	
+	CLUES_LGs_Environment.py
+FUNCTION:
+	This script calculates the environment of a CLUES simulation basen on 
+	T-web/V-web scheme and with a given lambda thresold value, this for a 
+	given x-cut 2D region, besides it plots the respective LG system, 
+	indicating its respective local environment.
+INPUT:
+	This script need the next files in order to function properly:
+	* The three binary eigenvalues files for each CLUES simulation, both 
+	  for the Vweb and for the Tweb.
+	* The files with the respective LG index for each CLUES simulation.
+	* General catalog files, in order to load all physical properties of 
+	  the LGs.
+OUPUT:
+	The principal outputs are the next three figures, located in 'figures' 
+	folder:
+	* LG_C1_Env_Vweb.pdf
+	* LG_C2_Env_Vweb.pdf
+	* LG_C3_Env_Vweb.pdf
+	* LG_C1_Env_Tweb.pdf
+	* LG_C2_Env_Tweb.pdf
+	* LG_C3_Env_Tweb.pdf
+*******************************************************************************
