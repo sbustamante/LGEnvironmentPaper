@@ -19,7 +19,7 @@ from matplotlib.patches import Ellipse
 #			VARIABLES
 #==================================================================================================
 #Global Fold
-foldglobal = '../../data/'
+foldglobal = '../../../ThesisProyect/data/'
 
 
 

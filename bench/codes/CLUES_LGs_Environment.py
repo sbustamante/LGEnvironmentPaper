@@ -4,9 +4,9 @@ execfile('_Head.py')
 #			PARAMETERS
 #==================================================================================================
 #Simulation
-folds = ["CLUES/16953/"]
+folds = ["CLUES/2710/"]
 #Labels of graphs
-labels = ["CLUES 3"]
+labels = ["CLUES 1"]
 #Box lenght
 Box_L = [64,64,64]
 #Number of sections
@@ -20,7 +20,7 @@ axe = 1
 #Coordinates in plots
 axe_label = ["x","y","z","x","y","z"]
 #Lambda_Th
-Lambda_th = 0.25
+Lambda_th = 0.6
 #Cosmic web scheme
 Web = 'Tweb'
 
