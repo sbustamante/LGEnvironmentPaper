@@ -267,42 +267,6 @@ which correspond to regions with 3, 2, 1 or 0 eigenvalues with values
 larger than $\lambda_{th}$. In this paper we do not perform an definitive 
 classification into web types, instead we express the results respect to 
 the relative strength of the eigenvalues and in a range of $\lambda_{th}$.
-To choose a suitable range we propose a new quantity analogous to 
-expression \ref{eq:V_web}, but built with the physical velocity field 
-$w_{\alpha}$ and physical coordinates $r_{\alpha}$, the physical local 
-shear tensor, defined as 
-
-
-%.........................................................................
-%Physical V-Web
-\eq{V_web_Phys}
-{
-\Pi_{\alpha\beta} = -\frac{1}{2H}\pr{\frac{\partial w_{\alpha}}
-{\partial r_{\beta}}+\frac{\partial w_{\beta}}{\partial r_{\alpha}}}
-}
-%.........................................................................
-evaluating this quantity in current epoch, we obtain the next relation 
-between both tensors
-
-
-%.........................................................................
-%Relation between V-web tensors
-\eq{Rel_Tensors}
-{ \Pi_{\alpha\beta} = \Sigma_{\alpha\beta} - \delta_{\alpha\beta} }
-%.........................................................................
-
-
-Using this relations, we can establish the two extreme $\lambda_{th}$ 
-values to present our results. The first one $\lambda_{th} = 0$, it is 
-obtained assuming that the sign of each eigenvalue indicates the nature of
-collapse in the respective direction, what is valid in the strong 
-non-linear scale where the peculiar velocity field is mainly dominant. 
-The upper limit $\lambda_{th} = 1$ is obtained using the same previous 
-argument, but using the eigenvalues of the the physical tensor, what is 
-valid in the weak non-linear scale, where the hubble flow is still 
-dominant.
-
-
 We consider \textit{a posteriori} the possible web type interpretation 
 that could be feasible within a range of thresholds for the eigenvalues. 
 
@@ -345,8 +309,6 @@ M31, and its isolation from massive structures:
 %.........................................................................
 %Isolated pairs criteria
 \begin{enumerate}
-\item{The Local Group is considered to be a pair of halos with dark matter 
-masses in the range $5\times10^{11}<M_{h}/\hMsun < 5\times 10^{12}$.}
 
 \item{The distance between the center of the two halos should be less than 
 $0.7$\hMpc.}
@@ -355,35 +317,58 @@ $0.7$\hMpc.}
 negative.}
 
 \item{The distance to any halo more massive than any of the pair members 
-must be less than $XX$\hMpc.}
+must be less than $2$\hMpc.}
 
-\item{The distance to cluster-like halos with masses larger than $XX$\hMpc 
-must be larger than $XX$\hMpc.}
+\item{The distance to cluster-like halos with masses larger than $1\times10^{13}$
+\hMsun must be larger than $5$\hMpc.}
 \end{enumerate}
 %.........................................................................
 
 
-In the case of a constrained simulation on can include an additional 
-constrain
+In the case of a constrained simulation one can define samples of LG 
+systems based upon the next condition
 
 
 %.........................................................................
 %Additional criteria
 \begin{enumerate}
-\item[(vi)]{The Local Group pair must be located in the right environment 
+\item[(v)]{The Local Group pair must be located in the right environment 
 with respect to the XX Cluster.}
 \end{enumerate}
 %.........................................................................
 
+%.........................................................................
+%Table of extreme values of LG environment
+\begin{table}
+  \centering
+  \begin{tabular}{l | c c c} \hline
+	& $\bds{\lambda_{1}}\ [10^{-1}]$ & $\bds{\lambda_{2}}\ [10^{-1}]$  & $\bds{\lambda_{3}}\ [10^{-1}]$ \\ \hline
+	\textbf{Minim value} & 1.78 & -6.29$\times 10^{-2}$ & -1.98 \\
+	\textbf{Maxim value} & 3.49 & 1.21 & -8.85$\times 10^{-1}$ \\ \hline
+  \end{tabular}
+  
+  \caption{Extreme values for each V-web eigenvalues to construct LG 
+  samples.}
+  
+  \label{Tab:Lambdas_LG}
+\end{table}
+%.........................................................................
 
-From these conditions it is possible to construct three different samples.
-A sample of pairs, following conditions 1 to 3. A second sample of 
-isolated pairs, that additionally fulfill conditions 4 and 5, and a sample
-third sample of LGs that fulfills condition 6. The samples of pairs and 
-isolated pairs can be constructed from the Bolshoi and CLUES simulations. 
-However, by construction, the LGs sample can only be extracted from the 
-constrained simulation.
 
+Due to the intrinsic nature of constrained simulations, we expect that 
+these LG samples be the most faithful systems that resemble the properties
+and the environment of our LG. In fact, the three CLUES simulations appear 
+to present a common V-web/T-web environment for LG systems, such as shown 
+in the figure \ref{fig:LG_CLUES_Environment}. Based in this we propose a 
+new criteria of selection to define more realistic LG systems in the
+unconstrained simulation, this consists in tanking the extreme values of 
+each V-web eigenvalue associated to the host environment of the three 
+LG systems in CLUES. With this range established (see table 
+\ref{Tab:Lambdas_LG}) we filter the IP sample in Bolshoi simulation in 
+order to build the Constructed Local Groups (CLG) sample.
+
+
+In table \ref{Tab:Samples_Size}
 
 %.........................................................................
 % Environment of LG in each CLUES simulation
@@ -405,8 +390,9 @@ width=0.2\textheight]{./figures/LG_C3_Env_Tweb.pdf}
 
 \caption{\small Environment of LG systems in each CLUES simulation, 
 according to V-web scheme (upper figures) and to T-web scheme (lower 
-figures).}
-\label{fig:LG_CLUES}
+figures). In both cases we use a threshold value of $\lambda_{th}^{V/T} = 
+0.25$.}
+\label{fig:LG_CLUES_Environment}
 \vspace{0.1 cm}
 \end{center}
 \end{figure*}
@@ -432,7 +418,7 @@ figures).}
   each respective simulation, approximately $1/60$ for the CLUES 
   simulations respect to Bolshoi.}
   
-  \label{Tab:Samples}
+  \label{Tab:Samples_Size}
 \end{table}
 %.........................................................................
 
@@ -494,25 +480,6 @@ position of LG halos, they are distributed across the mass range of halos
 that we have set (see in section \ref{section:Def_Samples}), indicating 
 that there is not an apparent condition with their individual masses.
 
-
-%.........................................................................
-%Index Pairs
-\begin{flushleft}
-\begin{center}
-
-\includegraphics[keepaspectratio=true,width=0.3\textheight]
-{./figures/IP_IMF.pdf}
-\includegraphics[keepaspectratio=true,width=0.3\textheight]
-{./figures/IP_Mass_Ratio.pdf}
-
-\captionof{figure}{\small Integrated distribution of mass ratio index for 
-isolated pairs sample (a).}
-
-\label{fig:Index_Pairs}
-\vspace{0.1 cm}
-\end{center}
-\end{flushleft}
-%.........................................................................
 
 
 The situation is quite different respect to mass ratio index of isolated 
@@ -585,22 +552,6 @@ pairs. In table \ref{Tab:Lambdas_LG} we show the used extreme values for
 each eigenvalue of local shear tensor.
 
 
-%.........................................................................
-%Table of extreme values of LG environment
-\begin{table}
-  \centering
-  \begin{tabular}{l | c c c} \hline
-	& $\bds{\lambda_{1}}$ & $\bds{\lambda_{2}}$  & $\bds{\lambda_{3}}$ \\ \hline
-	\textbf{Minim value} & 1.77$\times 10^{-1}$ & -6.29$\times 10^{-3}$ & -1.98$\times 10^{-1}$ \\
-	\textbf{Maxim value} & 3.49$\times 10^{-1}$ & 1.21$\times 10^{-1}$ & -8.85$\times 10^{-2}$ \\ \hline
-  \end{tabular}
-  
-  \caption{Extreme values for each eigenvalues to construct LG samples.}
-  
-  \label{Tab:Lambdas_LG}
-\end{table}
-%.........................................................................
-
 
 As a self-consistency test, we apply this criteria to CLUES simulations 
 and find, on average, three LG systems in each one. But to avoid confusion, 
@@ -644,6 +595,25 @@ pairs.)
 %-------------------------------------------------------------------------
 
 ... Total Mass
+
+%.........................................................................
+%Index Pairs
+\begin{flushleft}
+\begin{center}
+
+\includegraphics[keepaspectratio=true,width=0.3\textheight]
+{./figures/IP_IMF.pdf}
+\includegraphics[keepaspectratio=true,width=0.3\textheight]
+{./figures/IP_Mass_Ratio.pdf}
+
+\captionof{figure}{\small Integrated distribution of mass ratio index for 
+isolated pairs sample (a).}
+
+\label{fig:Index_Pairs}
+\vspace{0.1 cm}
+\end{center}
+\end{flushleft}
+%.........................................................................
 
 ... Radial vs. tangential velocities
 
