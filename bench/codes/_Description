@@ -38,3 +38,24 @@ OUPUT:
 	* LG_C2_Env_Tweb.pdf
 	* LG_C3_Env_Tweb.pdf
 *******************************************************************************
+
+
+
+*******************************************************************************
+NAME:	
+	CLG_Sample_Construction.py
+FUNCTION:
+	This script calculates the Constructed Local Group sample in each 
+	simulation based upon the eigenvalues range defined by the three LG 
+	systems	in CLUES simulation
+INPUT:
+	This script need the next files in order to function properly:
+	* Environment properties of General sample, this to load the eigenvalues
+	  of each halo.
+	* The files with the respective LG index for each CLUES simulation.
+	* Isolated pairs catalog files.
+OUPUT:
+	The principal outputs are the CLG catalogs for each simulation
+	* C_CLGV_FOF.dat
+	* C_CLGT_FOF.dat
+*******************************************************************************
