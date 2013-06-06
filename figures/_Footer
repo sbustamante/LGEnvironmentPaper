@@ -1,0 +1,21 @@
+*******************************************************************************
+FIG NAME:	
+	integrated_mass_halos.pdf
+CAPTION:
+	Integrated mass function of halos in the general catalog of each 
+        simulation.
+CODE:
+	halos_integrated_mass.py
+*******************************************************************************
+
+
+*******************************************************************************
+FIG NAME:	
+	IP_velocity_histogram_BDM.pdf
+	IP_velocity_histogram_FOF.pdf
+CAPTION:
+	Histograms of velocities (radial vs tangential) of pair systems 
+	(general pairs and Isolated pairs) for Bolshoi simulation.
+CODE:
+	IP_velocity_histogram.py
+*******************************************************************************  

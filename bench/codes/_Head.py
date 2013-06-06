@@ -247,6 +247,37 @@ def Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz
     
 
 #..................................................................................................
+#Radial and tangential velocities of pair systems
+#..................................................................................................
+def Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2):
+ 
+    #km to MPC
+    KM2MPC = 3.24077929e-20
+    #kg to MSUN
+    KG2MSUN = 5.05e-31*0.71
+    #Cavendish
+    G = 6.6742e-11*(1e-3*KM2MPC)**3/KG2MSUN
+ 
+    Vtan = np.zeros( len(M1) )
+    Vrad = np.zeros( len(M1) )
+    for i in xrange( len(M1) ):
+	m1 = M1[i]
+	r1 = np.array( (x1[i],y1[i],z1[i]) )
+	v1 = np.array( (vx1[i],vy1[i],vz1[i]) )
+	m2 = M2[i]
+	r2 = np.array( (x2[i],y2[i],z2[i]) )
+	v2 = np.array( (vx2[i],vy2[i],vz2[i]) )
+    
+	
+	vradial = (v1 - v2)*(r1 - r2)/norm(r1 - r2)
+
+	Vrad[i] = sum(vradial)
+	Vtan[i] = norm( (v1 - v2) - vradial )
+    
+    return Vrad, Vtan
+    
+    
+#..................................................................................................
 #Classification Scheme 1D
 #..................................................................................................
 def Scheme1D( eig1, eig2, eig3, Lamb_min, Lamb_max, N_L ):

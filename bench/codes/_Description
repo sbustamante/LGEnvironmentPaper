@@ -12,50 +12,55 @@ OUTPUT:
 *******************************************************************************
 
 
-
 *******************************************************************************
 NAME:	
-	CLUES_LGs_Environment.py
+	halos_lambda_file.py
 FUNCTION:
-	This script calculates the environment of a CLUES simulation basen on 
-	T-web/V-web scheme and with a given lambda thresold value, this for a 
-	given x-cut 2D region, besides it plots the respective LG system, 
-	indicating its respective local environment.
+	This script calculates the environment values associated to each dark 
+	matter halo in the general catalogs.
 INPUT:
 	This script need the next files in order to function properly:
-	* The three binary eigenvalues files for each CLUES simulation, both 
-	  for the Vweb and for the Tweb.
-	* The files with the respective LG index for each CLUES simulation.
-	* General catalog files, in order to load all physical properties of 
-	  the LGs.
+	* The general catalog of dark matter halos, for each simulation.
+	* The binary files with all values of the eigenvalues of (V/T-web) 
+	tensors in the space grid.
 OUPUT:
-	The principal outputs are the next three figures, located in 'figures' 
-	folder:
-	* LG_C1_Env_Vweb.pdf
-	* LG_C2_Env_Vweb.pdf
-	* LG_C3_Env_Vweb.pdf
-	* LG_C1_Env_Tweb.pdf
-	* LG_C2_Env_Tweb.pdf
-	* LG_C3_Env_Tweb.pdf
+	The principal output is the general catalog eigenvalues for each 
+	simulation.
+	* E_GH_s1_FOF.dat
 *******************************************************************************
 
 
 
 *******************************************************************************
 NAME:	
-	CLG_Sample_Construction.py
+	IP_velocity_histogram.py
 FUNCTION:
-	This script calculates the Constructed Local Group sample in each 
-	simulation based upon the eigenvalues range defined by the three LG 
-	systems	in CLUES simulation
+	This script calculates the environment values associated to each dark 
+	matter halo in the general catalogs.
 INPUT:
 	This script need the next files in order to function properly:
-	* Environment properties of General sample, this to load the eigenvalues
-	  of each halo.
-	* The files with the respective LG index for each CLUES simulation.
-	* Isolated pairs catalog files.
+	* The general catalog of dark matter halos, for each simulation.
+	* The binary files with all values of the eigenvalues of (V/T-web) 
+	tensors in the space grid.
 OUPUT:
-	The principal outputs are the CLG catalogs for each simulation
-	* C_CLGV_FOF.dat
-	* C_CLGT_FOF.dat
+	The principal output is the general catalog eigenvalues for each 
+	simulation.
+	* E_GH_s1_FOF.dat
+*******************************************************************************
+
+
+
+*******************************************************************************
+NAME:	
+	halos_integrated_mass.py
+FUNCTION:
+	This script calculates integrated mass distribution of all halos in
+	Bolshoi simulation.
+INPUT:
+	This script need the next files in order to function properly:
+	* The general catalog of dark matter halos, for each simulation.
+OUPUT:
+	The principal output is the general catalog eigenvalues for each 
+	simulation.
+	* E_GH_s1_FOF.dat
 *******************************************************************************

@@ -1,35 +1,26 @@
-#==================================================================================================
-#			HEADERS
-#==================================================================================================
-from __future__ import division
-from struct import *
-import numpy as np
-import sys
-import matplotlib
-import os
-
-import matplotlib.pyplot as plt
-from pylab import *
-#plt.figure( figsize=(16,8.5) )
+execfile('_Head.py')
 
 #==================================================================================================
 #			PARAMETERS
 #==================================================================================================
 #Data filename
-folder = "../Data/"
-folds = ["CLUES/16953/","CLUES/2710/", "CLUES/10909/", "BOLSHOI/"]
+folds = ["BOLSHOI/"]
+#Catalog Scheme
+catalog = 'FOF'
 #Number of Mass intervals
 N_mass = 20
 #Labels of graphs
-labels = ["CLUES 16953","CLUES 2710", "CLUES 10909", "Bolshoi"]
+labels = ["Bolshoi"]
 #Index of each LG halos
-LG_index = [ [889,1107], [643,831], [675,895], False ]
+LG_index = [ False ]
 #Minim mass Range
 MLog10 = 11.
 #Colors array
-Colors = ['red', 'green', 'blue', 'black']
+Colors = ['black']
 #Linewidths
-Linewidths = [1,1,1,2]
+Linewidths = [2]
+#Figure size
+plt.figure( figsize=(6,6) )
 
 #==================================================================================================
 #			HALOS AND PAIRS DATA
@@ -37,12 +28,12 @@ Linewidths = [1,1,1,2]
 i_fold = 0
 for fold in folds:
     #Halos Datas
-    halos = np.transpose( np.loadtxt( '%s%shalos_catalog.dat'%(folder,fold) ) )
+    halos = np.transpose( np.loadtxt( '%s%s/C_GH_%s.dat'%(foldglobal,fold, catalog) ) )
     Nhalos = len(halos[0])		#Number of halos
     halos[:,:] = halos[:,np.argsort(halos[8,:])]
     
     #IsoPairs datas
-    isopairs = np.transpose( np.loadtxt( '%s%sIsoPairs_catalog.dat'%(folder,fold) ) )
+    isopairs = np.transpose( np.loadtxt( '%s%s/C_IP_%s.dat'%(foldglobal,fold, catalog) ) )
     Npairs = len(isopairs[0])		#Number of pairs
 
     #Construction of Mass axes
@@ -84,6 +75,6 @@ plt.ylabel('Halos percent')
 plt.ylim( (1e-6, 1.0) )
 plt.xlim( (1e11, 1e15) )
 plt.grid()
-plt.legend(labels)
+#plt.legend(labels)
 plt.savefig( 'halos_IMF.pdf', format='pdf' )
 plt.show()
