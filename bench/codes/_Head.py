@@ -389,6 +389,17 @@ def Norml( L1, L2 ):
     Lfunc = interp.interp1d( L1, L2 )
     Norm = integ.quad( Lfunc, np.min(L1), np.max(L1) )[0]
     return Norm
+    
+    
+#..................................................................................................
+#Void Matrix Builder
+#..................................................................................................
+def void_matrix_builder( filename_eig, Lambda_th, outname ):
+    os.system( "./void_matrix_builder.out %s %f %s"%( 
+    filename_eig, Lambda_th, outname ) )
+    datos = np.transpose( np.loadtxt( '%s'%(outname) ) )
+    datos = datos.reshape( (N, N, N) )
+    return datos
 
 #==================================================================================================
 #			MISCELLANEOUS
