@@ -45,20 +45,27 @@ for fold in folds:
     regs = Counts( eigV_filename, delta_filename, L_min, L_max, N_l )
     print 'Mean density of regions for %s: done!'%(fold)
     
-    Lambda_th = 0.2
+    #Lambda_th array
+    lambda_th = regs[0]
+    #Vacuums mean density
+    vacuum_rho = regs[1]/regs[9]
     
-    void_matrix = void_matrix_builder( eigV_filename, Lambda_th, './void_matrix' )
+    #Optim Lambda thresold
+    i_min = np.argsort( vacuum_rho )[0]
+    lambda_th_opt = lambda_th[i_min]
+    
+    void_matrix = void_matrix_builder( eigV_filename, lambda_th_opt, './void_matrix' )
     print 'Void matrix for %s: done!'%(fold)
        
     #Plots the results
     plt.subplot( 2,2,1 )
-    plt.plot( regs[0], regs[1]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
+    plt.plot( lambda_th, regs[1]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
     plt.subplot( 2,2,2 )
-    plt.plot( regs[0], regs[2]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
+    plt.plot( lambda_th, regs[2]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
     plt.subplot( 2,2,3 )
-    plt.plot( regs[0], regs[3]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
+    plt.plot( lambda_th, regs[3]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
     plt.subplot( 2,2,4 )
-    plt.plot( regs[0], regs[4]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
+    plt.plot( lambda_th, regs[4]/regs[9], color = 'black', linewidth = 2, label = 'Bolshoi' )
     
     i_fold += 1
     
