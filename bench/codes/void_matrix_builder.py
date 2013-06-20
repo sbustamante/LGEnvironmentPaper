@@ -50,11 +50,13 @@ for fold in folds:
     #Vacuums mean density
     vacuum_rho = regs[1]/regs[9]
     
-    #Optim Lambda thresold
+    #Optimum Lambda thresold
     i_min = np.argsort( vacuum_rho )[0]
     lambda_th_opt = lambda_th[i_min]
-    
-    void_matrix = void_matrix_builder( eigV_filename, lambda_th_opt, './void_matrix' )
+    lambda_th_opt = 0.14 #!
+
+    #Building the matrix
+    void_matrix_builder( eigV_filename, lambda_th_opt, N_sec[i_fold], './void_matrix' )
     print 'Void matrix for %s: done!'%(fold)
        
     #Plots the results

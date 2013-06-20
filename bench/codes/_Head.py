@@ -394,12 +394,12 @@ def Norml( L1, L2 ):
 #..................................................................................................
 #Void Matrix Builder
 #..................................................................................................
-def void_matrix_builder( filename_eig, Lambda_th, outname ):
+def void_matrix_builder( filename_eig, Lambda_th, N, outname ):
     os.system( "./void_matrix_builder.out %s %f %s"%( 
     filename_eig, Lambda_th, outname ) )
-    datos = np.transpose( np.loadtxt( '%s'%(outname) ) )
-    datos = datos.reshape( (N, N, N) )
-    return datos
+    #datos = np.transpose( np.loadtxt( '%s'%(outname) ) )
+    #datos = datos.reshape( (N, N, N) )
+    return 0
 
 #==================================================================================================
 #			MISCELLANEOUS
