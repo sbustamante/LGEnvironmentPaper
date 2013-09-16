@@ -19,3 +19,29 @@ CAPTION:
 CODE:
 	IP_velocity_histogram.py
 *******************************************************************************  
+
+
+*******************************************************************************
+FIG NAME:	
+	IP_velocity_FA_BDM_Tweb.pdf
+	IP_velocity_FA_BDM_Vweb.pdf
+	IP_velocity_FA_FOF_Tweb.pdf
+	IP_velocity_FA_FOF_Vweb.pdf
+CAPTION:
+	Histograms of velocities (radial and tangential) vs fractional anisotropy
+	index for pair systems (general pairs and Isolated pairs) for Bolshoi 
+	simulation.
+CODE:
+	IP_velocity_FA.py
+*******************************************************************************
+
+
+*******************************************************************************
+FIG NAME:	
+	voids_regions_percolation.pdf
+CAPTION:
+	Percolation analysis of void regions for different Lambda_th values and
+	for both defined schemes.
+CODE:
+	void_FOF_regions.py
+*******************************************************************************

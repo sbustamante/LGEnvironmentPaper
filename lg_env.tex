@@ -272,17 +272,17 @@ that could be feasible within a range of thresholds for the eigenvalues.
 
 
 %-------------------------------------------------------------------------
-\subsection{Method to find vacuum regions}
-\label{subsec:method_vacuum}
+\subsection{Method to find void regions}
+\label{subsec:method_voids}
 %-------------------------------------------------------------------------
 
 
 
 Following the recent work of \SRKED{Courtois et al. 2013}, we use a method 
-based on a FOF algorithm to find extended regions of vacuum and then we 
+based on a FOF algorithm to find extended regions of voids and then, we 
 select halo systems according to a proximity criteria to those regions. 
 In order to perform this, we build the input FOF catalogue with the 
-positions of the center coordinate of every cell marked as vacuum according 
+positions of the center coordinate of every cell marked as void according 
 to the web scheme adopted; furthermore we set an adequate linking length 
 for connecting diagonal neighbour cells.
 
@@ -290,7 +290,7 @@ for connecting diagonal neighbour cells.
 
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
-reduce percolation in cells
+reduce percolation in cells, thereby accounting for physical voids regions.
 
 
 
