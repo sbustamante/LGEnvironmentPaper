@@ -78,11 +78,13 @@ where the Local Group (LG) of galaxies is embedded.
 
 In this paper we quantify the velocity shear environment of DM halo pairs
 representative of the principal members of the Local Group (LG), the Milky
-Way (MW) and Andromeda galaxy (M31). We perform this study in two kinds of 
-cosmological simulations: unconstrained simulations from random phases in 
-the initial conditions, together with constrained simulations, which have 
-been setup as to reproduce the large scale structure of the local universe
-($\sim 30$\hMpc around the local group) on scales of $\sim 5$\hMpc. 
+Way (MW) and Andromeda galaxy (M31). We perform this study in an 
+unconstrained cosmological simulation from random phases in the initial 
+conditions, and unlike previous works, where were used constrained 
+cosmological simulations which have been setup as to reproduce the large 
+scale structure of the local universe, we use directly observational 
+measurements of the kinematics properties of the local group \SRKED{
+[Reference here]} in order to build faithful samples of LG-like systems.
 
 
 We pay special attention to the correlation of the present velocity shear 
@@ -99,54 +101,15 @@ host environment biases these kinematics properties.
 
 
 %*************************************************************************
-\section{The Simulations}
-\label{sec:the_simulations}
+\section{The Simulation}
+\label{sec:the_simulation}
 %*************************************************************************
 
 
-We use two sets of simulations two identify the possible large scale 
-environment of the Local Group. This is similar approach to the one 
-already used by \SRKED{[reference here]}. The first set of simulations are 
-constrained, that aim at reproducing the large scale environment around 
-the local group as described by observations. The second simulations is an 
-unconstrained cosmological volume that serve us as a benchmark of the 
-results obtained from the constrained realizations. In the following 
-subsections we describe the most relevant characteristics of these two 
-simulations.
-
-
-%-------------------------------------------------------------------------
-\subsection{The CLUES simulations}
-\label{subsec:CLUES_simulations}
-%-------------------------------------------------------------------------
-
-
-The CLUES simulations have constrained initial conditions. The design goal 
-was being able to reproduce in a N-body simulation the density 
-distribution in the local universe on scales of $\sim5$ Mpc as accurate as 
-the observations allow. A full description of the methods and results in 
-the CLUES project was done by \SRKED{[reference here]}, a summary of the 
-cosmological volumes we use in this paper was presented by 
-\SRKED{Forero-Romero et al. 2011.}
-
-
-The most relevant technical details are the following. We use three DM 
-only simulations done in cubic volumes of $64$\hMpc (comoving) on a side. 
-The matter field is sampled with $1024^3$ particles, the integration was 
-performed using the Tree-PM MPI N-body code Gadget2 \SRKED{[reference 
-here]}. The cosmological parameters are consistent with a WMAP5 and WMAP7 
-cosmologies with $\Omega_{\rm m}=0.28$, $\Omega_{\Lambda}=0.72$, $h=0.73$, 
-$n=0.73$ and $\sigma_{8}=0.817$ \SRKED{[reference to Komatsu]} for the 
-matter density, cosmological constant, dimensionless Hubble parameter, 
-spectral index of primordial density perturbations and normalization for 
-the power spectrum. With these parameters the mass of each particle in the 
-simulation is $m_{\rm p}=1.89\times 10^{7}$\hMsun.
-
-
-%-------------------------------------------------------------------------
-\subsection{The Bolshoi simulation}
-\label{subsec:Bolshoi_simulation}
-%-------------------------------------------------------------------------
+As it was previously mentioned, we use an unconstrained cosmological 
+simulation, the Bolshoi simulation, to identify the possible large scale 
+environment of the Local Group. This is a similar approach to the one already 
+used by \SRKED{[reference here]}.
 
 
 The Bolshoi simulations follows the non-linear evolution of a dark matter 
@@ -165,8 +128,12 @@ particle in the simulation is $m_{\rm p}=1.4\times 10^{8}$\hMsun.
 %-------------------------------------------------------------------------
 
 
-We identify halos with a Friends-of-Friends (REF) algorithm. These 
-catalogues also provide the basis for the mass aggregation history studies. 
+We identify halos with two algorithms, the Friends-of-Friends \SRKED{
+[reference here]} algorithm and the Bound Density Maximum algorithm. The 
+constructed catalogues also provide the basis for the mass aggregation 
+history studies. We also include in the catalogues information about the 
+substructure.
+
 All the results presented here must be interpreted in term of host halos, 
 without any information of the substructure. In particular the merger of 
 two FOF halos corresponds to the epoch of first overlap, and not to the 
