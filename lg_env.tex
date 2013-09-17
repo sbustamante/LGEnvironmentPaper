@@ -291,7 +291,12 @@ for connecting diagonal neighbour cells.
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
 reduce percolation in cells, thereby accounting for physical voids regions.
-
+In the next figure we show the obtained result of our percolation analysis 
+for both web schemes. In both cases it can be noted that percolation (the 
+largest void region volume) is completely reduced for $\lambda_{th} = 0.0$,
+so despite of the previously established $\lambda_th$ values for each 
+scheme, just for the detection of void regions we shall use $\lambda_{th} = 
+0.0$
 
 
 %*************************************************************************
@@ -355,23 +360,6 @@ with respect to the XX Cluster.}
 \end{enumerate}
 %.........................................................................
 
-%.........................................................................
-%Table of extreme values of LG environment
-\begin{table}
-  \centering
-  \begin{tabular}{l | c c c} \hline
-	& $\bds{\lambda_{1}}\ [10^{-1}]$ & $\bds{\lambda_{2}}\ [10^{-1}]$  & $\bds{\lambda_{3}}\ [10^{-1}]$ \\ \hline
-	\textbf{Minim value} & 1.78 & -6.29$\times 10^{-2}$ & -1.98 \\
-	\textbf{Maxim value} & 3.49 & 1.21 & -8.85$\times 10^{-1}$ \\ \hline
-  \end{tabular}
-  
-  \caption{Extreme values for each V-web eigenvalues to construct LG 
-  samples.}
-  
-  \label{Tab:Lambdas_LG}
-\end{table}
-%.........................................................................
-
 
 
 Due to the intrinsic nature of constrained simulations, we expect that 
@@ -388,60 +376,6 @@ order to build the samples Constructed Local Groups V-web based (CLGV)
 and T-web based (CLGT). Finally in the table \ref{Tab:Samples_Size} we 
 show the sizes of all defined samples for each simulation.
 
-
-
-%.........................................................................
-% Environment of LG in each CLUES simulation
-\begin{figure*}
-\begin{center}
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C1_Env_Vweb.pdf}
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C2_Env_Vweb.pdf}
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C3_Env_Vweb.pdf}
-
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C1_Env_Tweb.pdf}
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C2_Env_Tweb.pdf}
-\includegraphics[trim = 30mm 0mm 35mm 0mm, clip, keepaspectratio=true,
-width=0.2\textheight]{./figures/LG_C3_Env_Tweb.pdf}
-
-\caption{\small Environment of LG systems in each CLUES simulation, 
-according to V-web scheme (upper figures) and to T-web scheme (lower 
-figures). In both cases we use a threshold value of $\lambda_{th}^{V/T} = 
-0.25$.}
-\label{fig:LG_CLUES_Environment}
-\vspace{0.1 cm}
-\end{center}
-\end{figure*}
-%.........................................................................
-
-%.........................................................................
-%Table of samples numbers
-\begin{table}
-  \centering
-  \begin{tabular}{l | c c c c} \hline
-	\textbf{Sample}& \textbf{CLUES} & \textbf{CLUES} & \textbf{CLUES} & \textbf{Bolshoi} \\
-	\textbf{description}& \textbf{1} & \textbf{2} & \textbf{3} &  \\ \hline
-	GH	&	56632	&	57707	&	56799	&	432000 	\\
-	IH	&	1493	&	1490	&	1493	&	88068 	\\
-	P	&	386 	&	380 	&	387		&	23037 	\\
-	IP	&	20	 	&	12		&	18		&	1256 	\\
-	LG	&	1 		&	1 		&	1		&	-- 		\\
-	CLGV &	1		&	2		&	3		&	30		\\
-	CLGT &	1		&	1		&	1		&	0		\\ \hline
-  \end{tabular}
-  
-  \caption{Size of the samples in each simulation. The relation between 
-  the size of the samples scales as the relation between the volumes of 
-  each respective simulation, approximately $1/60$ for the CLUES 
-  simulations respect to Bolshoi.}
-  
-  \label{Tab:Samples_Size}
-\end{table}
-%.........................................................................
 
 
 %*************************************************************************
@@ -472,26 +406,6 @@ eliminate effects due to construction process of each one.
 In first place, we analyse the mass distribution of individual halos and 
 in next figure we show the integrated mass function (IMF) for halos sample
 with $M \geq 1\times 10^{11} M_{\odot}$.
-
-
-%.........................................................................
-%IMF halos
-\begin{flushleft}
-\begin{center}
-
-\includegraphics[keepaspectratio=true,width=0.35\textheight]
-{./figures/Halos_IMF.pdf}
-
-\captionof{figure}{\small Integrated mass function of individual halos of 
-each simulation used. In the center-left, with vertical dot lines, the 
-individual masses of each LG system in CLUES simulations are represented.}
-
-\label{fig:IMF_Halos}
-\vspace{0.1 cm}
-\end{center}
-\end{flushleft}
-%.........................................................................
-
 
 
 Although in high masses the IMF of each simulation are slightly different, 
@@ -536,28 +450,6 @@ indicating that although both simulations were made with the same cosmology
 significantly different environment properties (spatial matter distribution) 
 compared to the average expected from a random volume with the same 
 comoving size.
-
-
-%.........................................................................
-% Lambda Histogram
-\begin{figure*}
-\begin{center}
-\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
-width=0.24\textheight]{./figures/Cells_Distro_L1.pdf}
-\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
-width=0.24\textheight]{./figures/Cells_Distro_L2.pdf}
-\includegraphics[trim = 0mm 0mm 5mm 8mm, clip, keepaspectratio=true,
-width=0.24\textheight]{./figures/Cells_Distro_L3.pdf}
-
-\caption{\small Integrated distribution of mass ratio index for isolated 
-pairs sample (a).}
-
-\label{fig:lambda_histogram}
-
-\vspace{0.1 cm}
-\end{center}
-\end{figure*}
-%.........................................................................
 
 
 %-------------------------------------------------------------------------
@@ -624,25 +516,6 @@ pairs.)
 
 ... Total Mass
 
-%.........................................................................
-%Index Pairs
-\begin{flushleft}
-\begin{center}
-
-\includegraphics[keepaspectratio=true,width=0.3\textheight]
-{./figures/IP_IMF.pdf}
-\includegraphics[keepaspectratio=true,width=0.3\textheight]
-{./figures/IP_Mass_Ratio.pdf}
-
-\captionof{figure}{\small Integrated distribution of mass ratio index for 
-isolated pairs sample (a).}
-
-\label{fig:Index_Pairs}
-\vspace{0.1 cm}
-\end{center}
-\end{flushleft}
-%.........................................................................
-
 ... Radial vs. tangential velocities
 
 ... Angular Momentum
@@ -684,6 +557,72 @@ isolated pairs sample (a).}
 
 \bibliographystyle{mn2e}
 \bibliography{references} 
+
+
+
+
+%*************************************************************************
+%FIGURES AND TABLES
+%*************************************************************************
+
+
+%.........................................................................
+%Percolation analysis
+\begin{flushleft}
+	\begin{figure*}
+\begin{center}
+
+\includegraphics[keepaspectratio=true,width=0.35\textheight]
+{./figures/voids_regions_percolation.pdf}
+
+\captionof{figure}{\small Integrated mass function of individual halos of 
+each simulation used. In the center-left, with vertical dot lines, the 
+individual masses of each LG system in CLUES simulations are represented.}
+
+\label{fig:percolation_analysis}
+\vspace{0.1 cm}
+\end{center}
+	\end{figure*}
+\end{flushleft}
+%.........................................................................
+
+
+%.........................................................................
+%Table of extreme values of LG environment
+\begin{table*}
+  \centering
+  \begin{tabular}{l | c c c} \hline
+	& $\bds{\lambda_{1}}\ [10^{-1}]$ & $\bds{\lambda_{2}}\ [10^{-1}]$  & $\bds{\lambda_{3}}\ [10^{-1}]$ \\ \hline
+	\textbf{Minim value} & 1.78 & -6.29$\times 10^{-2}$ & -1.98 \\
+	\textbf{Maxim value} & 3.49 & 1.21 & -8.85$\times 10^{-1}$ \\ \hline
+  \end{tabular}
+  
+  \caption{Extreme values for each V-web eigenvalues to construct LG 
+  samples.}
+  
+  \label{Tab:Lambdas_LG}
+\end{table*}
+%.........................................................................
+
+
+%.........................................................................
+%IMF halos
+\begin{flushleft}
+	\begin{figure*}
+\begin{center}
+
+\includegraphics[keepaspectratio=true,width=0.35\textheight]
+{./figures/integrated_mass_halos.pdf}
+
+\captionof{figure}{\small Integrated mass function of individual halos of 
+Bolshoi.}
+
+\label{fig:IMF_Bolshoi}
+\vspace{0.1 cm}
+\end{center}
+	\end{figure*}
+\end{flushleft}
+%.........................................................................
 
 
 \end{document}
