@@ -4,13 +4,18 @@ execfile('_Head.py')
 #			PARAMETERS
 #==================================================================================================
 #Simulation
-folds = ["BOLSHOI/","CLUES/2710/","CLUES/10909/","CLUES/16953/"]
+folds = ["BOLSHOI/"]
 #Labels of graphs
-labels = ["BOLSHOI","CLUES 1","CLUES 2","CLUES 3"]
+labels = ["BOLSHOI"]
 #Box lenght
-Box_L = [250,64,64,64]
+Box_L = [250]
 #Number of sections
-N_sec = [256,64,64,64]
+N_sec = [256]
+#Web scheme
+web = 'Tweb'
+#Values to evaluate lambda_th
+Lambda_ths = [ 0, 0.13, 0.61, 0.9 ]
+#Lambda_ths = [ 0, 0.14, 0.26, 0.5 ]
 #Smooth parameter
 smooth = '_s1'
 #Coordinate to cut (1 -- X, 2 -- Y, 3 -- Z)
@@ -36,8 +41,7 @@ N_sim = len( folds )
 ax = np.zeros( (3, N_sim) )
 
 i_fold = 0
-#plt.figure( figsize=(16,3*N_sim) )
-plt.figure( figsize=(10,2*N_sim) )
+plt.figure( figsize=(16,4*N_sim) )
 
 for fold in folds:
     #Extent
@@ -46,16 +50,16 @@ for fold in folds:
     #Loading Density filename
     delta_filename = '%s%sTweb/%d/Delta%s'%(foldglobal,fold,N_sec[i_fold],smooth)
     #Loading Vweb filename
-    eigV_filename = '%s%sVweb/%d/Eigen%s'%(foldglobal,fold,N_sec[i_fold],smooth)
+    eig_filename = '%s%s%s/%d/Eigen%s'%(foldglobal,fold,web,N_sec[i_fold],smooth)
     
     #Current label simulation
     label = labels[i_fold]
 	
     #Loading Fields
     delta = CutFieldZ( delta_filename, Cut, 32, Coor = axe )
-    eigV1 = CutFieldZ( eigV_filename+"_1", Cut, 16, Coor = axe )
-    eigV2 = CutFieldZ( eigV_filename+"_2", Cut, 16, Coor = axe )
-    eigV3 = CutFieldZ( eigV_filename+"_3", Cut, 16, Coor = axe )
+    eig1 = CutFieldZ( eig_filename+"_1", Cut, 16, Coor = axe )
+    eig2 = CutFieldZ( eig_filename+"_2", Cut, 16, Coor = axe )
+    eig3 = CutFieldZ( eig_filename+"_3", Cut, 16, Coor = axe )
 
     #Density Plot
     plt.subplot( N_sim, 5, 5*i_fold+1 )
@@ -71,9 +75,10 @@ for fold in folds:
 	
     #Vweb Plot with Lambda_th = 0
     plt.subplot( N_sim, 5, 5*i_fold+2 )
-    plt.imshow( -Scheme( eigV1, eigV2, eigV3, 0.0 ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
+    lambda_th = Lambda_ths[0]
+    plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "V-web\n$\lambda_{th} = 0$" )
+	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
@@ -82,9 +87,10 @@ for fold in folds:
     
     #Vweb Plot with Lambda_th = 0.1
     plt.subplot( N_sim, 5, 5*i_fold+3 )
-    plt.imshow( -Scheme( eigV1, eigV2, eigV3, 0.1 ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
+    lambda_th = Lambda_ths[1]
+    plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "V-web\n$\lambda_{th} = 0.1$" )
+	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     if i_fold == N_sim - 1:
@@ -93,9 +99,10 @@ for fold in folds:
     
     #Vweb Plot with Lambda_th = 0.3
     plt.subplot( N_sim, 5, 5*i_fold+4 )
-    plt.imshow( -Scheme( eigV1, eigV2, eigV3, 0.3 ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
+    lambda_th = Lambda_ths[2]
+    plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "V-web\n$\lambda_{th} = 0.3$" )
+	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
@@ -104,9 +111,10 @@ for fold in folds:
     
     #Vweb Plot with Lambda_th = 0.5
     plt.subplot( N_sim, 5, 5*i_fold+5 )
-    plt.imshow( -Scheme( eigV1, eigV2, eigV3, 0.5 ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
+    lambda_th = Lambda_ths[3]
+    plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "V-web\n$\lambda_{th} = 0.5$" )
+	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
@@ -117,7 +125,6 @@ for fold in folds:
     plt.ylim( (0,Box_L[i_fold]) )
 
     i_fold += 1
-    
 
-#plt.subplots_adjust(  )    
+#plt.subplots_adjust(  )
 plt.show()

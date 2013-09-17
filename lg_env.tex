@@ -155,16 +155,13 @@ fusion and/or disruption of an accreted sub-halo with a dominant halo.
 The linking length is $b=0.17$ times the mean inter-particle separation. 
 All objects with 20 particles or more are considered a bona fide halo and 
 are included in the construction of the merger tree, this corresponds to a 
-minimum halo mass of $M_{\rm min}=3.78\times 10^{8}$ \hMsun in the CLUES 
-volumes and $M_{\rm min}=2.70\times 10^{9}$\hMsun in the Bolshoi 
+minimum halo mass of $M_{\rm min}=2.70\times 10^{9}$\hMsun in the Bolshoi 
 simulation.
 
 
 
-The halo identification for the CLUES simulation was done for 80 snapshots
-in the redshift range $0<z<7$ more or less evenly spaced in look-back time. 
-For Bolshoi we use the information of XX snapshots in the same redshift 
-ssrange.
+The halo identification for the simulation was done for XX snapshots in 
+the redshift range $0<z<7$ more or less evenly spaced in look-back time.
 
 
 
@@ -176,7 +173,7 @@ ssrange.
 
 
 %-------------------------------------------------------------------------
-\subsection{The tidal web - T-web}
+\subsection{The tidal web (T-web)}
 \label{subsec:Tweb}
 %-------------------------------------------------------------------------
 
@@ -212,13 +209,13 @@ overdensity.
 
 
 %-------------------------------------------------------------------------
-\subsection{The velocity  web - V-web}
+\subsection{The velocity  web (V-web)}
 \label{sec:Vweb}
 %-------------------------------------------------------------------------
 
 
 
-We use the a kinematical method to define the cosmic-web environment in 
+We also use a kinematical method to define the cosmic-web environment in 
 the simulation. The method has been thoroughly described in XXX and 
 applied to study the shape and spin alignment in the Bolshoi simulation 
 here XX. We refer the reader to these papers to find a detailed 
@@ -251,14 +248,13 @@ velocity field smoothed on the physical scale ${\mathcal R}$.
 
 
 The relative strength of the three eigenvalues with respect to a threshold
-values $\lambda_{th}$ allows for the local classification of the matter 
+value $\lambda_{th}$ allows for the local classification of the matter 
 distribution into four web types. Voids, sheets, filaments and peaks, 
 which correspond to regions with 3, 2, 1 or 0 eigenvalues with values 
-larger than $\lambda_{th}$. In this paper we do not perform an definitive 
-classification into web types, instead we express the results respect to 
-the relative strength of the eigenvalues and in a range of $\lambda_{th}$.
-We consider \textit{a posteriori} the possible web type interpretation 
-that could be feasible within a range of thresholds for the eigenvalues. 
+larger than $\lambda_{th}$. Below we shall discuss a novel approach to 
+define an adequate threshold value based on the visual impression of void
+regions, furthermore we study other possible values based on other visual
+features of the cosmic web.
 
 
 
@@ -294,7 +290,7 @@ reduce percolation in cells, thereby accounting for physical voids regions.
 In the next figure we show the obtained result of our percolation analysis 
 for both web schemes. In both cases it can be noted that percolation (the 
 largest void region volume) is completely reduced for $\lambda_{th} = 0.0$,
-so despite of the previously established $\lambda_th$ values for each 
+so despite of the previously established $\lambda_{th}$ values for each 
 scheme, just for the detection of void regions we shall use $\lambda_{th} = 
 0.0$
 
@@ -567,60 +563,114 @@ pairs.)
 
 
 %.........................................................................
-%Percolation analysis
+%Mean density for each environment
 \begin{flushleft}
-	\begin{figure*}
+\begin{figure*}
 \begin{center}
 
-\includegraphics[keepaspectratio=true,width=0.35\textheight]
-{./figures/voids_regions_percolation.pdf}
+  \includegraphics[keepaspectratio=true,width=0.6\textheight]
+  {./figures/cell_types_density.pdf}
 
-\captionof{figure}{\small Integrated mass function of individual halos of 
-each simulation used. In the center-left, with vertical dot lines, the 
-individual masses of each LG system in CLUES simulations are represented.}
+  \captionof{figure}{\small Mean density parameter for each of the 
+  defined environments according to the chosen $\lambda_{th}$ value and 
+  for both classification schemes.}
 
-\label{fig:percolation_analysis}
-\vspace{0.1 cm}
+  \label{fig:mean_density}
+  \vspace{0.1 cm}
+
 \end{center}
-	\end{figure*}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
+
+
+%.........................................................................
+%Visual impresion
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 40mm 12mm 37mm 10mm, clip, keepaspectratio=true,
+  width=0.7\textheight]{./figures/cosmicweb_visual_Tweb.pdf}
+  \includegraphics[trim = 40mm 12mm 37mm 10mm, clip, keepaspectratio=true,
+  width=0.7\textheight]{./figures/cosmicweb_visual_Vweb.pdf}
+
+  \captionof{figure}{\small Visual impression of the density field (left),
+  and of each classification scheme with the $\lambda_{th}$ values obtained 
+  by our criteria (others). Our color convention for each environment is 
+  (white) - void, (light gray) - sheet, (gray) - filament, (black) - knot. }
+
+  \label{fig:visual_impression}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
+
+
+%.........................................................................
+%Percolation analysis
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 5mm 10mm 15mm 18mm, clip, keepaspectratio=true,
+  width=0.35\textheight]{./figures/voids_regions_percolation.pdf}
+
+  \captionof{figure}{\small Percolation analysis of void regions for 
+  different $\lambda_{th}$ values and for both defined classification 
+  schemes.}
+
+  \label{fig:percolation_analysis}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
 \end{flushleft}
 %.........................................................................
 
 
 %.........................................................................
 %Table of extreme values of LG environment
+\begin{flushleft}
 \begin{table*}
-  \centering
+\begin{center}
+
   \begin{tabular}{l | c c c} \hline
 	& $\bds{\lambda_{1}}\ [10^{-1}]$ & $\bds{\lambda_{2}}\ [10^{-1}]$  & $\bds{\lambda_{3}}\ [10^{-1}]$ \\ \hline
 	\textbf{Minim value} & 1.78 & -6.29$\times 10^{-2}$ & -1.98 \\
 	\textbf{Maxim value} & 3.49 & 1.21 & -8.85$\times 10^{-1}$ \\ \hline
   \end{tabular}
   
-  \caption{Extreme values for each V-web eigenvalues to construct LG 
-  samples.}
+  \captionof{table}{\small Extreme values for each V-web eigenvalues to 
+  construct LG samples.}
   
   \label{Tab:Lambdas_LG}
+  
+\end{center}
 \end{table*}
+\end{flushleft}
 %.........................................................................
 
 
 %.........................................................................
 %IMF halos
 \begin{flushleft}
-	\begin{figure*}
+\begin{figure*}
 \begin{center}
 
-\includegraphics[keepaspectratio=true,width=0.35\textheight]
-{./figures/integrated_mass_halos.pdf}
+  \includegraphics[keepaspectratio=true,width=0.35\textheight]
+  {./figures/integrated_mass_halos.pdf}
 
-\captionof{figure}{\small Integrated mass function of individual halos of 
-Bolshoi.}
+  \captionof{figure}{\small Integrated mass function of individual halos 
+  of Bolshoi.}
 
-\label{fig:IMF_Bolshoi}
-\vspace{0.1 cm}
+  \label{fig:IMF_Bolshoi}
+  \vspace{0.1 cm}
+
 \end{center}
-	\end{figure*}
+\end{figure*}
 \end{flushleft}
 %.........................................................................
 

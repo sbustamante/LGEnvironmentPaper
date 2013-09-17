@@ -30,11 +30,11 @@ Lambda_th = np.arange( 0, 1.0, 0.01 )
 #			CONSTRUCTING REGIONS VOLUME
 #==================================================================================================
 
-i_fold = 0
 N_sim = len(folds)
 
 plt.figure( figsize=(7,2*5) )
 for web in webs:
+    i_fold = 0
     for fold in folds:
 	print fold, web
 	
@@ -59,7 +59,7 @@ plt.subplot( 2,1,1 )
 plt.grid()
 plt.ylabel( "Number of voids $N/N_0$" )
 plt.xlabel( "$\lambda_{th}$" )
-plt.legend()
+plt.legend(fancybox = True, shadow = True)
 
 plt.subplot( 2,1,2 )
 plt.grid()

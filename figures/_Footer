@@ -1,5 +1,30 @@
 *******************************************************************************
 FIG NAME:	
+	cell_types_density.pdf
+CAPTION:
+	Mean density parameter for each of the defined environments according 
+	to the chosen $\lambda_{th}$ value and for both classification schemes.
+CODE:
+	regions_mean_density.py
+*******************************************************************************
+
+
+*******************************************************************************
+FIG NAME:	
+	cosmicweb_visual_Tweb.pdf
+	cosmicweb_visual_Vweb.pdf
+CAPTION:
+	Visual impression of the density field (left), and of each classification
+	scheme with the $\lambda_{th}$ values obtained by our criteria (others).
+	Our color convention for each environment is (white) - void, (light 
+	gray) - sheet, (gray) - filament, (black) - knot.
+CODE:
+	regions_mean_density.py
+*******************************************************************************
+
+
+*******************************************************************************
+FIG NAME:	
 	integrated_mass_halos.pdf
 CAPTION:
 	Integrated mass function of halos in the general catalog of each 
