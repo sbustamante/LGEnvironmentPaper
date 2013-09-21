@@ -166,7 +166,7 @@ the redshift range $0<z<7$ more or less evenly spaced in look-back time.
 
 
 %*************************************************************************
-\section{Algorithms to quantify the cosmic environment}
+\section{Algorithms to quantify the cosmic web}
 \label{sec:algorithms_cosmic_web}
 %*************************************************************************
 
@@ -249,7 +249,7 @@ velocity field smoothed on the physical scale ${\mathcal R}$.
 
 The relative strength of the three eigenvalues with respect to a threshold
 value $\lambda_{th}$ allows for the local classification of the matter 
-distribution into four web types. Voids, sheets, filaments and peaks, 
+distribution into four web types: voids, sheets, filaments and peaks, 
 which correspond to regions with 3, 2, 1 or 0 eigenvalues with values 
 larger than $\lambda_{th}$. Below we shall discuss a novel approach to 
 define an adequate threshold value based on the visual impression of void
@@ -259,12 +259,50 @@ features of the cosmic web.
 
 
 %-------------------------------------------------------------------------
-\subsection{The Web in Bolshoi}
+\subsection{The cosmic web in Bolshoi}
 \label{subsec:web_in_simulations}
 %-------------------------------------------------------------------------
-... Resolution and Smoothing
 
-... Database
+
+
+Both established schemes to quantify the cosmic web depend on continuous 
+and smooth physical quantities, as the peculiar velocity field and the 
+density field. In order to calculate the needed tensors, a discretization 
+of the simulation volume is performed, so all the properties are reduced 
+to single values associated to discrete cells. According to this, we divide 
+the overall volume into $(256)^3$ cells, so each cell has an associated 
+comovil cubic volume of $0.98 \mbox{ Mpc h}^{-1}$. Finally, to reduce 
+possible effects due to the discretization process, a gaussian softening 
+is performed between neighbour cells.
+
+
+
+Once defined the numerical details about the classification schemes, we 
+shall analyse the dependence on the threshold value $\lambda_{th}$ for each 
+one. In the figure \ref{fig:mean_density} we show the variation of the mean 
+density parameter $\delta$ with the threshold value for cells marked in 
+each of the adopted types of environment.
+
+
+As was previously established by \SRKED{Forero-Romero et al. 2008} and as 
+can be seen in the figure \ref{fig:mean_density}, the behaviour of the 
+V-web scheme is significantly more sensible to variations of the 
+$\lambda_{th}$ value compared with the T-web scheme; nevertheless, the 
+behaviour of the mean density parameter for voids, sheets and filaments, 
+are qualitatively quite similar for the two schemes, reaching extreme 
+values in the marked $\lambda_{th}$ values respectively. For instance, 
+voids reach a minim value, increasing for higher threshold values, while 
+sheets and filaments reach a maxim value, decreasing for higher threshold 
+values. Although we shall focus our analysis on voids because they are 
+completely dominant in the visual impression of the cosmic web, an 
+analogous analysis might be performed for other type of environments.
+
+
+On cosmic scales, the presence of highly non-linear structures imply the 
+existence of very vast regions with density values under the mean 
+cosmological value due to the mass conservation. That is why the visual 
+impression of the cosmic web must necessarily be dominated by these 
+underdense regions.
 
 
 %-------------------------------------------------------------------------
