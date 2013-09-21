@@ -25,17 +25,34 @@ No. 18A-10, Edificio Ip, Bogot\'a, Colombia
 \begin{abstract}
 
 
-We present a theoretical study Local Group in a cosmological context. 
-The principal objective is to find a coherent sample of LG systems in 
-the unconstrained simulation Bolshoi based upon the properties of hand 
-construted LG systems in the constrained simulations CLUES. We obtain a 
-privileged environment for these systems and significant bias in some of 
-their properties. (\SRKED{draft!})
+We present here a study about the influence of the environment on the
+local group (LG) of galaxies in the context of $\Lambda$CDM. In this study 
+we use a large volume high resolution N-body cosmological simulation 
+(Bolshoi) together with the most recent methods to quantify the cosmic web 
+(T-web, V-web schemes); furthermore we propose a novel approximation, base
+upon the minimization of the mean density of void regions, to determinate 
+the optimum threshold value $\lambda_{th}$, which have been treated until 
+now as a free parameter. 
+Following the recent work of Courtois et al. (2013), where was 
+found that the LG is located near to a large void, we also do an extensive 
+study of voids, applying a FOF algorithm to find void regions and 
+performing an analysis of their shape based upon the reduced inertia 
+tensor.
+Using the recent observations that constrained the tangential velocity of
+M31 with respect to the Milky Way (MW), the previously established radial 
+velocity, the estimated masses of dark halos, along with some criteria
+to guarantee the gravitational isolation of these systems (Forero-Romero
+et al. 2013-1), we select a set of halos pairs as a representative sample 
+of LG systems in the Bolshoi simulation. 
+We look for possible bias and correlations between the environment 
+properties of each LG system and its kinematic and formation properties. 
+Among our main result we find \SRKED{[summarize our results here!]}.
 
 \end{abstract}
 
 \begin{keywords}
-galaxies: high-redshift - galaxies: star formation - line: formation
+Cosmology: large-scale Structure of Universe, 
+galaxies: star formation - line: formation
 \end{keywords}
 
 
@@ -101,7 +118,7 @@ and absence of major mergers (ratio 1:10) in the last $10$ Gyr. In the
 case of the kinematic properties, recent observational constrains to the 
 galactocentric tangential velocity of M31 has enabled to establish how 
 typical is the LG in a cosmological context \SRKED{[reference to 
-Forero-Romero 2013-1]}, that is why we focus here how a specific kind of 
+Forero-Romero et.al 2013-1]}, that is why we focus here how a specific kind of 
 host environment biases these kinematics properties.
 
 
@@ -298,11 +315,20 @@ completely dominant in the visual impression of the cosmic web, an
 analogous analysis might be performed for other type of environments.
 
 
-On cosmic scales, the presence of highly non-linear structures imply the 
-existence of very vast regions with density values under the mean 
+On cosmic scales, the presence of highly non-linear structures implies the 
+existence of very vast regions with density lower than the mean 
 cosmological value due to the mass conservation. That is why the visual 
-impression of the cosmic web must necessarily be dominated by these 
-underdense regions.
+impression of the cosmic web must be necessarily dominated by these 
+under-dense regions. Keeping that in mind, our novel proposal is based upon
+the correct quantification of these regions, so the optimum threshold 
+value must be chosen such that, sheet regions do not invade real void 
+regions (in such case, the mean density parameter of sheet regions would 
+become negative) and void regions do not invade real sheet and filament 
+regions (in such case, the mean density parameter of void regions would 
+increase due to the contribution of over-dense regions). Thus, the optimum 
+value is simply where the mean density parameter of void regions is 
+minimized.
+
 
 
 %-------------------------------------------------------------------------
@@ -324,7 +350,7 @@ for connecting diagonal neighbour cells.
 
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
-reduce percolation in cells, thereby accounting for physical voids regions.
+reduce percolation in cells, thereby accounting for physical void regions.
 In the next figure we show the obtained result of our percolation analysis 
 for both web schemes. In both cases it can be noted that percolation (the 
 largest void region volume) is completely reduced for $\lambda_{th} = 0.0$,
