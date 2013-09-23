@@ -118,8 +118,8 @@ and absence of major mergers (ratio 1:10) in the last $10$ Gyr. In the
 case of the kinematic properties, recent observational constrains to the 
 galactocentric tangential velocity of M31 has enabled to establish how 
 typical is the LG in a cosmological context \SRKED{[reference to 
-Forero-Romero et.al 2013-1]}, that is why we focus here how a specific kind of 
-host environment biases these kinematics properties.
+Forero-Romero et.al 2013-1]}, that is why we focus here how a specific kind 
+of host environment biases these kinematics properties.
 
 
 
@@ -196,7 +196,7 @@ the redshift range $0<z<7$ more or less evenly spaced in look-back time.
 
 
 
-The first algorithm  we use to identify the cosmic web is based on the
+The first algorithm  we use to identify the cosmic web is based upon the
 diagonalization of the tidal tensor, defined as the Hessian of a 
 normalized gravitational potential  
 
@@ -301,18 +301,21 @@ density parameter $\delta$ with the threshold value for cells marked in
 each of the adopted types of environment.
 
 
-As was previously established by \SRKED{Forero-Romero et al. 2008} and as 
+
+As was previously established by \SRKED{Hoffman et al. (2012)} and as 
 can be seen in the figure \ref{fig:mean_density}, the behaviour of the 
 V-web scheme is significantly more sensible to variations of the 
 $\lambda_{th}$ value compared with the T-web scheme; nevertheless, the 
 behaviour of the mean density parameter for voids, sheets and filaments, 
 are qualitatively quite similar for the two schemes, reaching extreme 
-values in the marked $\lambda_{th}$ values respectively. For instance, 
-voids reach a minim value, increasing for higher threshold values, while 
-sheets and filaments reach a maxim value, decreasing for higher threshold 
-values. Although we shall focus our analysis on voids because they are 
-completely dominant in the visual impression of the cosmic web, an 
-analogous analysis might be performed for other type of environments.
+values in the marked $\lambda_{th}$ critical values respectively. For 
+instance, voids reach a minim value at some critical threshold, increasing 
+for higher threshold values, while sheets and filaments reach a maxim value
+at other critical threshold, decreasing for higher threshold values. 
+Although we shall focus our analysis on voids because they are completely 
+dominant in the visual impression of the cosmic web, an analogous analysis 
+might be performed for other type of environments.
+
 
 
 On cosmic scales, the presence of highly non-linear structures implies the 
@@ -321,13 +324,29 @@ cosmological value due to the mass conservation. That is why the visual
 impression of the cosmic web must be necessarily dominated by these 
 under-dense regions. Keeping that in mind, our novel proposal is based upon
 the correct quantification of these regions, so the optimum threshold 
-value must be chosen such that, sheet regions do not invade real void 
+value must be chosen such that: sheet regions do not invade real void 
 regions (in such case, the mean density parameter of sheet regions would 
 become negative) and void regions do not invade real sheet and filament 
 regions (in such case, the mean density parameter of void regions would 
 increase due to the contribution of over-dense regions). Thus, the optimum 
 value is simply where the mean density parameter of void regions is 
-minimized.
+minimized. According to this, we obtain the next threshold values 
+for the T-web and the V-web respectively, $\lambda_{th}^T = 0.61$ and 
+$\lambda_{th}^V = 0.26$. To verify our analysis, we show in the figure 
+\ref{fig:visual_impression} the visual impression for each defined critical 
+value, and as can be seen, the chosen values reproduce properly the 
+expected impression according to the density field. 
+
+
+
+Our classification scheme may be thought as a refinement of the recent 
+schemes, where the threshold value is used to taking as a free parameter, 
+based on the classic methods, where the classification is performed 
+based on a cut off of the density field directly \SRKED{[references here]}.
+So we make use of the objectivity achieved by the analysis of the mean 
+density, but keeping all the environmental information provided by the
+tensorial schemes instead of the poor description provided by the density 
+field.
 
 
 
@@ -339,24 +358,33 @@ minimized.
 
 
 Following the recent work of \SRKED{Courtois et al. 2013}, we use a method 
-based on a FOF algorithm to find extended regions of voids and then, we 
-select halo systems according to a proximity criteria to those regions. 
-In order to perform this, we build the input FOF catalogue with the 
+based on a FOF algorithm to find extended regions of voids in order to
+select halo systems according to the proximity to those regions. 
+To achieve this, we build the input catalogue of the FOF method with the 
 positions of the center coordinate of every cell marked as void according 
 to the web scheme adopted; furthermore we set an adequate linking length 
-for connecting diagonal neighbour cells.
+to connect even diagonal neighbour cells.
 
 
 
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
 reduce percolation in cells, thereby accounting for physical void regions.
-In the next figure we show the obtained result of our percolation analysis 
-for both web schemes. In both cases it can be noted that percolation (the 
-largest void region volume) is completely reduced for $\lambda_{th} = 0.0$,
-so despite of the previously established $\lambda_{th}$ values for each 
-scheme, just for the detection of void regions we shall use $\lambda_{th} = 
-0.0$
+In the figure \ref{fig:percolation_analysis} we show the obtained result 
+of our percolation analysis for both web schemes. In both cases it can be 
+noted that percolation (the largest void region volume) is completely 
+reduced for $\lambda_{th} = 0.0$, so despite of the previously established 
+$\lambda_{th}$ optimum values for each scheme, we shall use $\lambda_{th} 
+= 0.0$ just for the detection of void regions. 
+
+
+
+Due to the domination of the large scale visual impression by voids, it is 
+inevitable the presence of the percolation phenomenon, so the current 
+chosen threshold value for percolation is justified because in spite of 
+voids are necessarily connected, we are just interested in detecting bulk 
+void regions
+
 
 
 %*************************************************************************
@@ -425,7 +453,7 @@ with respect to the XX Cluster.}
 Due to the intrinsic nature of constrained simulations, we expect that 
 these LG samples be the most faithful systems that resemble the properties
 and the environment of our LG. In fact, the three CLUES simulations appear 
-to present a common V-web/T-web environment for LG systems, such as shown 
+to present a common T-web/V-web environment for LG systems, such as shown 
 in the figure \ref{fig:LG_CLUES_Environment}. Based in this we propose a 
 new criteria of selection to define more realistic LG systems in the
 unconstrained simulation, this consists in tanking the extreme values of 
