@@ -284,7 +284,7 @@ features of the cosmic web.
 
 Both established schemes to quantify the cosmic web depend on continuous 
 and smooth physical quantities, as the peculiar velocity field and the 
-density field. In order to calculate the needed tensors, a discretization 
+density field. In order to calculate the necessary tensors, a discretization
 of the simulation volume is performed, so all the properties are reduced 
 to single values associated to discrete cells. According to this, we divide 
 the overall volume into $(256)^3$ cells, so each cell has an associated 
@@ -372,15 +372,17 @@ percolation analysis in order to select the best threshold parameter that
 reduce percolation in cells, thereby accounting for physical void regions.
 In the figure \ref{fig:percolation_analysis} we show the obtained result 
 of our percolation analysis for both web schemes. In both cases it can be 
-noted that percolation (the largest void region volume) is completely 
-reduced for $\lambda_{th} = 0.0$, so despite of the previously established 
-$\lambda_{th}$ optimum values for each scheme, we shall use $\lambda_{th} 
-= 0.0$ just for the detection of void regions. 
+noted the volume of the largest void region is minimized and the volume 
+distribution of voids is relatively flat at $\lambda_{th} = 0.0$, that 
+means percolation is completely reduced for this threshold value. So 
+despite of the previously established $\lambda_{th}$ optimum values for 
+each scheme, we shall use $\lambda_{th} = 0.0$ just for the detection of 
+void regions. 
 
 
 
 Due to the domination of the large scale visual impression by voids, it is 
-inevitable the presence of the percolation phenomenon, so the current 
+inevitable the presence of percolation phenomenon, so the current 
 chosen threshold value for percolation is justified because in spite of 
 voids are necessarily connected, we are just interested in detecting bulk 
 void regions
@@ -709,6 +711,9 @@ pairs.)
 
   \includegraphics[trim = 5mm 10mm 15mm 18mm, clip, keepaspectratio=true,
   width=0.35\textheight]{./figures/voids_regions_percolation.pdf}
+
+  \includegraphics[trim = 0mm 00mm 00mm 00mm, clip, keepaspectratio=true,
+  width=0.35\textheight]{./figures/voids_regions_volume.pdf}
 
   \captionof{figure}{\small Percolation analysis of void regions for 
   different $\lambda_{th}$ values and for both defined classification 
