@@ -377,15 +377,28 @@ distribution of voids is relatively flat at $\lambda_{th} = 0.0$, that
 means percolation is completely reduced for this threshold value. So 
 despite of the previously established $\lambda_{th}$ optimum values for 
 each scheme, we shall use $\lambda_{th} = 0.0$ just for the detection of 
-void regions. 
+void regions. Besides, due to the domination of the large scale visual 
+impression by voids, it is inevitable the presence of percolation 
+phenomenon, so the current chosen threshold value for percolation is 
+justified because in spite of voids are necessarily connected, we are just 
+interested in detecting bulk regions.
 
 
 
-Due to the domination of the large scale visual impression by voids, it is 
-inevitable the presence of percolation phenomenon, so the current 
-chosen threshold value for percolation is justified because in spite of 
-voids are necessarily connected, we are just interested in detecting bulk 
-void regions
+Next, we shall calculate the reduced inertia tensor of each void region 
+in order to determinate their principal direction of inertia and analyse 
+the shape distribution of voids.
+
+
+%.........................................................................
+%Reduced inertia tensor
+\eq{ReducedIntertia}
+{ \tau_{ij} = \sum_l \frac{ x_{l,i}x_{l,j}  }{R_l^2} }
+%.........................................................................
+where $l$ is a index associated to each cell belonging to the current 
+region, $i$ and $j$ indexes run over each spatial direction and finally 
+$R_l$ is defined as $R_l^2 = x_{l,1}^2 + x_{l,2}^2 + x_{l,3}^2$.
+
 
 
 
