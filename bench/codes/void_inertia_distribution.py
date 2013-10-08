@@ -40,8 +40,8 @@ for fold in folds:
     print fold
     
     
-    eigen = np.loadtxt( "%s/%s/%s/%d/voids%s/voids_%1.2f/eigen.dat"%\
-    (foldglobal, fold, web, N_sec[i_fold], smooth, Lambda_th ))
+    eigen = np.transpose(np.loadtxt( "%s/%s/%s/%d/voids%s/voids_%1.2f/eigen.dat"%\
+    (foldglobal, fold, web, N_sec[i_fold], smooth, Lambda_th )))
 	    
       
     i_fold += 1
