@@ -23,11 +23,11 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'FOF'
 #Web Scheme
-web = 'Tweb'
+web = 'Vweb'
 #Lambda_th
 Lambda_th = 0.0
 #Nbins of each histogram
-Nbins = 20
+Nbins = 10
 
 #==================================================================================================
 #			COMPUTING EIGENVALUES AND BUILDING THE INERTIA TENSOR
@@ -36,6 +36,30 @@ Nbins = 20
 i_fold = 0
 N_sim = len(folds)
 
+#no labels
+nullfmt = NullFormatter()
+
+#definitions for the axes
+left, width = 0.1, 0.65
+bottom_v, height = 0.1, 0.65
+bottom_h = left_h = left+width+0.02
+
+rect_hist2D = [left, bottom_v, width, height]
+rect_histx = [left, bottom_h, width, 0.2]
+rect_histy = [left_h, bottom_v, 0.2, height]
+
+#start with a rectangular Figure
+plt.figure(1, figsize=(8,8))
+
+axHist2D = plt.axes(rect_hist2D)
+axHistx = plt.axes(rect_histx)
+axHisty = plt.axes(rect_histy)
+
+#no labels
+axHistx.xaxis.set_major_formatter(nullfmt)
+axHisty.yaxis.set_major_formatter(nullfmt)
+
+
 for fold in folds:
     print fold
     
@@ -43,22 +67,49 @@ for fold in folds:
     eigen = np.transpose(np.loadtxt( "%s/%s/%s/%d/voids%s/voids_%1.2f/eigen.dat"%\
     (foldglobal, fold, web, N_sec[i_fold], smooth, Lambda_th )))
   
-    plt.subplot(131)
-    plt.hist( eigen[0]/eigen[1], bins=Nbins )
-    plt.subplot(132)
-    plt.hist( eigen[0]/eigen[2], bins=Nbins )
-    plt.subplot(133)
-    plt.hist( eigen[1]/eigen[2], bins=Nbins )
+    Hist_lambd  = np.transpose(np.histogram2d( eigen[0]/eigen[1], eigen[1]/eigen[2], 
+    bins = Nbins, normed = False, range = ((0,1),(0,1))  )[0][::,::-1])
     
+    #2D histogram
+    map2d = axHist2D.imshow( Hist_lambd, interpolation='nearest', aspect = 'auto',
+    cmap = 'binary', extent = (0,1,0,1) )	
+    #Create the colorbar
+    axc, kw = matplotlib.colorbar.make_axes( axHist2D,\
+    orientation = "horizontal", shrink=.5, pad=.1, aspect=10 )
+    cb = matplotlib.colorbar.Colorbar( axc, map2d,\
+    orientation = "horizontal" )
+    # Set the colorbar
+    map2d.colorbar = cb
+    
+    #axHist2D.contour( Hist_lambd[::-1,::], 7, aspect = 'auto', 
+    #extent = (0,1,0,1),linewidth=1.5, interpolation = 'gaussian' )
+    
+    #Histogram X
+    histx = np.histogram( eigen[0]/eigen[1], bins=Nbins, normed=True )
+    axHistx.bar( histx[1][1:], histx[0], width = 1.005/Nbins, linewidth=2.0, color="gray" )
+    #Histogram Y
+    histy = np.histogram( eigen[1]/eigen[2], bins=Nbins, normed=True )
+    axHisty.barh( histx[1][1:], histx[0], height = 1.005/Nbins, linewidth=2.0, color="gray" )
+  
       
     i_fold += 1
 
-plt.subplot(131)
-plt.xlim( (0,1) )
+axHistx.set_xlim( axHist2D.get_xlim() )
+axHistx.set_xticks( np.linspace( 0,1,Nbins+1 ) )
+axHistx.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHistx.set_ylabel( "Normed distribution" )
 
-plt.subplot(132)
-plt.xlim( (0,1) )
+axHisty.set_ylim( axHist2D.get_ylim() )
+axHisty.set_yticks( np.linspace( 0,1,Nbins+1 ) )
+axHisty.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHisty.set_xlabel( "Normed distribution" )
 
-plt.subplot(133)
-plt.xlim( (0,1) )
+axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHist2D.set_xticks( np.linspace( 0,1,Nbins+1 ) )
+axHist2D.set_yticks( np.linspace( 0,1,Nbins+1 ) )
+axHist2D.set_xlabel( "$\lambda_1/\lambda_2$" )
+axHist2D.set_ylabel( "$\lambda_2/\lambda_3$" )
+
+
+
 plt.show()
