@@ -22,7 +22,7 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'FOF'
 #Web Scheme
-web = 'Tweb'
+web = 'Vweb'
 #Lambda_th
 Lambda_th = 0.0
 #Cutt of respect to the number of cells
