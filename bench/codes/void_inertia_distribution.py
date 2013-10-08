@@ -71,7 +71,7 @@ for fold in folds:
     bins = Nbins, normed = False, range = ((0,1),(0,1))  )[0][::,::-1])
     
     #2D histogram
-    map2d = axHist2D.imshow( Hist_lambd, interpolation='nearest', aspect = 'auto',
+    map2d = axHist2D.imshow( Hist_lambd[::,::], interpolation='nearest', aspect = 'auto',
     cmap = 'binary', extent = (0,1,0,1) )	
     #Create the colorbar
     axc, kw = matplotlib.colorbar.make_axes( axHistx,\
@@ -87,11 +87,11 @@ for fold in folds:
     colors="black" )
     
     #Histogram X
-    histx = np.histogram( eigen[0]/eigen[1], bins=Nbins, normed=True )
+    histx = np.histogram( eigen[0]/eigen[1], bins=Nbins, normed=True, range=(0,1) )
     axHistx.bar( histx[1][1:], histx[0], width = 1.00/Nbins, linewidth=2.0, color="gray" )
     #Histogram Y
-    histy = np.histogram( eigen[1]/eigen[2], bins=Nbins, normed=True )
-    axHisty.barh( histx[1][1:], histx[0], height = 1.00/Nbins, linewidth=2.0, color="gray" )
+    histy = np.histogram( eigen[1]/eigen[2], bins=Nbins, normed=True, range=(0,1) )
+    axHisty.barh( histy[1][1:], histy[0], height = 1.00/Nbins, linewidth=2.0, color="gray" )
   
       
     i_fold += 1
