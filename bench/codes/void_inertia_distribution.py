@@ -112,6 +112,20 @@ axHist2D.set_yticks( np.linspace( 0,1,Nbins+1 ) )
 axHist2D.set_xlabel( "$\lambda_1/\lambda_2$" )
 axHist2D.set_ylabel( "$\lambda_2/\lambda_3$" )
 
+axHist2D.hlines( 0.7, 0.0, 0.7, linestyle="--", color="red", linewidth=2.5 )
+axHist2D.text( 0.35, 0.81, "Pancake\nvoids", fontweight="bold", color="red",\
+fontsize=15, horizontalalignment="center" )
 
+axHist2D.vlines( 0.7, 0.0, 0.7, linestyle="--", color="green", linewidth=2.5 )
+axHist2D.text( 0.85, 0.3, "Filamentary\nvoids", fontweight="bold", color="green",\
+fontsize=15, horizontalalignment="center" )
+
+axHist2D.hlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
+axHist2D.vlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
+axHist2D.text( 0.85, 0.81, "Isotropic\nvoids", fontweight="bold", color="blue",\
+fontsize=15, horizontalalignment="center" )
+
+axHist2D.text( 0.01, 0.01, "%s"%(web), fontweight="bold", color="black",\
+fontsize=15 )
 
 plt.show()
