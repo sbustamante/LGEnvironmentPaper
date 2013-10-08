@@ -23,11 +23,11 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'FOF'
 #Web Scheme
-web = 'Vweb'
+web = 'Tweb'
 #Lambda_th
 Lambda_th = 0.0
-#Cutt of respect to the number of cells
-N_cut = 8
+#Nbins of each histogram
+Nbins = 20
 
 #==================================================================================================
 #			COMPUTING EIGENVALUES AND BUILDING THE INERTIA TENSOR
@@ -42,6 +42,23 @@ for fold in folds:
     
     eigen = np.transpose(np.loadtxt( "%s/%s/%s/%d/voids%s/voids_%1.2f/eigen.dat"%\
     (foldglobal, fold, web, N_sec[i_fold], smooth, Lambda_th )))
-	    
+  
+    plt.subplot(131)
+    plt.hist( eigen[0]/eigen[1], bins=Nbins )
+    plt.subplot(132)
+    plt.hist( eigen[0]/eigen[2], bins=Nbins )
+    plt.subplot(133)
+    plt.hist( eigen[1]/eigen[2], bins=Nbins )
+    
       
     i_fold += 1
+
+plt.subplot(131)
+plt.xlim( (0,1) )
+
+plt.subplot(132)
+plt.xlim( (0,1) )
+
+plt.subplot(133)
+plt.xlim( (0,1) )
+plt.show()
