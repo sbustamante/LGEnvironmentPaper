@@ -45,7 +45,7 @@ bottom_v, height = 0.1, 0.65
 bottom_h = left_h = left+width+0.02
 
 rect_hist2D = [left, bottom_v, width, height]
-rect_histx = [left, bottom_h, width, 0.2]
+rect_histx = [left, bottom_h, 1.335*width, 0.2]
 rect_histy = [left_h, bottom_v, 0.2, height]
 
 #start with a rectangular Figure
@@ -74,22 +74,24 @@ for fold in folds:
     map2d = axHist2D.imshow( Hist_lambd, interpolation='nearest', aspect = 'auto',
     cmap = 'binary', extent = (0,1,0,1) )	
     #Create the colorbar
-    axc, kw = matplotlib.colorbar.make_axes( axHist2D,\
-    orientation = "horizontal", shrink=.5, pad=.1, aspect=10 )
+    axc, kw = matplotlib.colorbar.make_axes( axHistx,\
+    orientation = "vertical", shrink=1., pad=.1, aspect=10 )
     cb = matplotlib.colorbar.Colorbar( axc, map2d,\
-    orientation = "horizontal" )
-    # Set the colorbar
+    orientation = "vertical" )
+    #Set the colorbar
     map2d.colorbar = cb
-    
-    #axHist2D.contour( Hist_lambd[::-1,::], 7, aspect = 'auto', 
-    #extent = (0,1,0,1),linewidth=1.5, interpolation = 'gaussian' )
+   
+    #Countorn
+    axHist2D.contour( Hist_lambd[::-1,::], 7, aspect = 'auto', 
+    extent = (0,1,0,1),linewidth=1.5, interpolation = 'gaussian',\
+    colors="black" )
     
     #Histogram X
     histx = np.histogram( eigen[0]/eigen[1], bins=Nbins, normed=True )
-    axHistx.bar( histx[1][1:], histx[0], width = 1.005/Nbins, linewidth=2.0, color="gray" )
+    axHistx.bar( histx[1][1:], histx[0], width = 1.00/Nbins, linewidth=2.0, color="gray" )
     #Histogram Y
     histy = np.histogram( eigen[1]/eigen[2], bins=Nbins, normed=True )
-    axHisty.barh( histx[1][1:], histx[0], height = 1.005/Nbins, linewidth=2.0, color="gray" )
+    axHisty.barh( histx[1][1:], histx[0], height = 1.00/Nbins, linewidth=2.0, color="gray" )
   
       
     i_fold += 1

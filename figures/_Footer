@@ -1,3 +1,4 @@
+#USED
 *******************************************************************************
 FIG NAME:	
 	cell_types_density.pdf
@@ -9,6 +10,7 @@ CODE:
 *******************************************************************************
 
 
+#USED
 *******************************************************************************
 FIG NAME:	
 	cosmicweb_visual_Tweb.pdf
@@ -19,10 +21,11 @@ CAPTION:
 	Our color convention for each environment is (white) - void, (light 
 	gray) - sheet, (gray) - filament, (black) - knot.
 CODE:
-	regions_mean_density.py
+	cosmicweb_visual_impresion.py
 *******************************************************************************
 
 
+#USED
 *******************************************************************************
 FIG NAME:	
 	integrated_mass_halos.pdf
@@ -32,6 +35,7 @@ CAPTION:
 CODE:
 	halos_integrated_mass.py
 *******************************************************************************
+
 
 
 *******************************************************************************
@@ -44,6 +48,7 @@ CAPTION:
 CODE:
 	IP_velocity_histogram.py
 *******************************************************************************  
+
 
 
 *******************************************************************************
@@ -61,6 +66,7 @@ CODE:
 *******************************************************************************
 
 
+#USED
 *******************************************************************************
 FIG NAME:	
 	voids_regions_percolation.pdf
@@ -69,4 +75,17 @@ CAPTION:
 	for both defined schemes.
 CODE:
 	void_FOF_regions.py
+*******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	voids_inertia_tensor_Tweb.pdf
+	voids_inertia_tensor_Vweb.pdf
+CAPTION:
+	Histogram of eigenvalues of the inertia tensor for each void region
+	and for both classification schemes.
+CODE:
+	void_inertia_distribution.py
 *******************************************************************************
