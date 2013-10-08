@@ -386,7 +386,7 @@ interested in detecting bulk regions.
 
 
 Next, we shall calculate the reduced inertia tensor of each void region 
-in order to determinate their principal direction of inertia and analyse 
+in order to determinate their principal directions of inertia and analyse 
 the size-shape distribution of voids.
 
 
@@ -400,6 +400,21 @@ $i$ and $j$ indexes run over each spatial direction and finally
 $R_l$ is defined as $R_l^2 = x_{l,1}^2 + x_{l,2}^2 + x_{l,3}^2$, all 
 positions are measured from the respective center of mass of the region.
 
+
+
+The eigenvalues of the reduced inertia tensor, i.e. the principal moments
+of inertia, are used to quantify the shape of void regions. They are 
+denoted as $\tau_1$, $\tau_2$ and $\tau_3$ such that $\tau_1 \leq \tau_2
+\leq \tau_3$. In the figure \ref{fig:distro_inertia} we show the computed
+distributions for $\tau_1/\tau_2$ and $\tau_2/\tau_3$, where we rather 
+calculate histograms for these ratio quantities instead of each value in 
+order to avoid using an arbitrary normalization. For both schemes, it can 
+be noticed that the shape-distribution is completely spread out, thereby 
+indicating a non-preferred geometry of void regions, which is in agreement 
+with the well-established anisotropic flow of matter associated to this 
+type of region \SRKED{[reference here]}. Because of that, we shall look 
+for possible alignments between the plane of rotation of halo pairs and
+the principal directions of inertia of the nearest void regions.
 
 
 
@@ -676,7 +691,7 @@ pairs.)
 \begin{figure*}
 \begin{center}
 
-  \includegraphics[keepaspectratio=true,width=0.6\textheight]
+  \includegraphics[keepaspectratio=true,width=0.5\textheight]
   {./figures/cell_types_density.pdf}
 
   \captionof{figure}{\small Mean density parameter for each of the 
@@ -748,13 +763,13 @@ pairs.)
 \begin{figure*}
 \begin{center}
 
-  \includegraphics[trim = 7mm 10mm 1mm 0mm, clip, keepaspectratio=true,
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
   width=0.36\textheight]{./figures/voids_inertia_tensor_Tweb}
-  \includegraphics[trim = 7mm 10mm 1mm 0mm, clip, keepaspectratio=true,
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
   width=0.36\textheight]{./figures/voids_inertia_tensor_Vweb}
 
-  \captionof{figure}{\small Histogram of eigenvalue ratio $\lambda_1/\lambda_2$
-  vs $\lambda_2/\lambda_3$ for the inertia tensor of void regions. T-web 
+  \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
+  vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
   scheme (left). V-web scheme (right). }
 
   \label{fig:distro_inertia}

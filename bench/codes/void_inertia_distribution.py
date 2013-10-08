@@ -23,7 +23,7 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'FOF'
 #Web Scheme
-web = 'Vweb'
+web = 'Tweb'
 #Lambda_th
 Lambda_th = 0.0
 #Nbins of each histogram
@@ -109,8 +109,8 @@ axHisty.set_xlabel( "Normed distribution" )
 axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHist2D.set_xticks( np.linspace( 0,1,Nbins+1 ) )
 axHist2D.set_yticks( np.linspace( 0,1,Nbins+1 ) )
-axHist2D.set_xlabel( "$\lambda_1/\lambda_2$" )
-axHist2D.set_ylabel( "$\lambda_2/\lambda_3$" )
+axHist2D.set_xlabel( "$\\tau_1/\\tau_2$", fontsize=15 )
+axHist2D.set_ylabel( "$\\tau_2/\\tau_3$", fontsize=15 )
 
 axHist2D.hlines( 0.7, 0.0, 0.7, linestyle="--", color="red", linewidth=2.5 )
 axHist2D.text( 0.35, 0.81, "Pancake\nvoids", fontweight="bold", color="red",\
@@ -123,6 +123,8 @@ fontsize=15, horizontalalignment="center" )
 axHist2D.hlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
 axHist2D.vlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
 axHist2D.text( 0.85, 0.81, "Isotropic\nvoids", fontweight="bold", color="blue",\
+fontsize=15, horizontalalignment="center" )
+axHist2D.text( 0.35, 0.3, "Anisotropic\nvoids", fontweight="bold", color="white",\
 fontsize=15, horizontalalignment="center" )
 
 axHist2D.text( 0.01, 0.01, "%s"%(web), fontweight="bold", color="black",\
