@@ -387,7 +387,7 @@ interested in detecting bulk regions.
 
 Next, we shall calculate the reduced inertia tensor of each void region 
 in order to determinate their principal direction of inertia and analyse 
-the shape distribution of voids.
+the size-shape distribution of voids.
 
 
 %.........................................................................
@@ -395,9 +395,10 @@ the shape distribution of voids.
 \eq{ReducedIntertia}
 { \tau_{ij} = \sum_l \frac{ x_{l,i}x_{l,j}  }{R_l^2} }
 %.........................................................................
-where $l$ is a index associated to each cell belonging to the current 
-region, $i$ and $j$ indexes run over each spatial direction and finally 
-$R_l$ is defined as $R_l^2 = x_{l,1}^2 + x_{l,2}^2 + x_{l,3}^2$.
+where $l$ is a index associated to each cell of to the current region, 
+$i$ and $j$ indexes run over each spatial direction and finally 
+$R_l$ is defined as $R_l^2 = x_{l,1}^2 + x_{l,2}^2 + x_{l,3}^2$, all 
+positions are measured from the respective center of mass of the region.
 
 
 

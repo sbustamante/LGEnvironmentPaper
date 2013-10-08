@@ -1,9 +1,7 @@
-#void_matrix_builder.py
+#void_FOF_regions.py
 #
-#This code builds the matrix associated with voids regions, where 0 isn't a void and 1 corresponds 
-#to one. All of this for a specific lambda_th value (given). Besides, this code calculates the mean
-#density (dark matter density) in different zones (void, sheet, filament, knot) in order to define 
-#the best value to reproduce the visual impression of the cosmic web.
+#This code calculate the dependece of the volume of the largest region with the threshold value,
+#furthermore, the number of voids.
 #
 #by: Sebastian Bustamante
 

@@ -1,3 +1,10 @@
+#cosmicweb_visual_impresion.py
+#
+#This code perform a graphic scheme of the visual impresion for a defined cutting off of Bolshoi
+#simulation, using the density field and the two environment classification schemes
+#
+#by: Sebastian Bustamante
+
 execfile('_Head.py')
 
 #==================================================================================================
