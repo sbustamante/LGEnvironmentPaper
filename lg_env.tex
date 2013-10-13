@@ -542,58 +542,6 @@ common properties between LG systems.
 
 
 
-%-------------------------------------------------------------------------
-\subsection{Defining the LG environment}
-\label{subsec:LG_construction}
-%-------------------------------------------------------------------------
-
-
-With the aim of constructing a sample of LG systems in Bolshoi simulations, 
-we use the eigenvalues of the three LG systems in each CLUES simulation 
-and choose a range for each one based in the extreme values of the six 
-halos, this with the expectation of reproducing the LG specific conditions 
-in constrained simulations. This criteria can be thought as a first 
-approximation to establish a more faithful sub-sample into the isolated 
-pairs. In table \ref{Tab:Lambdas_LG} we show the used extreme values for 
-each eigenvalue of local shear tensor.
-
-
-
-As a self-consistency test, we apply this criteria to CLUES simulations 
-and find, on average, three LG systems in each one. But to avoid confusion, 
-we keep defining the LG sample as the three initial pairs. Finally, we 
-construct the LG sample of Bolshoi, where the sample size is illustrated 
-in Table \ref{Tab:Samples}.
-
-
-
-Once we have established the equivalence of samples in each simulation and 
-have defined the LG samples, we proceed to calculate correlations between 
-halo samples and their environment. As was mentioned in section 
-\ref{sec:Vweb}, we do not use an specific value of eigenvalue threshold 
-$\lambda_{th}$, instead of this, we explore a relatively wide range of 
-this parameter (i.e. $0 \leq \lambda_{th} \leq 1$) and calculate 
-distributions respect to each eigenvalue individually.
-
-
-
-At first place, we calculate the environment of each LG system in CLUES 
-simulations, for this we use the $\lambda_{th}$ scheme to classify it in 
-void, sheet, filament or knot (see \ref{sec:Vweb}), with $\lambda_{th}$
-into the threshold range. Figure \ref{fig:LG_Env_CLUES} is obtained.
-
-
-
-At first place, we calculate the integrated distribution of each 
-eigenvalue for individual halos, isolated pairs and LG samples. For this, 
-we associate to each halo a value of environment (set of eigenvalues)
-according to its center of mass position in a smoothed grid ($256^3$ 
-cells for Bolshoi and $64^3$ for CLUES, or equivalently a resolution of 
-$1.0 \mbox{Mpc h}^{-1} $ per cell, according to the physical size of the 
-pairs.)
-
-
-
 %*************************************************************************
 \section{Results}
 \label{sec:Results}
