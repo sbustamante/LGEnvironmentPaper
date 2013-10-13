@@ -1,3 +1,10 @@
+#Lambda_Cells_1DHist.py
+#
+#This code calculate the histogram of eigenvalues for both defined web schemes and for both halos 
+#finding schemes. The plot is done for cells of the simulation, IP sample and RIP sample.
+#
+#by: Sebastian Bustamante
+
 execfile('_Head.py')
 
 #==================================================================================================
