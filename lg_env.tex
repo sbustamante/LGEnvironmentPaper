@@ -503,19 +503,17 @@ defined samples.
 
 %.........................................................................
 %Table of sizes of each sample defined in Bolshoi
+\begin{table}[H]
 \begin{flushleft}
-\begin{table}
 \begin{center}
-
-  \begin{tabular}{c c c} \hline
-	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline
+  \begin{tabular}{c  r  r} \hline
+	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline\hline
 	General Halos (\textit{GH}) 	& 432000	 & 404432  \\ 
 	Individual Halos (\textit{IH}) 	& 65109		 & 61165  \\ 
 	Pairs (\textit{P}) 	 			& 17115		 & 15981  \\ 
 	Isolated Pairs (\textit{IP})	& 1249		 & 1647  \\ 
 	Reduced Isolated Pairs (\textit{RIP})& 138	 & 116  \\ \hline
-  \end{tabular}
-  
+  \end{tabular}  
   \captionof{table}{\small Size of each sample defined in the Bolshoi 
   simulation and for each of the two schemes used to detect halos (FOF 
   and BDM).}
@@ -523,23 +521,45 @@ defined samples.
   \label{Tab:Samples_Size}
   
 \end{center}
-\end{table}
 \end{flushleft}
+\end{table}
 %.........................................................................
 
 
 %*************************************************************************
-\section{Finding the Local Group Environment}
+\section{Finding the Environment of the Local Group}
 \label{sec:LGEnvironment}
 %*************************************************************************
 
 
 
-In this section we prepare some numerical experiments with the halos 
-samples and their environment, with special emphasis on the isolated pairs 
-and LG samples. All this in order to find for environment correlations and 
-common properties between LG systems.
+Once defined all the samples, we shall proceed to quantify the environment
+by using two different approaches. The first one is by applying the 
+tensorial schemes defined in the section \ref{sec:algorithms_cosmic_web} 
+and then, calculating the local eigenvalues associated to each halo or halo 
+pair. The second approach is complementary to the first, and consists in 
+calculating the relative distance of each halo or halo pair to the nearest
+void regions, thereby allowing to link the influence of voids to the 
+physical properties of the samples.
 
+
+
+
+%-------------------------------------------------------------------------
+\subsection{Tensorial Schemes}
+\label{subsec:tensorial schemes}
+%-------------------------------------------------------------------------
+
+
+
+The advantage of using the tensorial schemes (T-web and V-web) defined in
+the section \ref{sec:algorithms_cosmic_web}, lies in being able to quantify
+all the local structure of the environment of halos and pair halos just 
+from kinematic and dynamic properties of the matter distribution, like the
+density and velocity fields. Next, we shall calculate the distributions of 
+each eigenvalue for the two defined schemes and for the \textit{GH}, 
+\textit{IP} and \textit{RIP} samples. In the figure \ref{d} is shown the 
+obtained results.
 
 
 %*************************************************************************
@@ -615,7 +635,10 @@ common properties between LG systems.
 
   \captionof{figure}{\small Mean density parameter for each of the 
   defined environments according to the chosen $\lambda_{th}$ value and 
-  for both classification schemes.}
+  for both classification schemes. Tweb (green lines). Vweb (blue lines).
+  The mean density parameter is calculated by averaging all the values 
+  of the cells determined as a certain type of environment according to 
+  its eigenvalues.}
 
   \label{fig:mean_density}
   \vspace{0.1 cm}
@@ -637,10 +660,11 @@ common properties between LG systems.
   \includegraphics[trim = 40mm 12mm 37mm 10mm, clip, keepaspectratio=true,
   width=0.7\textheight]{./figures/cosmicweb_visual_Vweb.pdf}
 
-  \captionof{figure}{\small Visual impression of the density field (left),
-  and of each classification scheme with the $\lambda_{th}$ values obtained 
-  by our criteria (others). Our color convention for each environment is 
-  (white) - void, (light gray) - sheet, (gray) - filament, (black) - knot. }
+  \captionof{figure}{\small Visual impression of the density field (left 
+  panels), and of each classification scheme with the $\lambda_{th}$ values 
+  obtained by our criteria (others panels). Our color convention for each 
+  environment is (white) - void, (light gray) - sheet, (gray) - filament, 
+  (black) - knot. }
 
   \label{fig:visual_impression}
   \vspace{0.1 cm}
@@ -657,15 +681,17 @@ common properties between LG systems.
 \begin{figure*}
 \begin{center}
 
-  \includegraphics[trim = 5mm 10mm 15mm 18mm, clip, keepaspectratio=true,
-  width=0.35\textheight]{./figures/voids_regions_percolation.pdf}
-
+  \includegraphics[trim = 1mm 10mm 8mm 18mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/voids_regions_percolation.pdf}
   \includegraphics[trim = 0mm 00mm 00mm 00mm, clip, keepaspectratio=true,
   width=0.35\textheight]{./figures/voids_regions_volume.pdf}
 
   \captionof{figure}{\small Percolation analysis of void regions for 
   different $\lambda_{th}$ values and for both defined classification 
-  schemes.}
+  schemes. T-web (blue lines). V-web (green lines). Plot of the largest 
+  volume and the number of voids detected according to the threshold value 
+  $\lambda_{th}$ (left panels). Size distribution histogram of void cells
+  using the threshold value $\lambda_{th} = 0.0$ for both schemes.}
 
   \label{fig:percolation_analysis}
   \vspace{0.1 cm}
@@ -689,7 +715,13 @@ common properties between LG systems.
 
   \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
   vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
-  scheme (left). V-web scheme (right). }
+  scheme (left panel). V-web scheme (right panel). Number of cells per 
+  region in 2D histograms are indicated by the respective colour bar. 
+  Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
+  figure shows a normalized histogram of each ratio parameter. The 
+  adopted division for quantify the morphology of void regions is not
+  a well justified, it must be understood as a fuzzy and continuous 
+  limit, done just for illustrative purposes.}
 
   \label{fig:distro_inertia}
   \vspace{0.1 cm}
@@ -699,5 +731,42 @@ common properties between LG systems.
 \end{flushleft}
 %.........................................................................
 
+
+%.........................................................................
+%Distribution of eigenvalues of the web schemes
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen1_dist_Tweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen2_dist_Tweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen3_dist_Tweb}
+
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen1_dist_Vweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen2_dist_Vweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen3_dist_Vweb}
+  
+  \captionof{figure}{\small Distributions of eigenvalues for each defined
+  scheme. T-web (upper panels). V-web (lower panels). In each figure is
+  calculated the distributions of eigenvalues for the volume cells of the 
+  simulation (black lines), evaluating the respective tensor on the 
+  geometric center of the cell. This is also done for \textit{IP} 
+  (continuous lines) and \textit{RIP} (dashed lines) samples (both BDM 
+  (red) and FOF (blue)), but the tensors are evaluated on the cell which 
+  contains the center of mass of the halo pair.}
+
+  \label{fig:distro_cosmicweb}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 
 \end{document}
