@@ -136,7 +136,7 @@ used by \SRKED{[reference here]}.
 
 
 
-The Bolshoi simulations follows the non-linear evolution of a dark matter 
+The Bolshoi simulation follows the non-linear evolution of a dark matter 
 density field on a cubic volume of size $250$\hMpc sampled with $2048^3$ 
 particles. The cosmological parameters in the simulation are 
 $\Omega_{\rm m}=0.27$, $\Omega_{\Lambda}=0.73$, $h=0.70$, $n=0.95$ and 
@@ -479,7 +479,7 @@ $7\times10^{13}$ \hMsun must be larger than $4$\hMpc.}
 
 Following the previous criteria established by Forero-Romero et al. 2013-1,
 we define a more reduced sample, the Reduced Isolated Pairs sample 
-(\textit{RIP}), as pairs that fulfil the next two criteria 
+(\textit{RIP}), as pairs that fulfil the next two extra criteria :
 
 
 
@@ -496,14 +496,41 @@ $1-4\times 10^{12}/\hMsun$.}
 \end{enumerate}
 %.........................................................................
 
-Finally in the table \ref{Tab:Samples_Size} we 
-show the sizes of all defined samples for each simulation.
 
+Finally in the table \ref{Tab:Samples_Size} we show the sizes of all 
+defined samples.
+
+
+%.........................................................................
+%Table of sizes of each sample defined in Bolshoi
+\begin{flushleft}
+\begin{table}
+\begin{center}
+
+  \begin{tabular}{c c c} \hline
+	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline
+	General Halos (\textit{GH}) 	& 432000		 & 404432  \\ 
+	Individual Halos (\textit{IH}) 	& 432000		 & 404432  \\ 
+	Pairs (\textit{P}) 	 			& 432000		 & 404432  \\ 
+	Isolated Pairs (\textit{IP})	& 432000		 & 404432  \\ 
+	Reduced Isolated Pairs (\textit{RIP})& 432000		 & 404432  \\ \hline
+  \end{tabular}
+  
+  \captionof{table}{\small Size of each sample defined in the Bolshoi 
+  simulation and for each of the two schemes used to detect halos (FOF 
+  and BDM).}
+  
+  \label{Tab:Samples_Size}
+  
+\end{center}
+\end{table}
+\end{flushleft}
+%.........................................................................
 
 
 %*************************************************************************
-\section{Finding a Local Group environment}
-\label{sec:experiments}
+\section{Finding the Local Group Environment}
+\label{sec:LGEnvironment}
 %*************************************************************************
 
 
@@ -513,66 +540,6 @@ samples and their environment, with special emphasis on the isolated pairs
 and LG samples. All this in order to find for environment correlations and 
 common properties between LG systems.
 
-
-%-------------------------------------------------------------------------
-\subsection{Comparison of the two simulations}
-\label{subsec:comparison_simulations}
-%-------------------------------------------------------------------------
-
-
-Prior to study of isolated and LG samples and to determinate possible 
-correlations between their properties, it is necessary to establish the 
-equivalence between all simulations that we will use, with the aim to 
-eliminate effects due to construction process of each one.
-
-
-In first place, we analyse the mass distribution of individual halos and 
-in next figure we show the integrated mass function (IMF) for halos sample
-with $M \geq 1\times 10^{11} M_{\odot}$.
-
-
-Although in high masses the IMF of each simulation are slightly different, 
-in low mass region, where the most halos of our interest are, the IMFs are 
-quite similar indicating that the sample of halos in each simulation have 
-the same mass distribution, while the small differences are due to finite 
-size of samples. Another aspect in the figure \ref{fig:IMF_Halos} is the 
-position of LG halos, they are distributed across the mass range of halos 
-that we have set (see in section \ref{section:Def_Samples}), indicating 
-that there is not an apparent condition with their individual masses.
-
-
-
-The situation is quite different respect to mass ratio index of isolated 
-pairs sample (MRI). In the figure \ref{fig:Index_Pairs} (a) we show the 
-integrated distribution of MRI, where the approximately linear behaviour 
-indicates an uniformly distribution. The interesting aspect here is the 
-closeness between the LG sample values, indicating a possible common 
-property in these systems, even though this could be established a priori 
-by construction. In the \ref{fig:Index_Pairs} (b) is plotted the 
-integrated distribution of total pair mass, and again like the IMF, there 
-is not a preferential value.
-
-
-
-Once established the concordance between the defined samples, we proceed 
-to analyse the distribution of the eigenvalue of shear velocity tensor 
-\ref{eq:V_web}, for this we assume that the halos are good tracers of the 
-environment properties and therefore we evaluate each eigenvalue in the 
-center mass of each halo, mapping of this way the complete distribution 
-(figure \ref{fig:lambda_histogram}). The black curves correspond to the 
-unconstrained simulation (Bolshoi) and the color curves to the constrained 
-simulations (CLUES), aditionally we calculate the cosmic variance, showed 
-in purple curves, dividing the Bolshoi volume in smaller parts with a size 
-comparable to the CLUES volume ($64 h^{-1 }$ Mpc of side). What is 
-interesting here is the clear difference between the eigenvalues 
-distributions of the both types of simulations, inclusively the 
-constrained distributions does not match between the cosmic variance, 
-indicating that although both simulations were made with the same cosmology 
-(see subsections \ref{subsec:CLUES_simulations} and 
-\ref{subsec:Bolshoi_simulation}), the constrained simulations have a 
-significantly different environment properties (spatial matter distribution) 
-compared to the average expected from a random volume with the same 
-comoving size.
 
 
 %-------------------------------------------------------------------------
@@ -777,50 +744,6 @@ pairs.)
   scheme (left). V-web scheme (right). }
 
   \label{fig:distro_inertia}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-%.........................................................................
-%Table of extreme values of LG environment
-\begin{flushleft}
-\begin{table*}
-\begin{center}
-
-  \begin{tabular}{l | c c c} \hline
-	& $\bds{\lambda_{1}}\ [10^{-1}]$ & $\bds{\lambda_{2}}\ [10^{-1}]$  & $\bds{\lambda_{3}}\ [10^{-1}]$ \\ \hline
-	\textbf{Minim value} & 1.78 & -6.29$\times 10^{-2}$ & -1.98 \\
-	\textbf{Maxim value} & 3.49 & 1.21 & -8.85$\times 10^{-1}$ \\ \hline
-  \end{tabular}
-  
-  \captionof{table}{\small Extreme values for each V-web eigenvalues to 
-  construct LG samples.}
-  
-  \label{Tab:Lambdas_LG}
-  
-\end{center}
-\end{table*}
-\end{flushleft}
-%.........................................................................
-
-
-%.........................................................................
-%IMF halos
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[keepaspectratio=true,width=0.35\textheight]
-  {./figures/integrated_mass_halos.pdf}
-
-  \captionof{figure}{\small Integrated mass function of individual halos 
-  of Bolshoi.}
-
-  \label{fig:IMF_Bolshoi}
   \vspace{0.1 cm}
 
 \end{center}
