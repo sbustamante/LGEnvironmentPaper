@@ -7,7 +7,7 @@
 %=========================================================================
 %		FRONT MATTER
 %=========================================================================
-\title[LG Environment]{The place of the local group in the cosmic web}
+\title{The place of the local group in the cosmic web}
 \author[S. Bustamante and J.E. Forero-Romero]{
 \parbox[t]{\textwidth}{\raggedright 
   Sebastian Bustamante \thanks{sbustama@pegasus.udea.edu.co}$^{1}$ 
@@ -419,32 +419,36 @@ the principal directions of inertia of the nearest void regions.
 
 
 %*************************************************************************
-\section{Local Group Sample Definition}
+\section{Defining Samples}
 \label{section:Def_Samples}
 %*************************************************************************
 
 
 
-In order to establish an adequate set of criteria to define LG samples in 
-unconstrained simulations, we proceed from the the general dark halo 
-catalogues, constructed using the FOF scheme with a linking length of 
-$b=0.17$. These samples are defined for all simulation and will be 
-referred as General Halos (GH) samples. To be consistent with the 
-observationally determined mass range of halos that host disk-form 
-galaxies, we select the halos in the mass range $5\times10^{11} <
-M_{h}/\hMsun < 5\times 10^{12}$, referred here as Individual Halos (IH) 
-samples. 
+In order to establish an adequate set of criteria to define a LG-like 
+sample in unconstrained simulations, we proceed from the the general dark 
+halo catalogues, constructed using the FOF scheme with a linking length of 
+$b=0.17$ and the Bound Density Maxima (BDM) scheme for halos with an 
+associated overdensity value of $200$ times the critical density 
+(\SRKED{[references here}). These samples are defined over all the Bolshoi 
+simulation and will be referred as General Halos samples, \GHFOF and 
+\GHBDM respectively\footnote{For each sample defined, there will be a FOF 
+sample and a BDM sample in order to have robust results}. To be consistent 
+with the mass range observationally determined of halos that host disk-form 
+galaxies, we select halos in the mass range $7\times10^{11} < M_{h}/\hMsun 
+< 7\times 10^{12}$, referred here as Individual Halos (\textit{IH}) samples. 
 
 
 
 As a primal approach to define gravitational bounded halo pairs we select 
-all halo pairs in IH samples that satisfied to be the closest to each 
-other, they constitute the Pairs (P) samples. To keep the concordance with
-previous works in algorithms for LG selection (\SRKED{[references here}), 
-we define here the next list of conditions that have to fulfill a pair 
-system in order to construct the Isolated Pairs (IP) samples. All these 
-considerations are based upon the relative dynamics of the Milky Way and 
-M31, and its isolation from massive structures:
+halos within the \textit{IH} sample that satisfied to be the closest to 
+each other. They constitute the Pairs (\textit{P}) sample. To maintain the 
+consistency with previous works regarding algorithms used for LG selection 
+(\SRKED{[references here}), we define here the next list of conditions 
+that have to fulfil a pair system in order to belong to the Isolated Pairs 
+(\textit{IP}) sample. All these considerations are based upon the relative 
+dynamics of the Milky Way and M31, and its isolation from massive 
+structures:
 
 
 
@@ -452,47 +456,47 @@ M31, and its isolation from massive structures:
 %Isolated pairs criteria
 \begin{enumerate}
 
-\item{The distance between the center of the two halos should be less than 
-$0.7$\hMpc.}
+\item{With respect to each halo, there cannot be any other halo within the 
+mass range $7\times10^{11} < M_{h}/\hMsun < 7\times 10^{12}$ closer than 
+its partner. It means that there cannot be ambiguity on the identity of
+the pair members.}
 
-\item{The relative physical velocity between the two halos has to be 
+\item{The relative radial velocity between the two halos must be 
 negative.}
 
+\item{The distance between the center of the two halos must be less than 
+$1.0$\hMpc.}
+
 \item{The distance to any halo more massive than any of the pair members 
-must be less than $2$\hMpc.}
+must be less than $3$\hMpc.}
 
 \item{The distance to cluster-like halos with masses larger than 
-$1\times10^{13}$ \hMsun must be larger than $5$\hMpc.}
+$7\times10^{13}$ \hMsun must be larger than $4$\hMpc.}
 \end{enumerate}
 %.........................................................................
 
 
-In the case of a constrained simulation one can define samples of LG 
-systems based upon the next condition
+
+Following the previous criteria established by Forero-Romero et al. 2013-1,
+we define a more reduced sample, the Reduced Isolated Pairs sample 
+(\textit{RIP}), as pairs that fulfil the next two criteria 
+
 
 
 %.........................................................................
-%Additional criteria
+%Reduced Isolated pairs criteria
 \begin{enumerate}
-\item[(v)]{The Local Group pair must be located in the right environment 
-with respect to the XX Cluster.}
+
+\item{The separation between the center of mass of the halos is in the 
+range $700-800$kpc.}
+
+\item{The total mass of the two halos is in the range 
+$1-4\times 10^{12}/\hMsun$.}
+
 \end{enumerate}
 %.........................................................................
 
-
-
-Due to the intrinsic nature of constrained simulations, we expect that 
-these LG samples be the most faithful systems that resemble the properties
-and the environment of our LG. In fact, the three CLUES simulations appear 
-to present a common T-web/V-web environment for LG systems, such as shown 
-in the figure \ref{fig:LG_CLUES_Environment}. Based in this we propose a 
-new criteria of selection to define more realistic LG systems in the
-unconstrained simulation, this consists in tanking the extreme values of 
-each V-web/T-web eigenvalue associated to the host environment of the three 
-LG systems in CLUES. With this range established (see table 
-\ref{Tab:Lambdas_LG}) we filter the IP sample in Bolshoi simulation in 
-order to build the samples Constructed Local Groups V-web based (CLGV) 
-and T-web based (CLGT). Finally in the table \ref{Tab:Samples_Size} we 
+Finally in the table \ref{Tab:Samples_Size} we 
 show the sizes of all defined samples for each simulation.
 
 
