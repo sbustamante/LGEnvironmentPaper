@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 	    countL2[l][m] = 0;
 	    countL3[l][m] = 0;}
     
-    
+                    
     //Building the histograms of eigenvalues counts
     oct_id = 0;
     for( octx=0; octx<N_div; octx++ )
@@ -120,20 +120,21 @@ int main(int argc, char **argv)
 	for( ii=(int)(n_x*octx/N_div); ii<(int)(n_x*(octx+1)/N_div); ii++ )
 	for( jj=(int)(n_y*octy/N_div); jj<(int)(n_y*(octy+1)/N_div); jj++ )
 	for( kk=(int)(n_z*octz/N_div); kk<(int)(n_z*(octz+1)/N_div); kk++ ){
-	  
+	if( fabs(eigen1[i])<Lambda_ex || fabs(eigen3[i])<Lambda_ex ){
 	    i = ii + n_x * (jj + n_y * kk );
 	    
 	    //1D Histograms
 	    l = (int)( N_1C*(eigen1[i] + Lambda_ex)/(2*Lambda_ex) );
 	    m = (int)( N_1C*(eigen2[i] + Lambda_ex)/(2*Lambda_ex) );
 	    n = (int)( N_1C*(eigen3[i] + Lambda_ex)/(2*Lambda_ex) );
+
 	    countL1[l][oct_id] ++ ;
 	    countL2[m][oct_id] ++ ;
 	    countL3[n][oct_id] ++ ;
 	    	    
-	}
+	}}
 	oct_id ++;}
-    
+
     // L1 Distribution
     if( atoi(argv[5]) == 0 )
       	for( l=0; l<N_1C; l++ ){

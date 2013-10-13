@@ -30,7 +30,7 @@ Lambda_th = np.arange( 0, 1.0, 0.01 )
 
 N_sim = len(folds)
 
-plt.figure( figsize=(7,2*5) )
+plt.figure( figsize=(5,2*4) )
 for web in webs:
     i_fold = 0
     for fold in folds:
