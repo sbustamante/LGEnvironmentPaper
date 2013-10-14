@@ -1,14 +1,24 @@
+#halos_lambda_file.py
+#
+#This code builds a data file with tabulated eigenvalues corresponding to each halo, both BDM and
+#FOF schemes. This allows reducing a lot the time of computing for some calculations.
+#
+#by: Sebastian Bustamante
+
 execfile('_Head.py')
 
 #==================================================================================================
 #			PARAMETERS
 #==================================================================================================
 #Simulation
-folds = ["CLUES/10909/","CLUES/16953/","CLUES/2710/","BOLSHOI/"]
+#folds = ["CLUES/10909/","CLUES/16953/","CLUES/2710/","BOLSHOI/"]
+folds = ["BOLSHOI/"]
 #Box lenght
-Box_L = [64,64,64,250]
+#Box_L = [64,64,64,250]
+Box_L = [250]
 #Number of sections
-N_sec = [64,64,64,256]
+#N_sec = [64,64,64,256]
+N_sec = [256]
 #Smooth parameter
 smooth = '_s1'
 #Catalog Scheme
@@ -24,10 +34,6 @@ ax = np.zeros( (3, N_sim) )
 
 i_fold = 0
 for fold in folds:    
-    if fold != "BOLSHOI/":
-	i_fold += 1
-	continue
-    
     print "\n"+fold
     
     #Box Lenght
