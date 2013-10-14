@@ -23,7 +23,7 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'FOF'
 #Web Scheme
-web = 'Tweb'
+web = 'Vweb'
 #Lambda_th
 Lambda_th = 0.0
 #Nbins of each histogram
@@ -124,7 +124,7 @@ axHist2D.hlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
 axHist2D.vlines( 0.7, 0.7, 1.0, linestyle="--", color="blue", linewidth=2.5 )
 axHist2D.text( 0.85, 0.81, "Isotropic\nvoids", fontweight="bold", color="blue",\
 fontsize=15, horizontalalignment="center" )
-axHist2D.text( 0.35, 0.3, "Anisotropic\nvoids", fontweight="bold", color="white",\
+axHist2D.text( 0.35, 0.3, "Anisotropic\nvoids", fontweight="bold", color="black",\
 fontsize=15, horizontalalignment="center" )
 
 axHist2D.text( 0.01, 0.01, "%s"%(web), fontweight="bold", color="black",\

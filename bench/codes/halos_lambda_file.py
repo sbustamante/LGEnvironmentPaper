@@ -24,7 +24,7 @@ smooth = '_s1'
 #Catalog Scheme
 catalog = 'BDM'
 #Web Scheme
-web = 'Tweb'
+web = 'Vweb'
 
 #==================================================================================================
 #			CONSTRUCTING FILES WITH HALOS ENVIRONMENT

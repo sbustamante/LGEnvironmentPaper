@@ -27,8 +27,9 @@ N_l_BolshH = 100
 
 #Lambdas Extreme
 L_ext = 4.0
-#Lambda_th [ Vweb=0.26, Tweb=0.61 ]
-lambda_th = 0.61
+#Lambda threshold
+if web == "Vweb": lambda_th = 0.188
+else: lambda_th = 0.326
 
 #Eigenvalue
 eigen = sys.argv[2]
@@ -78,11 +79,11 @@ for fold in folds:
 	color = "black", linewidth = 2.5, label = 'Cells' )
 	    
 	#Isolated Pairs for scheme 1
-	L1IP, C_L1IP = Hist1D( eig1[1], L_ext, N_l_BolshH )
+	L1IP, C_L1IP = Hist1D( eig1[1][i_IP1.astype(int)-1], L_ext, N_l_BolshH )
 	plt.plot( L1IP, np.cumsum(C_L1IP)/np.sum(C_L1IP), 
 	color = "blue",linewidth = 2.0, linestyle = '-', label = 'IP$_{%s}$'%(catalog[0]) )
 	#Isolated Pairs for scheme 2
-	L1IP, C_L1IP = Hist1D( eig2[1], L_ext, N_l_BolshH )
+	L1IP, C_L1IP = Hist1D( eig2[1][i_IP2.astype(int)-1], L_ext, N_l_BolshH )
 	plt.plot( L1IP, np.cumsum(C_L1IP)/np.sum(C_L1IP), 
 	color = "red",linewidth = 2.0, linestyle = '-', label = 'IP$_{%s}$'%(catalog[1]) )
 	
@@ -167,30 +168,30 @@ if eigen == "1":
     plt.ylabel( "Cumulative Distribution [Normed]" )
     plt.vlines( lambda_th, 0.0, 1.0, linestyle='--', color='black', linewidth=2.5 )
     plt.text( -1.0, 0.05, " %s"%(web) )
-    plt.text( lambda_th, 0.05, " $\lambda_{th}$", fontsize = 16 )
-    plt.legend( loc='upper left', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
+    #plt.text( lambda_th, 0.9, " $\lambda_{th}$", fontsize = 16 )
+    plt.legend( loc='lower right', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
 
 if eigen == "2":
     #plt.subplot(1,3,2)
     plt.grid()
-    plt.xlim( (-2.5,2.5) )
+    plt.xlim( (-1.0,1.0) )
     plt.ylim( (0.0,1.0) )
     plt.xlabel( "$\lambda_2$" )
     plt.ylabel( "Cumulative Distribution [Normed]" )
     plt.vlines( lambda_th, 0.0, 1.0, linestyle='--', color='black', linewidth=2.5 )
-    plt.text( -2.5, 0.05, " %s"%(web) )
-    plt.text( lambda_th, 0.05, " $\lambda_{th}$", fontsize = 16 )
+    plt.text( -1.0, 0.05, " %s"%(web) )
+    #plt.text( lambda_th, 0.05, " $\lambda_{th}$", fontsize = 16 )
 
 if eigen == "3":
     #plt.subplot(1,3,3)
     plt.grid()
-    plt.xlim( (-4.0,1.0) )
+    plt.xlim( (-1.5,0.5) )
     plt.ylim( (0.0,1.0) )
     plt.xlabel( "$\lambda_3$" )
     plt.ylabel( "Cumulative Distribution [Normed]" )
     plt.vlines( lambda_th, 0.0, 1.0, linestyle='--', color='black', linewidth=2.5 )
-    plt.text( -4.0, 0.05, " %s"%(web) )
-    plt.text( lambda_th, 0.05, " $\lambda_{th}$", fontsize = 16 )
+    plt.text( -1.5, 0.05, " %s"%(web) )
+    #plt.text( lambda_th, 0.05, " $\lambda_{th}$", fontsize = 16 )
 
 
 plt.show()

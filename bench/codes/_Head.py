@@ -13,6 +13,7 @@ import scipy.integrate as integ
 import scipy.interpolate as interp
 import matplotlib.gridspec as gridspec
 from matplotlib.patches import Ellipse
+from matplotlib.ticker import NullFormatter
 
 
 #==================================================================================================
@@ -20,7 +21,8 @@ from matplotlib.patches import Ellipse
 #==================================================================================================
 #Global Fold
 foldglobal = '../../../ThesisProyect/data/'
-
+#Fold of the Void Finder code
+void_finder_fold = '../../../Void_Finder/'
 
 
 #==================================================================================================
@@ -155,15 +157,23 @@ def CutHaloZ( Z, thick, datos, plot=True, color='black' ):
 #..................................................................................................
 #Cutting Density field in X/Y/Z axe
 #..................................................................................................
-def CutFieldZ( filename, X, res=32, Coor = 3 ):
+def CutFieldZ( filename, X, res=32, Coor = 3, N=256 ):
     '''
     Coor  1 -- X      2 -- Y      3 -- Z
     '''
-    os.system( "./Field_Cut%d.out %s %d temp.tmp %d"%( res, filename, X, Coor ) )
-    datos = np.loadtxt( 'temp.tmp' )
-    N = int(np.sqrt(len( datos )))
-    datos = datos.reshape( (N, N) )
-    os.system( "rm temp.tmp" )
+    if res == 'plain':
+	os.system( "./Field_Cut_Plain.out %s %d temp.tmp %d %d"%( filename, X, Coor, N ) )
+	datos = np.loadtxt( 'temp.tmp' )
+	N = int(np.sqrt(len( datos )))
+	datos = datos.reshape( (N, N) )
+	os.system( "rm temp.tmp" )
+      
+    else:	
+	os.system( "./Field_Cut%d.out %s %d temp.tmp %d"%( res, filename, X, Coor ) )
+	datos = np.loadtxt( 'temp.tmp' )
+	N = int(np.sqrt(len( datos )))
+	datos = datos.reshape( (N, N) )
+	os.system( "rm temp.tmp" )
     return datos
     
     
@@ -193,11 +203,12 @@ def Counts( filename_eig, filename_delta, min_L, max_L, N_L ):
 #Classification Scheme
 #..................................................................................................
 def Scheme( eig1, eig2, eig3, Lamb ):
-    N = len( eig1 )
+    N1 = len( eig1 )
+    N2 = len( eig1[0] )
     sch = 0*eig1
     
-    for i in xrange(N):
-	for j in xrange(N):
+    for i in xrange(N1):
+	for j in xrange(N2):
 	    if eig1[i,j] > Lamb:
 		sch[i,j] += 1
 	    if eig2[i,j] > Lamb:
@@ -400,6 +411,24 @@ def void_matrix_builder( filename_eig, Lambda_th, N, outname ):
     #datos = np.transpose( np.loadtxt( '%s'%(outname) ) )
     #datos = datos.reshape( (N, N, N) )
     return 0
+    
+
+#..................................................................................................
+#Void Finder
+#..................................................................................................
+def void_finder( void_matrix, ordered = True, out_folder='./voids', extra_info = False, remove = True ):
+    order = 0
+    if ordered == True:
+	order = 1
+    extra = 0
+    if extra_info == True:
+	extra = 1
+    os.system( "%s/Void_Finder.out %s %d %s %d"%( 
+    void_finder_fold, void_matrix, order, out_folder, extra ) )
+    datos = np.transpose( np.loadtxt( '%s/void_regions.dat'%(out_folder) ) )
+    if remove:
+	os.system( "rm -r %s"%(out_folder) )
+    return datos
 
 #==================================================================================================
 #			MISCELLANEOUS

@@ -4,12 +4,12 @@ FIG NAME:
 	cell_types_density.pdf
 CAPTION:
 	Mean density parameter for each one of the 
-      defined environments according to the chosen $\lambda_{th}$ value and 
-      for both classification schemes. Tweb (green lines). Vweb (blue lines).
-      The mean density parameter is calculated by averaging all the values 
-      of the cells determined as a certain type of environment according to 
-      its eigenvalues. The optimal parameters found are 
-      $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.
+	defined environments according to the chosen $\lambda_{th}$ value and 
+	for both classification schemes. Tweb (green lines). Vweb (blue lines).
+	The mean density parameter is calculated by averaging all the values 
+	of the cells determined as a certain type of environment according to 
+	its eigenvalues. The optimal parameters found are 
+	$\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.
 CODE:
 	regions_mean_density.py
 *******************************************************************************
@@ -125,12 +125,14 @@ FIG NAME:
 CAPTION:
 	Distributions of eigenvalues for each defined
 	scheme. T-web (upper panels). V-web (lower panels). In each figure is
-	 calculated the distributions of eigenvalues for the volume cells of the 
+	calculated the distributions of eigenvalues for the volume cells of the 
 	simulation (black lines), evaluating the respective tensor on the 
 	geometric center of the cell. This is also done for \textit{IP} 
 	(continuous lines) and \textit{RIP} (dashed lines) samples (both BDM 
 	(red) and FOF (blue)), but the tensors are evaluated on the cell which 
-	contains the center of mass of the halo pair.
+	contains the center of mass of the halo pair. The vertical dashed line
+	corresponds to the optimal threshold value $\lambda_{opt}$ for each 
+	scheme respectively.
 CODE:
 	lambda_cells_1Dhist.py
 *******************************************************************************
