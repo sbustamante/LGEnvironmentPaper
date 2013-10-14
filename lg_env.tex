@@ -506,8 +506,8 @@ defined samples.
 \begin{table}[H]
 \begin{flushleft}
 \begin{center}
-  \begin{tabular}{c  r  r} \hline
-	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline\hline
+  \begin{tabular}{l  r  r} \hline
+	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline
 	General Halos (\textit{GH}) 	& 432000	 & 404432  \\ 
 	Individual Halos (\textit{IH}) 	& 65109		 & 61165  \\ 
 	Pairs (\textit{P}) 	 			& 17115		 & 15981  \\ 
@@ -558,8 +558,55 @@ all the local structure of the environment of halos and pair halos just
 from kinematic and dynamic properties of the matter distribution, like the
 density and velocity fields. Next, we shall calculate the distributions of 
 each eigenvalue for the two defined schemes and for the \textit{GH}, 
-\textit{IP} and \textit{RIP} samples. In the figure \ref{d} is shown the 
-obtained results.
+\textit{IP} and \textit{RIP} samples. In the figure 
+\ref{fig:distro_cosmicweb} is shown the obtained results, where it can be 
+noticed that there is a significant bias of distribution of the halo pairs 
+respect to the volume cells.
+
+
+%.........................................................................
+%Table of 
+\begin{table}[H]
+\begin{flushleft}
+\begin{center}
+  \begin{tabular}{l  r  r  r  r}
+  	&&\textbf{T-web}&&\\\hline
+	\textbf{Region}	&\textbf{void}&\textbf{sheet}&\textbf{filament}&\textbf{knot}	\\\hline
+	Cells			&	0.771	  &		0.168	 &		0.057	   &	0.004		\\
+	&&&&\\	
+	\GHFOF			& 	0.283	  &		0.334	 &		0.318	   &	0.065		\\
+	\GHBDM			&	0.238	  &		0.311	 &		0.337	   &	0.113		\\
+	&&&&\\	
+	\IPFOF			&	0.026	  &		0.243	 &		0.598	   &	0.133		\\
+	\IPBDM			&	0.012	  &		0.151	 &		0.599	   &	0.238		\\
+	&&&&\\
+	\RIPFOF			&	0.051	  &		0.435	 &		0.500	   &	0.014		\\
+	\RIPBDM			&	0.026	  &		0.336	 &		0.612	   &	0.026		\\\hline
+	&&&&\\
+  	&&\textbf{V-web}&&\\\hline
+	\textbf{Region}	&\textbf{void}&\textbf{sheet}&\textbf{filament}&\textbf{knot}	\\\hline
+	Cells			&			  &				 &				   &				\\
+	&&&&\\
+	\GHFOF			&			  &				 &				   &				\\
+	\GHBDM			&			  &				 &				   &				\\
+	&&&&\\
+	\IPFOF			&			  &				 &				   &				\\
+	\IPBDM			&			  &				 &				   &				\\
+	&&&&\\
+	\RIPFOF			&			  &				 &				   &				\\
+	\RIPBDM			&			  &				 &				   &				\\\hline
+  \end{tabular}  
+  \captionof{table}{\small Size of each sample defined in the Bolshoi 
+  simulation and for each of the two schemes used to detect halos (FOF 
+  and BDM).}
+  
+  \label{Tab:Samples_Size}
+  
+\end{center}
+\end{flushleft}
+\end{table}
+%.........................................................................
+
 
 
 %*************************************************************************
@@ -630,15 +677,16 @@ obtained results.
 \begin{figure*}
 \begin{center}
 
-  \includegraphics[keepaspectratio=true,width=0.5\textheight]
-  {./figures/cell_types_density.pdf}
+  \includegraphics[trim = 0mm 10mm 12mm 19mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/cell_types_density.pdf}
 
-  \captionof{figure}{\small Mean density parameter for each of the 
+  \captionof{figure}{\small Mean density parameter for each one of the 
   defined environments according to the chosen $\lambda_{th}$ value and 
   for both classification schemes. Tweb (green lines). Vweb (blue lines).
   The mean density parameter is calculated by averaging all the values 
   of the cells determined as a certain type of environment according to 
-  its eigenvalues.}
+  its eigenvalues. The optimal parameters found are 
+  $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$}
 
   \label{fig:mean_density}
   \vspace{0.1 cm}
@@ -691,7 +739,8 @@ obtained results.
   schemes. T-web (blue lines). V-web (green lines). Plot of the largest 
   volume and the number of voids detected according to the threshold value 
   $\lambda_{th}$ (left panels). Size distribution histogram of void cells
-  using the threshold value $\lambda_{th} = 0.0$ for both schemes.}
+  using the threshold value $\lambda_{th} = 0.0$ for both schemes 
+  (right panel).}
 
   \label{fig:percolation_analysis}
   \vspace{0.1 cm}

@@ -37,7 +37,7 @@ L_max = 2
 
 N_sim = len(folds)
 
-plt.figure( figsize=(2*5,2*3) )
+plt.figure( figsize=(6.0,2*4) )
 for web in webs:
     i_fold = 0
     for fold in folds:
@@ -62,73 +62,42 @@ for web in webs:
 	#Plots the results
 	
 	#Voids
-	plt.subplot( 2,2,1 )
-	plt.plot( lambda_th, regs[1]/regs[9], linewidth = 2, label = '%s'%(web) )
+	plt.subplot( 2,1,1 )
+	plt.plot( lambda_th, regs[1]/(1+regs[5]), linewidth = 2, label = '%s'%(web) )
 	#Tweb threshold
-	plt.vlines( 0.61, -1.0, 1.0, linestyle = '--', color='green', linewidth = 2 )
+	plt.vlines( 0.3262, -1.0, 1.0, linestyle = '--', color='green', linewidth = 2 )
 	#Vweb threshold
-	plt.vlines( 0.26, -1.0, 1.0, linestyle = '--', color='blue', linewidth = 2 )
+	plt.vlines( 0.1884, -1.0, 1.0, linestyle = '--', color='blue', linewidth = 2 )
 	
 	#Sheets
-	plt.subplot( 2,2,2 )
-	plt.plot( lambda_th, regs[2]/regs[9], linewidth = 2, label = '%s'%(web) )
+	plt.subplot( 2,1,2 )
+	plt.plot( lambda_th, regs[2]/(1+regs[6]), linewidth = 2, label = '%s'%(web) )
 	#Tweb threshold
-	plt.vlines( 0.9, -1.0, 1.0, linestyle = '--', color='green', linewidth = 2 )
+	plt.vlines( 0.3262, -1.0, 1.0, linestyle = '--', color='green', linewidth = 2 )
 	#Vweb threshold
-	plt.vlines( 0.5, -1.0, 1.0, linestyle = '--', color='blue', linewidth = 2 )
+	plt.vlines( 0.1884, -1.0, 1.0, linestyle = '--', color='blue', linewidth = 2 )
+	plt.hlines( 0.0, 0.0, 1.0, linestyle = '--', color='gray', linewidth = 2 )
 	
-	#Filaments
-	plt.subplot( 2,2,3 )
-	plt.plot( lambda_th, regs[3]/regs[9], linewidth = 2, label = '%s'%(web) )
-	#Tweb threshold
-	plt.vlines( 0.13, -1.0, 1.0, linestyle = '--', color='green', linewidth = 2 )
-	#Vweb threshold
-	plt.vlines( 0.14, -1.0, 1.0, linestyle = '--', color='blue', linewidth = 2 )
-		
-	#Knots
-	plt.subplot( 2,2,4 )
-	plt.plot( lambda_th, regs[4]/regs[9], linewidth = 2, label = '%s'%(web) )
-		
 	i_fold += 1
     
 
-plt.subplots_adjust( bottom = 0.08, top = 0.97 )
-
 #Mean Density
-plt.subplot( 2,2,1 )
+plt.subplot( 2,1,1 )
 plt.ylabel( "$\\bar \delta$" )
 plt.xlabel( "$\lambda_{th}$" )
-#plt.legend( loc='upper center', fancybox = True, shadow = True, ncol = 1) #, title="Simulations" )
 plt.grid()
-#plt.xticks( (0.0,0.2,0.4,0.6,0.8,1.0), ("","","","","","") )
-plt.yticks( (-0.5, -0.4, -0.3, -0.2, -0.1, 0.0 ) )
-plt.ylim( (-0.5, 0.0) )
-plt.text( 0.62, -0.38, 'Voids' )
+plt.ylim( (-1.0, 1.0) )
+plt.xlim( (0.0, 1.0) )
+plt.text( 0.0, 0.5, ' Voids' )
+plt.legend( loc='upper right', fancybox = True, shadow = True, ncol = 1)
 
-plt.subplot( 2,2,2 )
+plt.subplot( 2,1,2 )
 plt.ylabel( "$\\bar \delta$" )
 plt.xlabel( "$\lambda_{th}$" )
 plt.grid()
-#plt.xticks( (0.0,0.2,0.4,0.6,0.8,1.0), ("","","","","","") )
-plt.yticks( (-0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2 ) )
-plt.ylim( (-0.4, 0.2) )
-plt.text( 0.52, -0.28, 'Sheets' )
+plt.ylim( (-1.0, 1.0) )
+plt.xlim( (0.0, 1.0) )
+plt.text( 0.0, 0.5, ' Sheets' )
 
-plt.subplot( 2,2,3 )
-plt.ylabel( "$\\bar \delta$" )
-plt.xlabel( "$\lambda_{th}$" )
-plt.grid()
-#plt.xticks( (0.0,0.2,0.4,0.6,0.8,1.0), ("","","","","","") )
-plt.yticks( (0.0, 0.1, 0.2, 0.3 ) )
-plt.ylim( (-0.05, 0.3) )
-plt.text( 0.52, 0.15, 'Filaments' )
-
-plt.subplot( 2,2,4 )
-plt.ylabel( "$\\bar \delta$" )
-plt.xlabel( "$\lambda_{th}$" )
-plt.grid()
-plt.yticks( (0.0, 0.1, 0.2, 0.3 ) )
-plt.text( 0.52, 0.15, 'Knots' )
-plt.legend( fancybox = True, shadow = True, ncol = 1)
 
 plt.show()
