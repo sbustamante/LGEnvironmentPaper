@@ -31,7 +31,7 @@ we use a large volume high resolution N-body cosmological simulation
 (Bolshoi) together with the most recent methods to quantify the cosmic web 
 (T-web, V-web schemes); furthermore we propose a novel approximation, base
 upon the minimization of the mean density of void regions, to determinate 
-the optimum threshold value $\lambda_{th}$, which have been treated until 
+the optimal threshold value $\lambda_{th}$, which have been treated until 
 now as a free parameter. 
 Following the recent work of Courtois et al. (2013), where was 
 found that the LG is located near to a large void, we also do an extensive 
@@ -288,17 +288,17 @@ density field. In order to calculate the necessary tensors, a discretization
 of the simulation volume is performed, so all the properties are reduced 
 to single values associated to discrete cells. According to this, we divide 
 the overall volume into $(256)^3$ cells, so each cell has an associated 
-comovil cubic volume of $0.98 \mbox{ Mpc h}^{-1}$. Finally, to reduce 
-possible effects due to the discretization process, a gaussian softening 
-is performed between neighbour cells.
+comovil cubic volume of $0.98 \mbox{ Mpc h}^{-1}$. Finally, in order to 
+reduce possible effects due to the discretization process, a gaussian 
+softening is performed between neighbour cells.
 
 
 
 Once defined the numerical details about the classification schemes, we 
 shall analyse the dependence on the threshold value $\lambda_{th}$ for each 
 one. In the figure \ref{fig:mean_density} we show the variation of the mean 
-density parameter $\delta$ with the threshold value for cells marked in 
-each of the adopted types of environment.
+density parameter $\delta$ with the threshold value for cells marked as one 
+of the two more dominant types of environment (voids and sheets).
 
 
 
@@ -307,14 +307,11 @@ can be seen in the figure \ref{fig:mean_density}, the behaviour of the
 V-web scheme is significantly more sensible to variations of the 
 $\lambda_{th}$ value compared with the T-web scheme; nevertheless, the 
 behaviour of the mean density parameter for voids, sheets and filaments, 
-are qualitatively quite similar for the two schemes, reaching extreme 
-values in the marked $\lambda_{th}$ critical values respectively. For 
-instance, voids reach a minim value at some critical threshold, increasing 
-for higher threshold values, while sheets and filaments reach a maxim value
-at other critical threshold, decreasing for higher threshold values. 
-Although we shall focus our analysis on voids because they are completely 
-dominant in the visual impression of the cosmic web, an analogous analysis 
-might be performed for other type of environments.
+are qualitatively quite similar for the two schemes, increasing with the 
+value of $\lambda_{th}$. Although we shall focus our analysis on voids 
+because they are completely dominant in the visual impression of the 
+cosmic web, an analogous analysis might be performed for other type of 
+environments.
 
 
 
@@ -323,16 +320,16 @@ existence of very vast regions with density lower than the mean
 cosmological value due to the mass conservation. That is why the visual 
 impression of the cosmic web must be necessarily dominated by these 
 under-dense regions. Keeping that in mind, our novel proposal is based upon
-the correct quantification of these regions, so the optimum threshold 
+the correct quantification of these regions, so the optimal threshold 
 value must be chosen such that: sheet regions do not invade real void 
 regions (in such case, the mean density parameter of sheet regions would 
 become negative) and void regions do not invade real sheet and filament 
 regions (in such case, the mean density parameter of void regions would 
-increase due to the contribution of over-dense regions). Thus, the optimum 
-value is simply where the mean density parameter of void regions is 
-minimized. According to this, we obtain the next threshold values 
-for the T-web and the V-web respectively, $\lambda_{th}^T = 0.61$ and 
-$\lambda_{th}^V = 0.26$. To verify our analysis, we show in the figure 
+increase due to the contribution of over-dense regions). Thus, the optimal 
+value is simply where the mean density parameter of sheet regions is 
+null. According to this, we obtain the next optimal threshold values 
+for the T-web and the V-web respectively, $\lambda_{opt}^T = 0.326$ and 
+$\lambda_{opt}^V = 0.188$. To verify our analysis, we show in the figure 
 \ref{fig:visual_impression} the visual impression for each defined critical 
 value, and as can be seen, the chosen values reproduce properly the 
 expected impression according to the density field. 
@@ -375,7 +372,7 @@ of our percolation analysis for both web schemes. In both cases it can be
 noted the volume of the largest void region is minimized and the volume 
 distribution of voids is relatively flat at $\lambda_{th} = 0.0$, that 
 means percolation is completely reduced for this threshold value. So 
-despite of the previously established $\lambda_{th}$ optimum values for 
+despite of the previously established $\lambda_{th}$ optimal values for 
 each scheme, we shall use $\lambda_{th} = 0.0$ just for the detection of 
 void regions. Besides, due to the domination of the large scale visual 
 impression by voids, it is inevitable the presence of percolation 
@@ -686,7 +683,7 @@ respect to the volume cells.
   The mean density parameter is calculated by averaging all the values 
   of the cells determined as a certain type of environment according to 
   its eigenvalues. The optimal parameters found are 
-  $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$}
+  $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.}
 
   \label{fig:mean_density}
   \vspace{0.1 cm}
@@ -703,16 +700,20 @@ respect to the volume cells.
 \begin{figure*}
 \begin{center}
 
-  \includegraphics[trim = 40mm 12mm 37mm 10mm, clip, keepaspectratio=true,
+  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
   width=0.7\textheight]{./figures/cosmicweb_visual_Tweb.pdf}
-  \includegraphics[trim = 40mm 12mm 37mm 10mm, clip, keepaspectratio=true,
+  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
   width=0.7\textheight]{./figures/cosmicweb_visual_Vweb.pdf}
 
   \captionof{figure}{\small Visual impression of the density field (left 
   panels), and of each classification scheme with the $\lambda_{th}$ values 
   obtained by our criteria (others panels). Our color convention for each 
   environment is (white) - void, (light gray) - sheet, (gray) - filament, 
-  (black) - knot. }
+  (black) - knot. For each web scheme, it has been used the previously 
+  established optimal threshold as a reference value, so plots are done 
+  with the next values $\lambda_{th} = 0.0$, $\lambda_{th} = 
+  \lambda_{opt}/2$, $\lambda_{th} = \lambda_{opt}$ and $\lambda_{th} = 
+  2\lambda_{opt}$.}
 
   \label{fig:visual_impression}
   \vspace{0.1 cm}

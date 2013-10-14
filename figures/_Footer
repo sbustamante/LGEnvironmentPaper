@@ -3,12 +3,13 @@
 FIG NAME:	
 	cell_types_density.pdf
 CAPTION:
-	Mean density parameter for each of the 
-	defined environments according to the chosen $\lambda_{th}$ value and 
-	for both classification schemes. Tweb (green lines). Vweb (blue lines).
-	The mean density parameter is calculated by averaging all the values 
-	of the cells determined as a certain type of environment according to 
-	its eigenvalues.
+	Mean density parameter for each one of the 
+      defined environments according to the chosen $\lambda_{th}$ value and 
+      for both classification schemes. Tweb (green lines). Vweb (blue lines).
+      The mean density parameter is calculated by averaging all the values 
+      of the cells determined as a certain type of environment according to 
+      its eigenvalues. The optimal parameters found are 
+      $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.
 CODE:
 	regions_mean_density.py
 *******************************************************************************
@@ -20,10 +21,15 @@ FIG NAME:
 	cosmicweb_visual_Tweb.pdf
 	cosmicweb_visual_Vweb.pdf
 CAPTION:
-	Visual impression of the density field (left), and of each classification
-	scheme with the $\lambda_{th}$ values obtained by our criteria (others).
-	Our color convention for each environment is (white) - void, (light 
-	gray) - sheet, (gray) - filament, (black) - knot.
+	Visual impression of the density field (left 
+	panels), and of each classification scheme with the $\lambda_{th}$ values 
+	obtained by our criteria (others panels). Our color convention for each 
+	environment is (white) - void, (light gray) - sheet, (gray) - filament, 
+	(black) - knot. For each web scheme, it has been used the previously 
+	established optimal threshold as a reference value, so plots are done 
+	with the next values $\lambda_{th} = 0.0$, $\lambda_{th} = 
+	\lambda_{opt}/2$, $\lambda_{th} = \lambda_{opt}$ and $\lambda_{th} = 
+	2\lambda_{opt}$.
 CODE:
 	cosmicweb_visual_impresion.py
 *******************************************************************************

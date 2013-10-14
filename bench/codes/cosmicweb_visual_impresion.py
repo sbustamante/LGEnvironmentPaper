@@ -19,10 +19,10 @@ Box_L = [250]
 #Number of sections
 N_sec = [256]
 #Web scheme
-web = 'Tweb'
+web = 'Vweb'
 #Values to evaluate lambda_th
-Lambda_ths = [ 0, 0.13, 0.61, 0.9 ]
-#Lambda_ths = [ 0, 0.14, 0.26, 0.5 ]
+#Lambda_ths = [ 0, 0.326/2.0, 0.326, 2*0.326 ]
+Lambda_ths = [ 0, 0.188/2.0, 0.188, 2*0.188 ]
 #Smooth parameter
 smooth = '_s1'
 #Coordinate to cut (1 -- X, 2 -- Y, 3 -- Z)
@@ -85,7 +85,7 @@ for fold in folds:
     lambda_th = Lambda_ths[0]
     plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
+	plt.title( "%s\n$\lambda_{th} = %1.3f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
@@ -97,7 +97,7 @@ for fold in folds:
     lambda_th = Lambda_ths[1]
     plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
+	plt.title( "%s\n$\lambda_{th} = %1.3f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     if i_fold == N_sim - 1:
@@ -109,7 +109,7 @@ for fold in folds:
     lambda_th = Lambda_ths[2]
     plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
+	plt.title( "%s\n$\lambda_{th} = %1.3f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
@@ -121,7 +121,7 @@ for fold in folds:
     lambda_th = Lambda_ths[3]
     plt.imshow( -Scheme( eig1, eig2, eig3, lambda_th ), extent = extent, vmin=-3, vmax=0, cmap = my_cmap4 )
     if i_fold == 0: 
-	plt.title( "%s\n$\lambda_{th} = %1.2f$"%(web,lambda_th) )
+	plt.title( "%s\n$\lambda_{th} = %1.3f$"%(web,lambda_th) )
     plt.yticks( (),() )
     plt.xticks( (0,Box_L[i_fold]) )
     #if i_fold == N_sim - 1:
