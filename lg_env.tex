@@ -494,7 +494,7 @@ $1-4\times 10^{12}/\hMsun$.}
 %.........................................................................
 
 
-Finally in the table \ref{Tab:Samples_Size} we show the sizes of all 
+Finally in the table \ref{tab:Samples_Size} we show the sizes of all 
 defined samples.
 
 
@@ -515,7 +515,7 @@ defined samples.
   simulation and for each of the two schemes used to detect halos (FOF 
   and BDM).}
   
-  \label{Tab:Samples_Size}
+  \label{tab:Samples_Size}
   
 \end{center}
 \end{flushleft}
@@ -558,7 +558,13 @@ each eigenvalue for the two defined schemes and for the \textit{GH},
 \textit{IP} and \textit{RIP} samples. In the figure 
 \ref{fig:distro_cosmicweb} is shown the obtained results, where it can be 
 noticed that there is a significant bias of distribution of the halo pairs 
-respect to the volume cells.
+respect to the volume cells. Furthermore, choosing the previously 
+established optimal threshold value $\lambda_{opt}$ for each web scheme, 
+the table \ref{tab:OccupationFractions} is built. In this has been 
+tabulated the occupation fractions for the volume cells of the simulation 
+and for each sample defined in the previous section 
+\ref{section:Def_Samples}.
+
 
 
 %.........................................................................
@@ -593,16 +599,30 @@ respect to the volume cells.
 	\RIPFOF			&	0.203	  &		0.681	 &		0.116	   &	0.000		\\
 	\RIPBDM			&	0.138	  &		0.690	 &		0.172	   &	0.000		\\\hline
   \end{tabular}  
-  \captionof{table}{\small Size of each sample defined in the Bolshoi 
-  simulation and for each of the two schemes used to detect halos (FOF 
-  and BDM).}
+  \captionof{table}{\small Occupation fractions for each one of the defined
+  samples and for all the volume cells of the simulation, and for each one 
+  of the occupied type of environment selected by both web schemes.}
   
-  \label{Tab:Samples_Size}
+  \label{tab:OccupationFractions}
   
 \end{center}
 \end{flushleft}
 \end{table}
 %.........................................................................
+
+
+
+As it was said, the selection of a optimal threshold value for each web 
+scheme, according to our proposed method based upon the mean density, is 
+just an approximation which reproduces properly the visual impression of 
+the cosmic web, so the table \ref{tab:OccupationFractions} must not be 
+interpreted rigorously. Those occupation values must be thought just as a 
+comparative illustration in order to understand possible bias between the 
+defined samples and the overall matter distribution of the simulation. For 
+instance, for the T-web scheme, the occupation fraction of the \textit{RIP} 
+sample in filament regions is larger than in sheet regions, which does not 
+mean that \textit{RIP} systems lie in filaments, but those systems lie 
+preferentially in higher density and non-linear regions.
 
 
 
