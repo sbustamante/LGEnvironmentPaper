@@ -494,13 +494,14 @@ $1-4\times 10^{12}/\hMsun$.}
 %.........................................................................
 
 
+
 Finally in the table \ref{tab:Samples_Size} we show the sizes of all 
-defined samples.
+defined samples. 
 
 
 %.........................................................................
 %Table of sizes of each sample defined in Bolshoi
-\begin{table}[H]
+\begin{table}[h]
 \begin{flushleft}
 \begin{center}
   \begin{tabular}{l  r  r} \hline\hline
@@ -523,6 +524,11 @@ defined samples.
 %.........................................................................
 
 
+It can also be noticed both schemes used to detect halos in the simulation 
+(henceforth halo schemes) are practically equivalent regarding the size of 
+each sample.
+
+
 %*************************************************************************
 \section{Finding the Environment of the Local Group}
 \label{sec:LGEnvironment}
@@ -530,14 +536,14 @@ defined samples.
 
 
 
-Once defined all the samples, we shall proceed to quantify the environment
+Once defined all samples, we shall proceed to quantify the environment
 by using two different approaches. The first one is by applying the 
 tensorial schemes defined in the section \ref{sec:algorithms_cosmic_web} 
 and then, calculating the local eigenvalues associated to each halo or halo 
-pair. The second approach is complementary to the first, and consists in 
-calculating the relative distance of each halo or halo pair to the nearest
-void regions, thereby allowing to link the influence of voids to the 
-physical properties of the samples.
+pair. The second approach is complementary to the first one, and consists 
+in calculating the relative distance of each halo or halo pair to the 
+nearest void regions, thereby allowing linking the influence of bulk voids 
+to physical properties of the samples.
 
 
 
@@ -554,11 +560,11 @@ the section \ref{sec:algorithms_cosmic_web}, lies in being able to quantify
 all the local structure of the environment of halos and pair halos just 
 from kinematic and dynamic properties of the matter distribution, like the
 density and velocity fields. Next, we shall calculate the distributions of 
-each eigenvalue for the two defined schemes and for the \textit{GH}, 
+each eigenvalue for the two defined web schemes and for the \textit{GH}, 
 \textit{IP} and \textit{RIP} samples. In the figure 
 \ref{fig:distro_cosmicweb} is shown the obtained results, where it can be 
-noticed that there is a significant bias of distribution of the halo pairs 
-respect to the volume cells. Furthermore, choosing the previously 
+noticed that there is a significant bias in the distribution of halo 
+pairs respect to volume cells. Furthermore, choosing the previously 
 established optimal threshold value $\lambda_{opt}$ for each web scheme, 
 the table \ref{tab:OccupationFractions} is built. In this has been 
 tabulated the occupation fractions for the volume cells of the simulation 
@@ -619,10 +625,24 @@ the cosmic web, so the table \ref{tab:OccupationFractions} must not be
 interpreted rigorously. Those occupation values must be thought just as a 
 comparative illustration in order to understand possible bias between the 
 defined samples and the overall matter distribution of the simulation. For 
-instance, for the T-web scheme, the occupation fraction of the \textit{RIP} 
+instance, for T-web scheme, the occupation fraction of the \textit{RIP} 
 sample in filament regions is larger than in sheet regions, which does not 
 mean that \textit{RIP} systems lie in filaments, but those systems lie 
-preferentially in higher density and non-linear regions.
+preferentially in higher density and stronger non-linear regions.
+
+
+
+An expected result obtained from the figure \ref{fig:distro_cosmicweb} is 
+the equivalence between both used halo schemes, regarding the obtained 
+distribution of eigenvalues for all samples, and even for both web schemes.
+This along with that shown in the table \ref{tab:Samples_Size} allow 
+concluding both halo schemes reproduce an equivalent mass function of the 
+halos and a similar spatial distribution of them since the occupation 
+values of each sample are approximately close. Now, regarding the 
+differences between web schemes, from the distribution of the web 
+eigenvalues it is clear that each scheme quantify the structure of the 
+cosmic web in very different ways, which can be explained by how each 
+scheme is built.
 
 
 
