@@ -43,9 +43,9 @@ M31 with respect to the Milky Way (MW), the previously established radial
 velocity, the estimated masses of dark halos, along with some criteria
 to guarantee the gravitational isolation of these systems (Forero-Romero
 et al. 2013-1), we select a set of halos pairs as a representative sample 
-of LG systems in the Bolshoi simulation. 
+of LG-like systems in the Bolshoi simulation. 
 We look for possible bias and correlations between the environment 
-properties of each LG system and its kinematic and formation properties. 
+properties of each LG-like system and its kinematic and formation properties. 
 Among our main result we find \SRKED{[summarize our results here!]}.
 
 \end{abstract}
@@ -427,23 +427,23 @@ sample in unconstrained simulations, we proceed from the the general dark
 halo catalogues, constructed using the FOF scheme with a linking length of 
 $b=0.17$ and the Bound Density Maxima (BDM) scheme for halos with an 
 associated overdensity value of $200$ times the critical density 
-(\SRKED{[references here}). These samples are defined over all the Bolshoi 
+(\SRKED{[references here]}). These samples are defined over all the Bolshoi 
 simulation and will be referred as General Halos samples, \GHFOF and 
 \GHBDM respectively\footnote{For each sample defined, there will be a FOF 
 sample and a BDM sample in order to have robust results}. To be consistent 
 with the mass range observationally determined of halos that host disk-form 
 galaxies, we select halos in the mass range $7\times10^{11} < M_{h}/\hMsun 
-< 7\times 10^{12}$, referred here as Individual Halos (\textit{IH}) samples. 
+< 7\times 10^{12}$, referred here as Individual Halos (\texttt{IH}) samples. 
 
 
 
 As a primal approach to define gravitational bounded halo pairs we select 
-halos within the \textit{IH} sample that satisfied to be the closest to 
-each other. They constitute the Pairs (\textit{P}) sample. To maintain the 
+halos within the \texttt{IH} sample that satisfied to be the closest to 
+each other. They constitute the Pairs (\texttt{P}) sample. To maintain the 
 consistency with previous works regarding algorithms used for LG selection 
-(\SRKED{[references here}), we define here the next list of conditions 
+(\SRKED{[references here]}), we define here the next list of conditions 
 that have to fulfil a pair system in order to belong to the Isolated Pairs 
-(\textit{IP}) sample. All these considerations are based upon the relative 
+(\texttt{IP}) sample. All these considerations are based upon the relative 
 dynamics of the Milky Way and M31, and its isolation from massive 
 structures:
 
@@ -476,7 +476,7 @@ $7\times10^{13}$ \hMsun must be larger than $4$\hMpc.}
 
 Following the previous criteria established by Forero-Romero et al. 2013-1,
 we define a more reduced sample, the Reduced Isolated Pairs sample 
-(\textit{RIP}), as pairs that fulfil the next two extra criteria :
+(\texttt{RIP}), as pairs that fulfil the next two extra criteria :
 
 
 
@@ -495,8 +495,8 @@ $1-4\times 10^{12}/\hMsun$.}
 
 
 
-Finally in the table \ref{tab:Samples_Size} we show the sizes of all 
-defined samples. 
+Finally in Table \ref{tab:Samples_Size} shows the sizes of all defined 
+samples. 
 
 
 %.........................................................................
@@ -506,11 +506,11 @@ defined samples.
 \begin{center}
   \begin{tabular}{l  r  r} \hline\hline
 	\textbf{Sample}					&\textbf{FOF}&\textbf{BDM} \\ \hline
-	General Halos (\textit{GH}) 	& 432000	 & 404432  \\ 
-	Individual Halos (\textit{IH}) 	& 65109		 & 61165  \\ 
-	Pairs (\textit{P}) 	 			& 17115		 & 15981  \\ 
-	Isolated Pairs (\textit{IP})	& 1249		 & 1647  \\ 
-	Reduced Isolated Pairs (\textit{RIP})& 138	 & 116  \\ \hline\hline
+	General Halos (\texttt{GH}) 	& 432000	 & 404432  \\ 
+	Individual Halos (\texttt{IH}) 	& 65109		 & 61165  \\ 
+	Pairs (\texttt{P}) 	 			& 17115		 & 15981  \\ 
+	Isolated Pairs (\texttt{IP})	& 1249		 & 1647  \\ 
+	Reduced Isolated Pairs (\texttt{RIP})& 138	 & 116  \\ \hline\hline
   \end{tabular}  
   \captionof{table}{\small Size of each sample defined in the Bolshoi 
   simulation and for each of the two schemes used to detect halos (FOF 
@@ -540,10 +540,11 @@ Once defined all samples, we shall proceed to quantify the environment
 by using two different approaches. The first one is by applying the 
 tensorial schemes defined in the section \ref{sec:algorithms_cosmic_web} 
 and then, calculating the local eigenvalues associated to each halo or halo 
-pair. The second approach is complementary to the first one, and consists 
-in calculating the relative distance of each halo or halo pair to the 
-nearest void regions, thereby allowing linking the influence of bulk voids 
-to physical properties of the samples.
+pair and the respective fractional anisotropy index (\SRKED{[reference 
+here]}). The second approach is complementary to the first one, and 
+consists in calculating the relative distance of each halo or halo pair to 
+the nearest void regions, thereby allowing linking the influence of bulk 
+voids to physical properties of the samples.
 
 
 
@@ -560,14 +561,14 @@ the section \ref{sec:algorithms_cosmic_web}, lies in being able to quantify
 all the local structure of the environment of halos and pair halos just 
 from kinematic and dynamic properties of the matter distribution, like the
 density and velocity fields. Next, we shall calculate the distributions of 
-each eigenvalue for the two defined web schemes and for the \textit{GH}, 
-\textit{IP} and \textit{RIP} samples. In the figure 
+each eigenvalue for the two defined web schemes and for the \texttt{GH}, 
+\texttt{IP} and \texttt{RIP} samples. In the figure 
 \ref{fig:distro_cosmicweb} is shown the obtained results, where it can be 
 noticed that there is a significant bias in the distribution of halo 
 pairs respect to volume cells. Furthermore, choosing the previously 
 established optimal threshold value $\lambda_{opt}$ for each web scheme, 
-the table \ref{tab:OccupationFractions} is built. In this has been 
-tabulated the occupation fractions for the volume cells of the simulation 
+Table \ref{tab:OccupationFractions} is built. In this has been 
+listed the occupation fractions for the volume cells of the simulation 
 and for each sample defined in the previous section 
 \ref{section:Def_Samples}.
 
@@ -621,13 +622,13 @@ and for each sample defined in the previous section
 As it was said, the selection of a optimal threshold value for each web 
 scheme, according to our proposed method based upon the mean density, is 
 just an approximation which reproduces properly the visual impression of 
-the cosmic web, so the table \ref{tab:OccupationFractions} must not be 
+the cosmic web, so Table \ref{tab:OccupationFractions} must not be 
 interpreted rigorously. Those occupation values must be thought just as a 
 comparative illustration in order to understand possible bias between the 
 defined samples and the overall matter distribution of the simulation. For 
-instance, for T-web scheme, the occupation fraction of the \textit{RIP} 
+instance, for T-web scheme, the occupation fraction of the \texttt{RIP} 
 sample in filament regions is larger than in sheet regions, which does not 
-mean that \textit{RIP} systems lie in filaments, but those systems lie 
+mean that \texttt{RIP} systems lie in filaments, but those systems lie 
 preferentially in higher density and stronger non-linear regions.
 
 
@@ -635,13 +636,10 @@ preferentially in higher density and stronger non-linear regions.
 An expected result obtained from the figure \ref{fig:distro_cosmicweb} is 
 the equivalence between both used halo schemes, regarding the obtained 
 distribution of eigenvalues for all samples, and even for both web schemes.
-This along with that shown in the table \ref{tab:Samples_Size} allow 
+This along with that shown in Table \ref{tab:Samples_Size} allow 
 concluding both halo schemes reproduce equivalent halos mass function and 
 similar spatial distribution of them since the occupation values of each 
 sample are approximately close. 
-
-
-
 Regarding the differences between both web schemes, from the distribution 
 of the web eigenvalues for volume cells shown by the figure 
 \ref{fig:distro_cosmicweb} it is clear that each scheme quantify the 
@@ -650,12 +648,61 @@ by how each scheme is built. The T-web is built based upon the
 gravitational potential, thereby retaining bulk features of the cosmic web 
 because of the long-range nature of the potential, whereas the V-web 
 scheme, based upon the peculiar velocity field, describes better the very 
-local structure of the cosmic environment. All of this causes filament-like 
+local structure of the cosmic environment. All of this causes filament-like
 and knot-like regions being poorly described by the T-web and hence being 
 more spread out than the V-web. Voids and sheet-like regions are therefore 
 more spread out in the V-web scheme. It must be noticed these conclusions 
 were done independently on the chosen threshold value, and they hold for a 
 reasonable range of them (see figure \ref{fig:visual_impression}).
+
+
+
+Once established the expected characteristics of each web scheme, we shall 
+proceed to analyse the privileged environment of LG-like systems under the
+selection criteria defined in the section \ref{section:Def_Samples}. An
+interesting issue to be taken into account before, is the push and pull 
+situation produced by the closeness criteria between the halos of each 
+pair, and the gravitational isolation criteria. Correlation between the 
+cosmic environment and the abundance and masses of individual galaxies has 
+been well studied (\SRKED{[references here]}), finding more massive 
+galaxies and large abundances at high non-linear and denser regions of the 
+cosmic web. This is in agreement with the closeness criteria, allowing 
+finding more halos, but it is is against the isolation criteria, where large 
+abundances affect gravitational isolation. Because of that, it makes no 
+clear how to assign a priori type of environment to LG-like systems, making 
+this study necessary.
+
+
+
+When we adopt the T-web scheme, an important bias is found for the 
+\texttt{RIP} sample compared with the \texttt{IP}, whereas this one 
+also follows a different distribution than the \texttt{GH} sample. 
+According to Table \ref{tab:OccupationFractions}, \texttt{RIP} systems 
+appears to lie in high non-linear regions preferentially, with $\sim 85\%-
+90\%$ being in filament-like regions, and $\sim 15\%-10\%$ distributed in 
+sheet-like and knot-like regions\footnote{Note we rather use sheet-like, 
+filament-like, ... regions instead of sheet, filament, ... regions in 
+order to not classify a priori each type of region according to the 
+optimal threshold value.}. \texttt{IP} systems lie in even higher 
+non-linear regions than \texttt{RIP} systems, with $\sim 30\% - 45\%$ of 
+them distributed in knot-like, $\sim 63\% - 53\%$ in filament-like and the 
+remainder distributed mainly in sheet-like regions.
+
+
+
+Using the V-web scheme, there is also a bias between the environmental 
+distribution of \texttt{RIP} and \texttt{IP} systems, but it is less clear
+than the T-web case. Furthermore, the occupation fractions are quite 
+different to the T-web scheme. For instance, \texttt{RIP} systems lie 
+mainly in sheet-like regions, with $\sim 68\% - 69\%$ of them found in 
+this type of region, $\sim 20\% - 14\%$ in voids and $\sim 12\% - 
+17\%$ in filament-like regions. Whereas there are $\sim 60\% - 63\%$ of
+\textit{IP} systems in sheet-like regions, $\sim 28\% - 23\%$ in 
+filament-like, $\sim 10\% - 13\%$ in voids and remainder in knot-like
+regions. All of this shows effectively a minor bias respect to that found
+in the T-web, what might be explained because of the different physical 
+origin of each scheme.
+
 
 
 %*************************************************************************
@@ -858,8 +905,8 @@ reasonable range of them (see figure \ref{fig:visual_impression}).
   scheme. T-web (upper panels). V-web (lower panels). In each figure is
   calculated the distributions of eigenvalues for the volume cells of the 
   simulation (black lines), evaluating the respective tensor on the 
-  geometric center of the cell. This is also done for \textit{IP} 
-  (continuous lines) and \textit{RIP} (dashed lines) samples (both BDM 
+  geometric center of the cell. This is also done for \texttt{IP} 
+  (continuous lines) and \texttt{RIP} (dashed lines) samples (both BDM 
   (red) and FOF (blue)), but the tensors are evaluated on the cell which 
   contains the center of mass of the halo pair. The vertical dashed line
   corresponds to the optimal threshold value $\lambda_{opt}$ for each 
