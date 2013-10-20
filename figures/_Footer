@@ -136,3 +136,21 @@ CAPTION:
 CODE:
 	lambda_cells_1Dhist.py
 *******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	fractional_anisotrpy_Tweb.pdf
+	fractional_anisotrpy_Vweb.pdf
+CAPTION:
+	Cumulative distribution of the fractional 
+	anisotropy for each web scheme. T-web (right panel). V-web (left panel).
+	Distributions for each sample are also calculated, \texttt{GH} sample 
+	(black lines), \texttt{IP} sample (blue lines) and \texttt{RIP} sample 
+	(red lines). In order to compare each halo scheme, we also calculate 
+	distributions for each one, FOF (dashed lines) and BDM (continuous 
+	lines).
+CODE:
+	lambda_fractional_anisotropy.py
+*******************************************************************************
