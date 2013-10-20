@@ -355,8 +355,8 @@ field.
 
 
 Following the recent work of \SRKED{Courtois et al. 2013}, we use a method 
-based on a FOF algorithm to find extended regions of voids in order to
-select halo systems according to the proximity to those regions. 
+based on a FOF-like algorithm to find extended regions of voids in order 
+to select halo systems according to the proximity to those regions. 
 To achieve this, we build the input catalogue of the FOF method with the 
 positions of the center coordinate of every cell marked as void according 
 to the web scheme adopted; furthermore we set an adequate linking length 
@@ -776,6 +776,21 @@ $\lambda_{th}$, which has little or no physical motivation. So independence
 of free parameters is indeed and advantage of the fractional anisotropy.
 
 
+
+%-------------------------------------------------------------------------
+\subsection{The neighbourhood of voids}
+\label{subsec:neighbourhood_voids}
+%-------------------------------------------------------------------------
+
+
+
+In Subsection \ref{subsec:method_voids} we quantified bulk void regions 
+using a FOF-like scheme. Our second approach to quantify the cosmological
+environment of LG-like systems involves taking distances to the nearest
+void regions in order to stablish possible environmental effects related 
+with the closeness, the size and the geometry of these bulk voids.
+
+
 %*************************************************************************
 \section{Results}
 \label{sec:Results}
@@ -849,10 +864,10 @@ of free parameters is indeed and advantage of the fractional anisotropy.
 
   \captionof{figure}{\small Mean density parameter for each one of the 
   defined environments according to the chosen $\lambda_{th}$ value and 
-  for both classification schemes. Tweb (green lines). Vweb (blue lines).
-  The mean density parameter is calculated by averaging all the values 
-  of the cells determined as a certain type of environment according to 
-  its eigenvalues. The optimal parameters found are 
+  for both classification schemes. Tweb (green lines) and Vweb (blue 
+  lines). The mean density parameter is calculated by averaging all the 
+  values  of the cells determined as a certain type of environment 
+  according to its eigenvalues. The optimal parameters found are 
   $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.}
 
   \label{fig:mean_density}
@@ -909,7 +924,7 @@ of free parameters is indeed and advantage of the fractional anisotropy.
 
   \captionof{figure}{\small Percolation analysis of void regions for 
   different $\lambda_{th}$ values and for both defined classification 
-  schemes. T-web (blue lines). V-web (green lines). Plot of the largest 
+  schemes. T-web (blue lines) and  V-web (green lines). Plot of the largest 
   volume and the number of voids detected according to the threshold value 
   $\lambda_{th}$ (left panels). Size distribution histogram of void cells
   using the threshold value $\lambda_{th} = 0.0$ for both schemes 
@@ -938,7 +953,7 @@ of free parameters is indeed and advantage of the fractional anisotropy.
 
   \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
   vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
-  scheme (left panel). V-web scheme (right panel). Number of cells per 
+  (left panel) and V-web (right panel). Number of cells per 
   region in 2D histograms are indicated by the respective colour bar. 
   Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
   figure shows a normalized histogram of each ratio parameter. The 
@@ -977,7 +992,7 @@ of free parameters is indeed and advantage of the fractional anisotropy.
   width=0.24\textheight]{./figures/eigen3_dist_Vweb}
   
   \captionof{figure}{\small Distributions of eigenvalues for each defined
-  scheme. T-web (upper panels). V-web (lower panels). In each figure is
+  scheme. T-web (upper panels) and V-web (lower panels). In each figure is
   calculated the distributions of eigenvalues for the volume cells of the 
   simulation (black lines), evaluating the respective tensor on the 
   geometric center of the cell. This is also done for \texttt{IP} 
@@ -1009,7 +1024,7 @@ of free parameters is indeed and advantage of the fractional anisotropy.
   width=0.3\textheight]{./figures/fractional_anisotrpy_Vweb}
   
   \captionof{figure}{\small Cumulative distribution of the fractional 
-  anisotropy for each web scheme. T-web (right panel). V-web (left panel).
+  anisotropy for each web scheme. T-web (right panel) and V-web (left panel).
   Distributions for each sample are also calculated, \texttt{GH} sample 
   (black lines), \texttt{IP} sample (blue lines) and \texttt{RIP} sample 
   (red lines). In order to compare each halo scheme, we also calculate 
@@ -1017,6 +1032,40 @@ of free parameters is indeed and advantage of the fractional anisotropy.
   lines). }
 
   \label{fig:fractional_anisotropy}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
+
+
+
+%.........................................................................
+%Distribution of size and distance to void regions respect to each sample
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/voids_distances_samples_Tweb}
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/voids_sizes_samples_Tweb}
+  
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/voids_distances_samples_Vweb}
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/voids_sizes_samples_Vweb}
+  
+  \captionof{figure}{\small Cumulative distribution of distances (right 
+  panels) and volume sizes (left panels) of the nearest void region of 
+  each system and for each web scheme. T-web (upper panels) and V-web 
+  (lower panels). Systems of the \texttt{GH} sample (black lines), 
+  \texttt{IP} sample (blue lines) and \texttt{RIP} sample (red lines) are 
+  considered. It is also included both halo schemes, FOF (dashed lines) and 
+  BDM (continuous lines).}
+
+  \label{fig:voids2samples}
   \vspace{0.1 cm}
 
 \end{center}
