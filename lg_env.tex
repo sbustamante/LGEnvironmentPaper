@@ -227,7 +227,7 @@ overdensity.
 
 %-------------------------------------------------------------------------
 \subsection{The velocity  web (V-web)}
-\label{sec:Vweb}
+\label{subsec:Vweb}
 %-------------------------------------------------------------------------
 
 
@@ -296,14 +296,14 @@ softening is performed between neighbour cells.
 
 Once defined the numerical details about the classification schemes, we 
 shall analyse the dependence on the threshold value $\lambda_{th}$ for each 
-one. In the figure \ref{fig:mean_density} we show the variation of the mean 
+one. In Figure \ref{fig:mean_density} we show the variation of the mean 
 density parameter $\delta$ with the threshold value for cells marked as one 
 of the two more dominant types of environment (voids and sheets).
 
 
 
 As was previously established by \SRKED{Hoffman et al. (2012)} and as 
-can be seen in the figure \ref{fig:mean_density}, the behaviour of the 
+can be seen in Figure \ref{fig:mean_density}, the behaviour of the 
 V-web scheme is significantly more sensible to variations of the 
 $\lambda_{th}$ value compared with the T-web scheme; nevertheless, the 
 behaviour of the mean density parameter for voids, sheets and filaments, 
@@ -329,7 +329,7 @@ increase due to the contribution of over-dense regions). Thus, the optimal
 value is simply where the mean density parameter of sheet regions is 
 null. According to this, we obtain the next optimal threshold values 
 for the T-web and the V-web respectively, $\lambda_{opt}^T = 0.326$ and 
-$\lambda_{opt}^V = 0.188$. To verify our analysis, we show in the figure 
+$\lambda_{opt}^V = 0.188$. To verify our analysis, we show in Figure 
 \ref{fig:visual_impression} the visual impression for each defined critical 
 value, and as can be seen, the chosen values reproduce properly the 
 expected impression according to the density field. 
@@ -367,7 +367,7 @@ to connect even diagonal neighbour cells.
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
 reduce percolation in cells, thereby accounting for physical void regions.
-In the figure \ref{fig:percolation_analysis} we show the obtained result 
+In Figure \ref{fig:percolation_analysis} we show the obtained result 
 of our percolation analysis for both web schemes. In both cases it can be 
 noted the volume of the largest void region is minimized and the volume 
 distribution of voids is relatively flat at $\lambda_{th} = 0.0$, that 
@@ -402,7 +402,7 @@ positions are measured from the respective center of mass of the region.
 The eigenvalues of the reduced inertia tensor, i.e. the principal moments
 of inertia, are used to quantify the shape of void regions. They are 
 denoted as $\tau_1$, $\tau_2$ and $\tau_3$ such that $\tau_1 \leq \tau_2
-\leq \tau_3$. In the figure \ref{fig:distro_inertia} we show the computed
+\leq \tau_3$. In Figure \ref{fig:distro_inertia} we show the computed
 distributions for $\tau_1/\tau_2$ and $\tau_2/\tau_3$, where we rather 
 calculate histograms for these ratio quantities instead of each value in 
 order to avoid using an arbitrary normalization. For both schemes, it can 
@@ -551,7 +551,7 @@ voids to physical properties of the samples.
 
 %-------------------------------------------------------------------------
 \subsection{Tensorial Schemes}
-\label{subsec:tensorial schemes}
+\label{subsec:tensorial_schemes}
 %-------------------------------------------------------------------------
 
 
@@ -562,14 +562,13 @@ all the local structure of the environment of halos and pair halos just
 from kinematic and dynamic properties of the matter distribution, like the
 density and velocity fields. Next, we shall calculate the distributions of 
 each eigenvalue for the two defined web schemes and for the \texttt{GH}, 
-\texttt{IP} and \texttt{RIP} samples. In the figure 
-\ref{fig:distro_cosmicweb} is shown the obtained results, where it can be 
-noticed that there is a significant bias in the distribution of halo 
-pairs respect to volume cells. Furthermore, choosing the previously 
-established optimal threshold value $\lambda_{opt}$ for each web scheme, 
-Table \ref{tab:OccupationFractions} is built. In this has been 
-listed the occupation fractions for the volume cells of the simulation 
-and for each sample defined in the previous section 
+\texttt{IP} and \texttt{RIP} samples. In Figure \ref{fig:distro_cosmicweb} 
+is shown the obtained results, where it can be noticed that there is a 
+significant bias in the distribution of halo pairs respect to volume cells. 
+Furthermore, choosing the previously established optimal threshold value 
+$\lambda_{opt}$ for each web scheme, Table \ref{tab:OccupationFractions} 
+is built. In this has been listed the occupation fractions for the volume 
+cells of the simulation and for each sample defined in the previous section 
 \ref{section:Def_Samples}.
 
 
@@ -633,7 +632,7 @@ preferentially in higher density and stronger non-linear regions.
 
 
 
-An expected result obtained from the figure \ref{fig:distro_cosmicweb} is 
+An expected result obtained from Figure \ref{fig:distro_cosmicweb} is 
 the equivalence between both used halo schemes, regarding the obtained 
 distribution of eigenvalues for all samples, and even for both web schemes.
 This along with that shown in Table \ref{tab:Samples_Size} allow 
@@ -641,7 +640,7 @@ concluding both halo schemes reproduce equivalent halos mass function and
 similar spatial distribution of them since the occupation values of each 
 sample are approximately close. 
 Regarding the differences between both web schemes, from the distribution 
-of the web eigenvalues for volume cells shown by the figure 
+of the web eigenvalues for volume cells shown by Figure 
 \ref{fig:distro_cosmicweb} it is clear that each scheme quantify the 
 structure of the cosmic web in very different ways, what can be explained 
 by how each scheme is built. The T-web is built based upon the 
@@ -653,7 +652,7 @@ and knot-like regions being poorly described by the T-web and hence being
 more spread out than the V-web. Voids and sheet-like regions are therefore 
 more spread out in the V-web scheme. It must be noticed these conclusions 
 were done independently on the chosen threshold value, and they hold for a 
-reasonable range of them (see figure \ref{fig:visual_impression}).
+reasonable range of them (see Figure \ref{fig:visual_impression}).
 
 
 
@@ -703,6 +702,72 @@ regions. All of this shows effectively a minor bias respect to that found
 in the T-web, what might be explained because of the different physical 
 origin of each scheme.
 
+
+
+%-------------------------------------------------------------------------
+\subsection{Fractional anisotropy}
+\label{subsec:fractional_anisotropy}
+%-------------------------------------------------------------------------
+
+
+
+In order to overcome and standardize differences between the two web 
+schemes, we shall calculate the fractional anisotropy for each sample, 
+with the normalization given by (\SRKED{[reference here]}).
+
+
+
+%.........................................................................
+%Fractional anisotropy
+\eq{fractional_anisotropy}
+{ FA = \frac{1}{\sqrt{3}}\sqrt{ \frac{ (\lambda_1 - \lambda_3)^2 + 
+(\lambda_2 - \lambda_3)^2 + (\lambda_1 - \lambda_2)^2}{ \lambda_1^2 + 
+\lambda_2^2 + \lambda_3^2} } }
+%.........................................................................
+where the eigenvalues can be taken from any of the two web schemes. This 
+index, such as it is defined, allows quantifying the local anisotropy 
+degree of the cosmological environment, where $FA=0$ corresponds to highly
+isotropic regions and $FA=1$ the opposite case, completely anisotropic 
+regions. Although there does not exist a perfect correspondence between 
+certain range of the fractional isotropy and each one of the above defined
+type of environment, there is an insight about what characteristics should 
+have a cell volume according to its $FA$ value. Following the analysis 
+performed by (\SRKED{[reference here]}), we shall assign low values of the 
+fractional anisotropic to the most symmetric and isotropic regions, 
+knot-like, due to their collapse in all directions. Low-middle values are 
+assigned to sheet-like regions whereas high-middle values to filament-like 
+regions, which indicates the complex dynamics of these types of environment. 
+Finally, high values ($FA \lesssim 1$) of the fractional anisotropy 
+correspond to the most highly anisotropic type of environment, voids. That
+is because their expansion rate in each direction can take very different 
+values, thereby shaping highly amorphous regions.
+
+
+
+Figure \ref{fig:fractional_anisotropy} shows the normed cumulative 
+histograms of the fractional anisotropy for each sample. The first 
+characteristic that can be noticed is the high similitude between both web
+schemes, allowing inferring that the fractional anisotropy is effectively
+an efficient way to overcome differences between the web schemes, and 
+thereby allowing obtaining more robust conclusions. Regarding possible 
+differences between each sample, now it is clearer the existing bias 
+between \texttt{RIP} systems and \texttt{IP} systems, even for both web 
+schemes. In spite of all the halos of the simulation are distributed mainly
+in very anisotropic regions like voids and sheet-like regions, 
+\texttt{RIP} and \texttt{IP} systems lie preferentially in more isotropic 
+and non-linear regions than \texttt{GH}. Although \texttt{RIP} systems 
+appear to lie in slightly less isotropic regions. This can be explained 
+because of the mass cut-off or the relative distance range chosen as the 
+extra criteria for selecting the \texttt{RIP} sample, thus indicating a 
+first possible environmental correlation.
+
+
+
+The above discussion reinforces the results obtained in the  previous 
+subsection \ref{subsec:tensorial_schemes}, showing the complementary 
+character of the fractional anisotropy. Returning back to the discussion 
+about the quantification of the environment leaded by the fractional 
+anisotropy, the only conclusion that can be done is 
 
 
 %*************************************************************************
@@ -793,6 +858,7 @@ origin of each scheme.
 %.........................................................................
 
 
+
 %.........................................................................
 %Visual impresion
 \begin{flushleft}
@@ -823,6 +889,7 @@ origin of each scheme.
 %.........................................................................
 
 
+
 %.........................................................................
 %Percolation analysis
 \begin{flushleft}
@@ -849,6 +916,7 @@ origin of each scheme.
 \end{figure*}
 \end{flushleft}
 %.........................................................................
+
 
 
 %.........................................................................
@@ -879,6 +947,7 @@ origin of each scheme.
 \end{figure*}
 \end{flushleft}
 %.........................................................................
+
 
 
 %.........................................................................
@@ -920,4 +989,32 @@ origin of each scheme.
 \end{flushleft}
 %.........................................................................
 
+
+
+%.........................................................................
+%Distribution of fractional anisotropy
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/fractional_anisotrpy_Tweb}
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/fractional_anisotrpy_Vweb}
+  
+  \captionof{figure}{\small Cumulative distribution of the fractional 
+  anisotropy for each web scheme. T-web (right panel). V-web (left panel).
+  Distributions for each sample are also calculated, \texttt{GH} sample 
+  (black lines), \texttt{IP} sample (blue lines) and \texttt{RIP} sample 
+  (red lines). In order to compare each halo scheme, we also calculate 
+  distributions for each one, FOF (dashed lines) and BDM (continuous 
+  lines). }
+
+  \label{fig:fractional_anisotropy}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 \end{document}
