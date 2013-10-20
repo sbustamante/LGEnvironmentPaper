@@ -154,3 +154,25 @@ CAPTION:
 CODE:
 	lambda_fractional_anisotropy.py
 *******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	voids_distances_samples_Tweb.pdf
+	voids_distances_samples_Vweb.pdf
+	voids_sizes_samples_Tweb.pdf
+	voids_sizes_samples_Vweb.pdf
+	
+CAPTION:
+	Cumulative distribution of distances (right 
+	panels) and volume sizes (left panels) of the nearest void region of 
+	each system and for each web scheme. T-web (upper panels) and V-web 
+	(lower panels). Systems of the \texttt{GH} sample (black lines), 
+	\texttt{IP} sample (blue lines) and \texttt{RIP} sample (red lines) are 
+	considered. It is also included both halo schemes, FOF (dashed lines) and 
+	BDM (continuous lines).
+CODE:
+	void_distance_samples.py
+	void_size_samples.py
+*******************************************************************************
