@@ -152,7 +152,7 @@ CAPTION:
 	distributions for each one, FOF (dashed lines) and BDM (continuous 
 	lines).
 CODE:
-	lambda_fractional_anisotropy.py
+	samples_fractional_anisotropy.py
 *******************************************************************************
 
 
