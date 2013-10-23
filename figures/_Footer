@@ -176,3 +176,29 @@ CODE:
 	void_distance_samples.py
 	void_size_samples.py
 *******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	totalmass_FA_BDM_Tweb.pdf
+	totalmass_FA_FOF_Tweb.pdf
+	totalmass_FA_BDM_Vweb.pdf
+	totalmass_FA_FOF_Vweb.pdf
+	single_totalmass_FA_BDM_Tweb.pdf
+	single_totalmass_FA_FOF_Tweb.pdf
+	
+CAPTION:
+	\textit{Left panel:} histograms of the total 
+	mass of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+	(blue scatter), vs the fractional anisotropy index associated to each 
+	system. In the side panels we compute individual histograms of each one 
+	of the analysed properties for \texttt{IP} systems. \textit{Right 
+	panel:} selecting different mass ranges for the total mass of the pairs, 
+	specified in each single panel, we calculate histograms of the 
+	fractional anisotropy of each sample, \texttt{IP} (black lines) and 
+	\texttt{RIP} (blue bars).
+CODE:
+	samples_totalmass_FA.py
+	samples_totalmass_FA_singles.py
+*******************************************************************************
