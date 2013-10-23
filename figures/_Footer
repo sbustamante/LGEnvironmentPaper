@@ -202,3 +202,29 @@ CODE:
 	samples_totalmass_FA.py
 	samples_totalmass_FA_singles.py
 *******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	ratiomass_FA_BDM_Tweb.pdf
+	ratiomass_FA_FOF_Tweb.pdf
+	ratiomass_FA_BDM_Vweb.pdf
+	ratiomass_FA_FOF_Vweb.pdf
+	single_ratiomass_FA_BDM_Tweb.pdf
+	single_ratiomass_FA_FOF_Tweb.pdf
+	
+CAPTION:
+	\textit{Left panel:} histograms of the mass ratio 
+	of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+	(blue scatter), vs the fractional anisotropy index associated to each 
+	system. In the side panels we compute individual histograms of each one 
+	of the analysed properties for \texttt{IP} systems. \textit{Right 
+	panel:} selecting different ranges for the mass ratio of the pairs, 
+	specified in each single panel, we calculate histograms of the 
+	fractional anisotropy of each sample, \texttt{IP} (black lines) and 
+	\texttt{RIP} (blue bars).
+CODE:
+	samples_ratiomass_FA.py
+	samples_ratiomass_FA_singles.py
+*******************************************************************************

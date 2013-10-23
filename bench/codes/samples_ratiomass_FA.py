@@ -1,6 +1,6 @@
-#samples_totalmass_FA.py
+#samples_ratiomass_FA.py
 #
-#This code calculate 2D histogram of the total mass of the pair samples vs the fractional anisotropy
+#This code calculate 2D histogram of the ratio mass of the pair samples vs the fractional anisotropy
 #index of each respective system. 1D Histograms are also performed in order to determinate single
 #distrbutions of each propertie
 #
@@ -21,17 +21,15 @@ smooth = '_s1'
 catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
-#Mass limits
-MT_lim = (1.0, 10.0)
+#Mass ratio limits
+MT_lim = (0.0, 1.0)
 #FA limits
 FA_lim = (0.0, 1.0)
 
-#Mass_norm
-M_norm = 1e12
 
 #Distribution ranges
 Dist_FA_range = [0, 0.5, 1.0, 1.5, 2.0, 2.5]
-Dist_MT_range = [0, 0.1, 0.2, 0.3]
+Dist_MT_range = [0, 0.5, 1.0, 1.5, 2.0]
 
 #Bins of IP systems
 bins_IP  = 10
@@ -39,7 +37,7 @@ bins_IP  = 10
 bins_RIP  = 10
 
 #==================================================================================================
-#			COMPUTING TOTAL MASSES FOR EACH SAMPLE
+#			COMPUTING RATIO MASSES FOR EACH SAMPLE
 #==================================================================================================
 
 i_fold = 0
@@ -79,14 +77,14 @@ for fold in folds:
     #Loading IP sample
     tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog))
     i_IP = tmp.T[1]
-    Mtot_IP = (tmp.T[2] + tmp.T[5])/M_norm
+    Mtot_IP = (tmp.T[5]/tmp.T[2])
     #Fractional Anisotropy
     FA_IP = Fractional_Anisotropy( eig[1][i_IP.astype(int)-1], eig[2][i_IP.astype(int)-1], eig[3][i_IP.astype(int)-1] )
     
     #Loading Indexes of RIP sample for scheme 1
     tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
     i_RIP = tmp.T[1]
-    Mtot_RIP = (tmp.T[2] + tmp.T[5])/M_norm
+    Mtot_RIP = (tmp.T[5]/tmp.T[2])
     #Fractional Anisotropy
     FA_RIP = Fractional_Anisotropy( eig[1][i_RIP.astype(int)-1], eig[2][i_RIP.astype(int)-1], eig[3][i_RIP.astype(int)-1] )
 
@@ -142,7 +140,7 @@ axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHist2D.set_xticks( np.linspace( FA_lim[0],FA_lim[1],bins_IP+1 ) )
 axHist2D.set_yticks( np.linspace( MT_lim[0],MT_lim[1],bins_IP+1 ) )
 axHist2D.set_xlabel( "Fractional Anisotropy FA", fontsize=15 )
-axHist2D.set_ylabel( "$M_{tot} = M_A + M_B$ [$\\times 10 ^{12}h^{-1}\ M_{\odot}$]", fontsize=15 )
+axHist2D.set_ylabel( "$\\xi = M_B/M_A$", fontsize=15 )
 
 #Fixing ranges of total mass
 for i in xrange(1,5):
