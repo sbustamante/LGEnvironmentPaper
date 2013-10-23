@@ -39,7 +39,7 @@ for fold in folds:
     (foldglobal,fold,web,N_sec[i_fold],smooth,catalog[0]))
     #Histogram
     dist_hist, distances = np.histogram( voids1[:,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "-" ,\
+    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "-" ,
     color = 'black', linewidth = 3, label = 'GH$_{%s}$'%(catalog[0]) )
    
     #Loading voids catalogue of general halos scheme 2 (BDM)
