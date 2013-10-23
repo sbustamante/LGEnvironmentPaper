@@ -1,8 +1,8 @@
-#samples_totalmass_FA.py
+#samples_totalmass_FA_single.py
 #
-#This code calculate 2D histogram of the total mass of the pair samples vs the fractional anisotropy
-#index of each respective system. 1D Histograms are also performed in order to determinate single
-#distrbutions of each propertie
+#This code calculate histogram of the total mass of the pair samples vs the fractional anisotropy
+#index of each respective system. Each histogram is calculated for different mass ranges in order
+#to evaluate possible bias or correlations.
 #
 #by: Sebastian Bustamante
 
