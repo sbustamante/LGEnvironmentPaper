@@ -20,10 +20,8 @@ N_sec = [256]
 L_box = [250.]
 #Smooth parameter
 smooth = '_s1'
-#Catalog Scheme
-catalog = 'FOF'
 #Web Scheme
-web = 'Vweb'
+web = 'Tweb'
 #Lambda_th
 Lambda_th = 0.0
 #Nbins of each histogram
@@ -88,10 +86,10 @@ for fold in folds:
     
     #Histogram X
     histx = np.histogram( eigen[0]/eigen[1], bins=Nbins, normed=True, range=(0,1) )
-    axHistx.bar( histx[1][1:], histx[0], width = 1.00/Nbins, linewidth=2.0, color="gray" )
+    axHistx.bar( histx[1][:-1], histx[0], width = 1.00/Nbins, linewidth=2.0, color="gray" )
     #Histogram Y
     histy = np.histogram( eigen[1]/eigen[2], bins=Nbins, normed=True, range=(0,1) )
-    axHisty.barh( histy[1][1:], histy[0], height = 1.00/Nbins, linewidth=2.0, color="gray" )
+    axHisty.barh( histy[1][:-1], histy[0], height = 1.00/Nbins, linewidth=2.0, color="gray" )
   
       
     i_fold += 1
