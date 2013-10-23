@@ -1,4 +1,4 @@
-#Lambda_fractional_anisotropy.py
+#samples_fractional_anisotropy.py
 #
 #This code calculate the histogram of the fractional of anisotropy of each sample and for each web
 #scheme.
@@ -87,6 +87,7 @@ for fold in folds:
     FA, FA_bins = np.histogram( FA_RIP1, bins = bins, normed = True, range=(0,1.0) )
     plt.plot( FA_bins[1:], np.cumsum(FA)/np.sum(FA), linestyle = "-" ,color = 'red', linewidth = 3,\
     label = 'RIP$_{%s}$'%(catalog[0]) )
+  
     #Loading Indexes of RIP sample for scheme 2
     tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog[1]))
     i_RIP2 = tmp.T[1]    

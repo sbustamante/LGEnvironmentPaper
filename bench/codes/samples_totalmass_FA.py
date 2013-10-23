@@ -144,5 +144,10 @@ axHist2D.set_yticks( np.linspace( MT_lim[0],MT_lim[1],bins_IP+1 ) )
 axHist2D.set_xlabel( "Fractional Anisotropy FA", fontsize=15 )
 axHist2D.set_ylabel( "$M_{tot} = M_A + M_B$ [$\\times 10 ^{12}h^{-1}\ M_{\odot}$]", fontsize=15 )
 
+#Fixing ranges of total mass
+for i in xrange(1,5):
+    axHist2D.hlines(MT_lim[0] + i*(MT_lim[1] - MT_lim[0])/5., FA_lim[0], FA_lim[1],\
+    linestyle="--", color="black", linewidth = 2.0, alpha = 0.8 )
+
 
 plt.show()
