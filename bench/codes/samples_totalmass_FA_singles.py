@@ -80,10 +80,14 @@ for fold in folds:
 	
 	plt.subplot(5,1,5-i+1)
 	if len(FA_RIP_sin) > 0:
-	    plt.hist( FA_RIP_sin, bins=bins_RIP, normed=True, range=FA_lim, label = "RIP" )
+	    plt.hist( FA_RIP_sin, bins=bins_RIP, normed=True, range=FA_lim, \
+	    label = "RIP %2.2f%%"%(100*len(FA_RIP_sin)/(1.0*len(FA_RIP))) )
+	else:
+	    plt.hist( [-FA_lim[1]], bins=bins_RIP, normed=True, range=FA_lim, label = "RIP  0.00%" )
 	if len(FA_IP_sin) > 0:
 	    histx = np.histogram( FA_IP_sin, bins=bins_IP, normed=True, range=FA_lim )
-	    plt.plot( histx[1][1:], histx[0], linewidth=2.0, color="black", label = "IP" )
+	    plt.plot( histx[1][1:], histx[0], linewidth=2.0, color="black", \
+	    label = "IP %2.2f%%"%(100*len(FA_IP_sin)/(1.0*len(FA_IP))) )
 	plt.text( 0.75, 4.5\
 	,"$%1.2f\leq M_{tot}/(1\\times 10 ^{12}h^{-1}\ M_{\odot})<%1.2f$"%( Mmin, Mmax ),\
 	horizontalalignment='center', verticalalignment='center', fontsize=13 )
@@ -102,8 +106,7 @@ for i in xrange(1,6):
 	plt.xticks( np.linspace(FA_lim[0], FA_lim[1], 11) )
     if i == 3:
 	plt.ylabel("Normed distribution")
-    if i == 5:
-	plt.legend( loc='upper left', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
+    plt.legend( loc='upper left', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
     plt.grid()
         
 plt.subplots_adjust( hspace = 0.05 )
