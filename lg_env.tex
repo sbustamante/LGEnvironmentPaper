@@ -793,12 +793,12 @@ with the closeness, the size and the geometry of these bulk voids.
 
 
 Figure \ref{fig:voids2samples} shows cumulative distributions of the 
-distance of systems of each sample to the nearest cell that belongs to the
-nearest void region, and the volume size of such region. The first 
-characteristic that can be noticed of this Figure is the lack of any bias
-between the defined samples, indicating there are no preferential locations
-regarding the spatial distribution of void regions and related with the 
-selection criteria of pair systems. 
+distance to the nearest cell that belongs to the nearest void region from
+each one of the systems of each defined sample, and the volume size of such 
+region. The first characteristic that can be noticed of this Figure is the 
+lack of any bias between the defined samples, indicating there are no 
+preferential locations regarding the spatial distribution of void regions 
+and related with the selection criteria of pair systems. 
 
 
 
@@ -854,7 +854,28 @@ BDM halos.
 \label{subsec:bias_kinematic}
 %-------------------------------------------------------------------------
 
-... Total Mass
+
+
+Our Local Group of galaxies is certainly the most and best known 
+large-scale structure of the universe, including the knowledge of a set of
+kinematic properties, that due to their mechanical nature, are easily 
+testable by dark matter simulations like Bolshoi. The first of these 
+properties that we analyse in this section is the total mass of the pair 
+systems. Although there are not good enough estimates of each single mass 
+of the host halos of the Milky Way and M31 galaxies, there is a dynamical 
+estimate of their overall mass \SRKED{[Reference here]} compatible with the 
+selection criteria defined for selecting the \texttt{RIP} samples.
+
+
+
+In Figure \ref{fig:totalmass_FA} we calculate the distribution of 
+\texttt{IP} and \texttt{RIP} samples with regards to the total mass of 
+each pair and the fractional anisotropy index of the host cell. In order
+to make clearer any possible correlation between these properties, in the
+right panel we compute individual histograms for systems selected according 
+to defined mass ranges.
+
+
 
 ... Radial vs. tangential velocities
 
@@ -1159,29 +1180,29 @@ BDM halos.
 
 
 
-
 %.........................................................................
-%Distributions of the total mass of pair systems vs the respective FA value
+%Distributions of the total mass of pair systems vs the respective 
+%void distance
 \begin{flushleft}
 \begin{figure*}
 \begin{center}
 
   \includegraphics[trim = 2mm 9mm 3mm 4mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/ratiomass_FA_BDM_Tweb}
+  width=0.36\textheight]{./figures/totalmass_vdistance_BDM_Tweb}
   \includegraphics[trim = 4mm 9mm 17mm 15mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/single_ratiomass_FA_BDM_Tweb}
+  width=0.36\textheight]{./figures/single_totalmass_vdistance_BDM_Tweb}
   
-  \captionof{figure}{\small \textit{Left panel:} histograms of the mass ratio 
-  of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
-  (blue scatter), vs the fractional anisotropy index associated to each 
-  system. In the side panels we compute individual histograms of each one 
+  \captionof{figure}{\small \textit{Left panel:} histograms of the total 
+  mass of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+  (blue scatter), vs the distance to the nearest void region associated to 
+  each system. In the side panels we compute individual histograms of each one 
   of the analysed properties for \texttt{IP} systems. \textit{Right 
   panel:} selecting different ranges for the mass ratio of the pairs, 
   specified in each single panel, we calculate histograms of the 
-  fractional anisotropy of each sample, \texttt{IP} (black lines) and 
+  distance of each sample, \texttt{IP} (black lines) and 
   \texttt{RIP} (blue bars).}
 
-  \label{fig:ratiomass_FA}
+  \label{fig:totalmass_vdistance}
   \vspace{0.1 cm}
 
 \end{center}
@@ -1191,4 +1212,33 @@ BDM halos.
 
 
 
+%.........................................................................
+%Distributions of the total mass of pair systems vs the respective void
+%volume
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 2mm 9mm 3mm 4mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/totalmass_vvolume_BDM_Tweb}
+  \includegraphics[trim = 4mm 9mm 17mm 15mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/single_totalmass_vvolume_BDM_Tweb}
+  
+  \captionof{figure}{\small \textit{Left panel:} histograms of the total 
+  mass of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+  (blue scatter), vs the distance to the nearest void region associated to 
+  each system. In the side panels we compute individual histograms of each one 
+  of the analysed properties for \texttt{IP} systems. \textit{Right 
+  panel:} selecting different ranges for the mass ratio of the pairs, 
+  specified in each single panel, we calculate histograms of the 
+  distance of each sample, \texttt{IP} (black lines) and 
+  \texttt{RIP} (blue bars).}
+
+  \label{fig:totalmass_vvolume}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 \end{document}
