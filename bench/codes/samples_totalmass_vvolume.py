@@ -1,6 +1,6 @@
-#samples_totalmass_vdistance.py
+#samples_totalmass_vvolume.py
 #
-#This code calculate 2D histogram of the total mass of the pair samples vs the distance to the 
+#This code calculate 2D histogram of the total mass of the pair samples vs the volume to the 
 #nearest void of each respective system. 1D Histograms are also performed in order to determinate 
 #single distrbutions of each propertie
 #
@@ -21,16 +21,18 @@ smooth = '_s1'
 catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
+#Lambda_th
+Lambda_th = 0.0
 #Mass limits
 MT_lim = (1.0, 10.0)
 #VD limits
-VD_lim = (0.0, 10.0)
+VD_lim = (0.0, 6.0)
 
 #Mass_norm
 M_norm = 1e12
 
 #Distribution ranges
-Dist_VD_range = [0, 0.05, 0.1, 0.15, 0.2]
+Dist_VD_range = [0, 0.1, 0.2, 0.3]
 Dist_MT_range = [0, 0.1, 0.2, 0.3]
 
 #Bins of IP systems
@@ -75,20 +77,24 @@ for fold in folds:
     #Loading voids catalogue of general
     voids = np.loadtxt('%s%s%s/%d/C_GH-voids%s_%s.dat'%\
     (foldglobal,fold,web,N_sec[i_fold],smooth,catalog))
+    #Volumes of each void region
+    volume = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/void_regions.dat"%\
+    (foldglobal, fold, web, N_sec[i_fold], smooth, Lambda_th ))
     
     #Loading IP sample
     tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog))
     i_IP = tmp.T[1].astype(int)-1
     Mtot_IP = (tmp.T[2] + tmp.T[5])/M_norm
-    #Distance to the nearest void
-    voids_IP = voids.T[0][i_IP]
+    #Volume of the nearest void region
+    voids_IP = np.log10(volume[voids.T[1][i_IP].astype(int)-1,1])
+    
     
     #Loading Indexes of RIP sample for scheme 1
     tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
     i_RIP = tmp.T[1].astype(int)-1
     Mtot_RIP = (tmp.T[2] + tmp.T[5])/M_norm
-    #Distance to the nearest void
-    voids_RIP  = voids.T[0][i_RIP]
+    #Volume of the nearest void region
+    voids_RIP = np.log10(volume[voids.T[1][i_RIP].astype(int)-1,1])
 
     #Scatter of RIP systems
     axHist2D.plot( voids_RIP, Mtot_RIP, "o", color = "blue"  )
@@ -141,7 +147,7 @@ axHisty.set_xlabel( "Normed distribution" )
 axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHist2D.set_xticks( np.linspace( VD_lim[0],VD_lim[1],bins_IP+1 ) )
 axHist2D.set_yticks( np.linspace( MT_lim[0],MT_lim[1],bins_IP+1 ) )
-axHist2D.set_xlabel( "Distance to the nearest void region [Mpc $h^{-1}$]", fontsize=15 )
+axHist2D.set_xlabel( "Comovil volume $\log_{10}[ (0.98$ Mpc $h^{-1} )^{-3} ]$", fontsize=15 )
 axHist2D.set_ylabel( "$M_{tot} = M_A + M_B$ [$\\times 10 ^{12}h^{-1}\ M_{\odot}$]", fontsize=15 )
 axHist2D.set_xlim( VD_lim )
 
