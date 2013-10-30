@@ -181,12 +181,8 @@ CODE:
 #USED
 *******************************************************************************
 FIG NAME:	
-	totalmass_FA_BDM_Tweb.pdf
-	totalmass_FA_FOF_Tweb.pdf
-	totalmass_FA_BDM_Vweb.pdf
-	totalmass_FA_FOF_Vweb.pdf
+	2D_totalmass_FA_BDM_Tweb.pdf
 	single_totalmass_FA_BDM_Tweb.pdf
-	single_totalmass_FA_FOF_Tweb.pdf
 	
 CAPTION:
 	\textit{Left panel:} histograms of the total 
@@ -207,7 +203,7 @@ CODE:
 #USED
 *******************************************************************************
 FIG NAME:	
-	totalmass_vdistance_BDM_Tweb.pdf
+	2D_totalmass_vdistance_BDM_Tweb.pdf
 	single_totalmass_vdistance_BDM_Tweb.pdf
 	
 CAPTION:
@@ -227,14 +223,33 @@ CODE:
 
 
 
+#USED
 *******************************************************************************
 FIG NAME:	
-	ratiomass_FA_BDM_Tweb.pdf
-	ratiomass_FA_FOF_Tweb.pdf
-	ratiomass_FA_BDM_Vweb.pdf
-	ratiomass_FA_FOF_Vweb.pdf
+	2D_totalmass_vvolume_BDM_Tweb.pdf
+	single_totalmass_vvolume_BDM_Tweb.pdf
+	
+CAPTION:
+	\textit{Left panel:} histograms of the total 
+	mass of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+	(blue scatter), vs the distance to the nearest void region associated to 
+	each system. In the side panels we compute individual histograms of each one 
+	of the analysed properties for \texttt{IP} systems. \textit{Right 
+	panel:} selecting different ranges for the mass ratio of the pairs, 
+	specified in each single panel, we calculate histograms of the 
+	distance of each sample, \texttt{IP} (black lines) and 
+	\texttt{RIP} (blue bars).
+CODE:
+	samples_totalmass_vvolume.py
+	samples_totalmass_vvolume_singles.py
+*******************************************************************************
+
+
+
+*******************************************************************************
+FIG NAME:	
+	2D_ratiomass_FA_BDM_Tweb.pdf
 	single_ratiomass_FA_BDM_Tweb.pdf
-	single_ratiomass_FA_FOF_Tweb.pdf
 	
 CAPTION:
 	\textit{Left panel:} histograms of the mass ratio 
@@ -249,4 +264,26 @@ CAPTION:
 CODE:
 	samples_ratiomass_FA.py
 	samples_ratiomass_FA_singles.py
+*******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	2D_radialvelocity_vvolume_BDM_Tweb.pdf
+	single_radialvelocity_vvolume_BDM_Tweb.pdf
+	
+CAPTION:
+	\textit{Left panel:} histograms of the radial 
+	velocity of each pair sample, \texttt{IP} (2D histogram) and \texttt{RIP} 
+	(blue scatter), vs the fractional anisotropy index associated to each 
+	system. In the side panels we compute individual histograms of each one 
+	of the analysed properties for \texttt{IP} systems. \textit{Right 
+	panel:} selecting different velocity ranges for the radial velocity of 
+	the pairs, specified in each single panel, we calculate histograms of 
+	the fractional anisotropy of each sample, \texttt{IP} (black lines) and
+	\texttt{RIP} (blue bars).
+CODE:
+	samples_radialvelocity_vvolume.py
+	samples_radialvelocity_vvolume_singles.py
 *******************************************************************************
