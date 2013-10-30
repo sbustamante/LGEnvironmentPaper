@@ -281,7 +281,7 @@ def Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2):
 	
 	vradial = (v1 - v2)*(r1 - r2)/norm(r1 - r2)
 
-	Vrad[i] = sum(vradial)
+	Vrad[i] = sum(vradial) + 100*norm(r1 - r2)
 	Vtan[i] = norm( (v1 - v2) - vradial )
     
     return Vrad, Vtan
