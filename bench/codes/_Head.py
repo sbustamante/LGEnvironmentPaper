@@ -222,7 +222,6 @@ def Scheme( eig1, eig2, eig3, Lamb ):
 #Energy and angular mometum of pairs system
 #..................................................................................................
 def Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2):
- 
     #km to MPC
     KM2MPC = 3.24077929e-20
     #kg to MSUN
