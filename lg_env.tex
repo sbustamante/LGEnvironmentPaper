@@ -1,4 +1,5 @@
-\documentclass[usenatbib]{latex/mn2e} 
+\documentclass[a4,useAMS,usenatbib,usegraphicx]{latex/mn2e} 
+%\documentclass{latex/emulateapj} 
 %External Packages and personalized macros
 \include{latex/macros}
 
@@ -303,6 +304,32 @@ of the two more dominant types of environment (voids and sheets).
 
 
 
+%.........................................................................
+%FIGURE 1: Mean density for each environment
+\begin{flushleft}
+\begin{figure}
+\centering
+
+  \includegraphics[trim = 0mm 10mm 12mm 19mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/cell_types_density.pdf}
+
+  \captionof{figure}{\small Mean density parameter for each one of the 
+  defined environments according to the chosen $\lambda_{th}$ value and 
+  for both classification schemes. Tweb (green lines) and Vweb (blue 
+  lines). The mean density parameter is calculated by averaging all the 
+  values  of the cells determined as a certain type of environment 
+  according to its eigenvalues. The optimal parameters found are 
+  $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.}
+
+  \label{fig:mean_density}
+  \vspace{0.1 cm}
+
+\end{figure}
+\end{flushleft}
+%.........................................................................
+
+
+
 As was previously established by \SRKED{Hoffman et al. (2012)} and as 
 can be seen in Figure \ref{fig:mean_density}, the behaviour of the 
 V-web scheme is significantly more sensible to variations of the 
@@ -319,7 +346,7 @@ environments.
 On cosmic scales, the presence of highly non-linear structures implies the 
 existence of very vast regions with density lower than the mean 
 cosmological value due to the mass conservation. That is why the visual 
-impression of the cosmic web must be necessarily dominated by these 
+impression of the cosmic web should be necessarily dominated by these 
 under-dense regions. Keeping that in mind, our novel proposal is based upon
 the correct quantification of these regions, so the optimal threshold 
 value must be chosen such that: sheet regions do not invade real void 
@@ -334,6 +361,37 @@ $\lambda_{opt}^V = 0.188$. To verify our analysis, we show in Figure
 \ref{fig:visual_impression} the visual impression for each defined critical 
 value, and as can be seen, the chosen values reproduce properly the 
 expected impression according to the density field. 
+
+
+
+%.........................................................................
+%FIGURE 2: Visual impresion
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
+  width=0.7\textheight]{./figures/cosmicweb_visual_Tweb.pdf}
+  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
+  width=0.7\textheight]{./figures/cosmicweb_visual_Vweb.pdf}
+
+  \captionof{figure}{\small Visual impression of the density field (left 
+  panels), and of each classification scheme with the $\lambda_{th}$ values 
+  obtained by our criteria (others panels). Our color convention for each 
+  environment is (white) - void, (light gray) - sheet, (gray) - filament, 
+  (black) - knot. For each web scheme, it has been used the previously 
+  established optimal threshold as a reference value, so plots are done 
+  with the next values $\lambda_{th} = 0.0$, $\lambda_{th} = 
+  \lambda_{opt}/2$, $\lambda_{th} = \lambda_{opt}$ and $\lambda_{th} = 
+  2\lambda_{opt}$.}
+
+  \label{fig:visual_impression}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 
 
 
@@ -355,31 +413,60 @@ field.
 
 
 
-Following the recent work of \SRKED{Courtois et al. 2013}, we use a method 
-based on a FOF-like algorithm to find extended regions of voids in order 
-to select halo systems according to the proximity to those regions. 
-To achieve this, we build the input catalogue of the FOF method with the 
-positions of the center coordinate of every cell marked as void according 
-to the web scheme adopted; furthermore we set an adequate linking length 
-to connect even diagonal neighbour cells.
+Following the recent growing interest in studying galaxy formation in 
+low-density regions, we use a method based on a FOF-like algorithm to 
+find extended regions of voids. To achieve this, we build the input 
+catalogue for the FOF method with the coordinate of the center of every 
+cell marked as void according to the web classification scheme adopted, 
+furthermore we set an adequate linking length to connect even diagonal 
+neighbour cells.
 
 
 
 Following the work of \SRKED{Forero-Romero et al. 2008}, we also perform a 
 percolation analysis in order to select the best threshold parameter that
-reduce percolation in cells, thereby accounting for physical void regions.
-In Figure \ref{fig:percolation_analysis} we show the obtained result 
-of our percolation analysis for both web schemes. In both cases it can be 
-noted the volume of the largest void region is minimized and the volume 
-distribution of voids is relatively flat at $\lambda_{th} = 0.0$, that 
-means percolation is completely reduced for this threshold value. So 
-despite of the previously established $\lambda_{th}$ optimal values for 
+reduces percolation in cells, thereby accounting for physical bulk void 
+regions. In Figure \ref{fig:percolation_analysis} we show the obtained 
+result of our percolation analysis for both web schemes. In both cases, it 
+can be noticed that the volume of the largest void region is minimized and 
+the volume distribution of voids is relatively flat at $\lambda_{th} = 0.0$, 
+what means percolation is completely reduced for this threshold value. So, 
+in spite of the previously established $\lambda_{th}$ optimal values for 
 each scheme, we shall use $\lambda_{th} = 0.0$ just for the detection of 
-void regions. Besides, due to the domination of the large scale visual 
-impression by voids, it is inevitable the presence of percolation 
-phenomenon, so the current chosen threshold value for percolation is 
-justified because in spite of voids are necessarily connected, we are just 
-interested in detecting bulk regions.
+bulk void regions. Moreover, due to the domination of the large scale 
+visual impression by voids, it is inevitable the presence of the 
+percolation phenomenon, so the current chosen threshold value for 
+percolation is justified because though voids are necessarily connected 
+among them, we are just interested in detecting bulk regions.
+
+
+
+%.........................................................................
+%FIGURE 3: Percolation analysis
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 1mm 10mm 8mm 18mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/voids_regions_percolation.pdf}
+  \includegraphics[trim = 0mm 00mm 00mm 00mm, clip, keepaspectratio=true,
+  width=0.35\textheight]{./figures/voids_regions_volume.pdf}
+
+  \captionof{figure}{\small Percolation analysis of void regions for 
+  different $\lambda_{th}$ values and for both defined classification 
+  schemes. T-web (blue lines) and  V-web (green lines). Plot of the largest 
+  volume and the number of voids detected according to the threshold value 
+  $\lambda_{th}$ (left panels). Size distribution histogram of void cells
+  using the threshold value $\lambda_{th} = 0.0$ for both schemes 
+  (right panel).}
+
+  \label{fig:percolation_analysis}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 
 
 
@@ -393,7 +480,7 @@ the size-shape distribution of voids.
 \eq{ReducedIntertia}
 { \tau_{ij} = \sum_l \frac{ x_{l,i}x_{l,j}  }{R_l^2} }
 %.........................................................................
-where $l$ is a index associated to each cell of to the current region, 
+where $l$ is an index associated to each cell of to the current region, 
 $i$ and $j$ indexes run over each spatial direction and finally 
 $R_l$ is defined as $R_l^2 = x_{l,1}^2 + x_{l,2}^2 + x_{l,3}^2$, all 
 positions are measured from the respective center of mass of the region.
@@ -405,14 +492,46 @@ of inertia, are used to quantify the shape of void regions. They are
 denoted as $\tau_1$, $\tau_2$ and $\tau_3$ such that $\tau_1 \leq \tau_2
 \leq \tau_3$. In Figure \ref{fig:distro_inertia} we show the computed
 distributions for $\tau_1/\tau_2$ and $\tau_2/\tau_3$, where we rather 
-calculate histograms for these ratio quantities instead of each value in 
-order to avoid using an arbitrary normalization. For both schemes, it can 
-be noticed that the shape-distribution is completely spread out, thereby 
-indicating a non-preferred geometry of void regions, which is in agreement 
-with the well-established anisotropic flow of matter associated to this 
-type of region \SRKED{[reference here]}. Because of that, we shall look 
-for possible alignments between the plane of rotation of halo pairs and
-the principal directions of inertia of the nearest void regions.
+calculate histograms for these ratio quantities instead of each single 
+value in order to avoid using an arbitrary normalization. For both schemes, 
+it can be noticed that the shape-distribution is completely spread out, 
+thereby indicating a non-preferred geometry of void regions, which is in 
+agreement with the well established highly anisotropy of matter flows
+associated to this type of region \SRKED{[reference here]}. Because of 
+that, we shall look for possible alignments between the plane of rotation 
+of halo pairs and the principal directions of inertia of the nearest void 
+regions.
+
+
+
+%.........................................................................
+%FIGURE 4: Distribution of eigenvalues of the inertia tensor
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/voids_inertia_tensor_Tweb}
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/voids_inertia_tensor_Vweb}
+
+  \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
+  vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
+  (left panel) and V-web (right panel). Number of cells per 
+  region in 2D histograms are indicated by the respective colour bar. 
+  Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
+  figure shows a normalized histogram of each ratio parameter. The 
+  adopted division for quantify the morphology of void regions is not
+  well justified, it should be understood as a fuzzy and continuous 
+  limit, done just for illustrative purposes.}
+
+  \label{fig:distro_inertia}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
 
 
 
@@ -525,8 +644,51 @@ samples.
 %.........................................................................
 
 
+
+%.........................................................................
+%FIGURE 5: Distribution of eigenvalues of the web schemes
+\begin{flushleft}
+\begin{figure*}
+\begin{center}
+
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen1_dist_Tweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen2_dist_Tweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen3_dist_Tweb}
+
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen1_dist_Vweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen2_dist_Vweb}
+  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
+  width=0.24\textheight]{./figures/eigen3_dist_Vweb}
+  
+  \captionof{figure}{\small Distributions of eigenvalues for each defined
+  scheme. T-web (upper panels) and V-web (lower panels). In each figure is
+  calculated the distributions of eigenvalues for the volume cells of the 
+  simulation (black lines), evaluating the respective tensor on the 
+  geometric center of the cell. This is also done for \texttt{IP} 
+  (continuous lines) and \texttt{RIP} (dashed lines) samples (both BDM 
+  (red) and FOF (blue)), but the tensors are evaluated on the cell which 
+  contains the center of mass of the halo pair. The vertical dashed line
+  corresponds to the optimal threshold value $\lambda_{opt}$ for each 
+  scheme respectively.}
+
+  \label{fig:distro_cosmicweb}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure*}
+\end{flushleft}
+%.........................................................................
+
+
+
 It can also be noticed that both schemes used to detect halos in the 
 simulation are practically equivalent regarding the size of each sample.
+
 
 
 %*************************************************************************
@@ -570,6 +732,47 @@ $\lambda_{opt}$ for each web scheme, Table \ref{tab:OccupationFractions}
 is built. In this has been listed the occupation fractions for the volume 
 cells of the simulation and for each sample defined in the previous Section 
 \ref{section:Def_Samples}.
+
+
+
+As it was mentioned, the selection of an optimal threshold value for each 
+web scheme, according to our proposed method based upon the mean density, 
+is just an approximation which reproduces properly the visual impression 
+of the cosmic web, so Table \ref{tab:OccupationFractions} must not be 
+interpreted rigorously. Those occupation values must be thought just as a 
+comparative illustration in order to understand possible bias between the 
+defined samples and the overall matter distribution of the simulation. For 
+instance, for the T-web scheme, the occupation fraction associated to the 
+\texttt{RIP} sample is greater in filaments than sheet regions, what 
+should not be interpreted as \texttt{RIP} systems lie in filaments, but 
+those systems lie preferentially in higher density and stronger non-linear 
+regions.
+
+
+
+An expected result obtained from Figure \ref{fig:distro_cosmicweb} is 
+the equivalence between both halos detection schemes, regarding the 
+obtained distribution of eigenvalues for all samples, and even for both 
+web schemes. This along with the results shown in Table 
+\ref{tab:Samples_Size} allow to conclude that both halos detection schemes 
+reproduce reliable halos samples with similar spatial distribution since 
+the occupation values of each sample are approximately equal. Regarding 
+the differences between both web classification schemes, from the 
+distribution of the web eigenvalues associated to volume cells, shown in 
+Figure \ref{fig:distro_cosmicweb}, it is clear that each scheme quantify 
+the structure of the cosmic web in very different ways, what can be 
+explained by how each scheme is built. The T-web is built based upon the 
+gravitational potential, thereby retaining bulk features of the cosmic web 
+because of the long-range nature of the potential, whereas the V-web 
+scheme, based upon the peculiar velocity field, describes better the very 
+local structure of the cosmic environment. All of this causes that
+strong non-linear regions, like filaments and knots, are poorly described 
+by the T-web, being less spread out than the V-web. Now, due to the weak 
+gravitational correlation and specially low-rate matter flows in low 
+density zones, like voids, those regions are also less spread out in the 
+V-web scheme. It should be noticed that these conclusions were done 
+independently on the chosen threshold value, and they hold for a 
+reasonable range of values (see Figure \ref{fig:visual_impression}).
 
 
 
@@ -618,70 +821,31 @@ cells of the simulation and for each sample defined in the previous Section
 
 
 
-As it was mentioned, the selection of an optimal threshold value for each 
-web scheme, according to our proposed method based upon the mean density, 
-is just an approximation which reproduces properly the visual impression 
-of the cosmic web, so Table \ref{tab:OccupationFractions} must not be 
-interpreted rigorously. Those occupation values must be thought just as a 
-comparative illustration in order to understand possible bias between the 
-defined samples and the overall matter distribution of the simulation. For 
-instance, for the T-web scheme, the occupation fraction associated to the 
-\texttt{RIP} sample is greater in filaments than sheet regions, what 
-should not be interpreted as \texttt{RIP} systems lie in filaments, but 
-those systems lie preferentially in higher density and stronger non-linear 
-regions.
-
-
-
-An expected result obtained from Figure \ref{fig:distro_cosmicweb} is 
-the equivalence between both halos detection schemes, regarding the 
-obtained distribution of eigenvalues for all samples, and even for both 
-web schemes. This along with the results shown in Table 
-\ref{tab:Samples_Size} allow to conclude that both halos detection schemes 
-reproduce reliable halos samples with similar spatial distribution since 
-the occupation values of each sample are approximately equal. Regarding 
-the differences between both web classification schemes, from the 
-distribution of the web eigenvalues associated to volume cells, shown in 
-Figure \ref{fig:distro_cosmicweb}, it is clear that each scheme quantify 
-the structure of the cosmic web in very different ways, what can be 
-explained by how each scheme is built. The T-web is built based upon the 
-gravitational potential, thereby retaining bulk features of the cosmic web 
-because of the long-range nature of the potential, whereas the V-web 
-scheme, based upon the peculiar velocity field, describes better the very 
-local structure of the cosmic environment. All of this causes that
-strong non-linear regions, like filaments and knots, are poorly described 
-by the T-web, being less spread out than the V-web. Now, due to the weak 
-gravitational correlation and specially low-rate matter flows in low 
-density zones, like voids and sheets, those regions are also less spread 
-out in the V-web scheme. It should be noticed that these conclusions were 
-done independently on the chosen threshold value, and they hold for a 
-reasonable range of values (see Figure \ref{fig:visual_impression}).
-
-
-
 Once established the expected characteristics of each web scheme, we shall 
-proceed to analyse the privileged environment of LG-like systems under the
-selection criteria defined in Section \ref{section:Def_Samples}. An
-interesting issue to be taken into account before, is the push and pull 
+proceed to analyse the more likely environment of LG-like systems under 
+the selection criteria defined in Section \ref{section:Def_Samples}. An
+interesting issue to be taken into account before, it is the push and pull
 situation produced by the closeness criteria between the halos of each 
 pair, and the gravitational isolation criteria. Correlation between the 
 cosmic environment and the abundance and masses of individual galaxies has 
 been well studied (\SRKED{[references here]}), finding more massive 
-galaxies and large abundances in high non-linear and denser regions of the 
-cosmic web. This is in agreement with the closeness criteria, allowing 
-finding more halos, but it is against the isolation criteria, where large 
-abundances affect gravitational isolation. Because of that, it makes no 
-clear how to assign a priori type of environment to LG-like systems, making 
-this study necessary.
+galaxies and high abundances in strongly non-linear and high density 
+regions of the cosmic web. This is in agreement with the closeness 
+criteria, which allows to find more pair systems in high density regions, 
+but it is against the isolation criteria, where a high abundance affects
+the imposed gravitational isolation and biases the likely host environment
+towards low density regions. Because of that, it makes no clear 
+how to assign a priori type of environment to LG-like systems, making this 
+study necessary.
 
 
 
 When we adopt the T-web scheme, an important bias is found for the 
-\texttt{RIP} sample compared with the \texttt{IP}, whereas this one 
+\texttt{RIP} sample compared with the \texttt{IP}, whereas the latter 
 also follows a different distribution than the \texttt{GH} sample. 
 According to Table \ref{tab:OccupationFractions}, \texttt{RIP} systems 
-appears to lie in high non-linear regions preferentially, with $\sim 85\%-
-90\%$ being in filament-like regions, and $\sim 15\%-10\%$ distributed in 
+appears to lie in highly non-linear regions preferentially, with $\sim 85\%
+-90\%$ lying in filament-like regions, and $\sim 15\%-10\%$ distributed in 
 sheet-like and knot-like regions\footnote{Note we rather use sheet-like, 
 filament-like, ... regions instead of sheet, filament, ... regions in 
 order to not classify a priori each type of region according to the 
@@ -692,12 +856,12 @@ remainder distributed mainly in sheet-like regions.
 
 
 
-Using the V-web scheme, there is also a bias between the environmental 
-distribution of \texttt{RIP} and \texttt{IP} systems, but it is less clear
-than the T-web case. Furthermore, the occupation fractions are quite 
-different to the T-web scheme. For instance, \texttt{RIP} systems lie 
-mainly in sheet-like regions, with $\sim 68\% - 69\%$ of them found in 
-this type of region, $\sim 20\% - 14\%$ in voids and $\sim 12\% - 
+Now, using the V-web scheme, there is also found a bias between the 
+environmental distribution of \texttt{RIP} and \texttt{IP} systems, but it 
+is less clear than the T-web case. Furthermore, the occupation fractions 
+are quite different to the T-web scheme. For instance, \texttt{RIP} 
+systems lie mainly in sheet-like regions, with $\sim 68\% - 69\%$ of them 
+found in this type of region, $\sim 20\% - 14\%$ in voids and $\sim 12\% - 
 17\%$ in filament-like regions. Whereas there are $\sim 60\% - 63\%$ of
 \textit{IP} systems in sheet-like regions, $\sim 28\% - 23\%$ in 
 filament-like, $\sim 10\% - 13\%$ in voids and remainder in knot-like
@@ -740,10 +904,40 @@ fractional anisotropic to the most symmetric and isotropic regions,
 knot-like, due to their collapse in all directions. Low-middle values are 
 assigned to sheet-like regions whereas high-middle values to filament-like 
 regions, which indicates the complex dynamics of these types of environment. 
-Finally, high values ($FA \lesssim 1$) of the fractional anisotropy 
+Finally, high values ($FA \lesssim 1$) of the fractional anisotropy would
 correspond to the most highly anisotropic type of environment, voids. That
 is because their expansion rate in each direction can take very different 
-values, thereby shaping highly amorphous regions.
+values, thereby shaping highly amorphous regions, as was concluded 
+by mean of the shape-distribution previously performed over bulk voids.
+
+
+
+%.........................................................................
+%FIGURE 6: Distribution of fractional anisotropy
+\begin{flushleft}
+\begin{figure}
+\begin{center}
+
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/fractional_anisotrpy_Tweb}
+  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
+  width=0.3\textheight]{./figures/fractional_anisotrpy_Vweb}
+  
+  \captionof{figure}{\small Cumulative distribution of the fractional 
+  anisotropy for each web scheme. T-web (upper panel) and V-web (lower 
+  panel). Distributions for each sample are also calculated, \texttt{GH} 
+  sample (black lines), \texttt{IP} sample (blue lines) and \texttt{RIP} 
+  sample (red lines). In order to compare each halo scheme, we also 
+  calculate distributions for each one, FOF (dashed lines) and BDM 
+  (continuous lines). }
+
+  \label{fig:fractional_anisotropy}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure}
+\end{flushleft}
+%.........................................................................
 
 
 
@@ -755,16 +949,17 @@ an efficient way to overcome differences between the web schemes, and
 thereby allowing obtaining more robust conclusions. Regarding possible 
 differences between each sample, now it is clearer the existing bias 
 between \texttt{RIP} and \texttt{IP} systems, even for both web schemes. 
-In spite of all the halos of the simulation are distributed mainly in very 
-anisotropic regions like voids and sheet-like regions, \texttt{RIP} and 
-\texttt{IP} systems lie preferentially in more isotropic and non-linear 
-regions than \texttt{GH}. Although \texttt{RIP} systems appear to lie in 
-slightly less isotropic regions. This can be explained because of the mass 
-cut-off or the relative distance range chosen as the extra criteria for 
-selecting the \texttt{RIP} sample, thus indicating a first possible 
-environmental correlation. These conclusions reinforce the results obtained 
-in previous Subsection \ref{subsec:tensorial_schemes}, showing the 
-complementary character of the fractional anisotropy. 
+In spite of all halos of the simulation are distributed mainly in middle 
+to high anisotropic regions like voids and sheet-like regions, 
+\texttt{RIP} and \texttt{IP} systems lie preferentially in more isotropic 
+and non-linear regions than \texttt{GH}. Although \texttt{RIP} systems 
+appear to lie in slightly less isotropic regions. This can be explained 
+because of the mass cut-off and the established range of relative 
+distances as extra criterion for selecting the \texttt{RIP} sample, thus 
+indicating a first possible environmental correlation. These conclusions 
+reinforce the results obtained in previous Subsection 
+\ref{subsec:tensorial_schemes}, showing the complementary character of the 
+fractional anisotropy. 
 
 
 
@@ -775,8 +970,9 @@ to each sample. While this may be thought as a disadvantage of the method,
 actually the real character of the cosmological matter distribution is 
 also fuzzy, where any attempt to stablish well-defined type of regions 
 depends necessarily on free parameters like the threshold value 
-$\lambda_{th}$, which has little or no physical motivation. So independence 
-of free parameters is indeed and advantage of the fractional anisotropy.
+$\lambda_{th}$, which has little or no physical motivation. So 
+independence of free parameters is indeed an advantage of the fractional 
+anisotropy.
 
 
 
@@ -788,10 +984,11 @@ of free parameters is indeed and advantage of the fractional anisotropy.
 
 
 In Subsection \ref{subsec:method_voids} we quantified bulk void regions 
-using a FOF-like scheme. Our second approach to quantify the cosmological
-environment of LG-like systems involves taking distances to the nearest
-void regions in order to stablish possible environmental effects related 
-with the closeness, the size and the geometry of these bulk voids.
+by using a FOF-like scheme. Our second approach to quantify the 
+cosmological environment of LG-like systems involves taking distances to 
+the nearest void regions in order to stablish possible environmental 
+effects related with the closeness, the size and the geometry of these 
+bulk voids.
 
 
 
@@ -927,195 +1124,6 @@ to defined mass ranges.
 %*************************************************************************
 %FIGURES AND TABLES
 %*************************************************************************
-
-
-%.........................................................................
-%Mean density for each environment
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 0mm 10mm 12mm 19mm, clip, keepaspectratio=true,
-  width=0.3\textheight]{./figures/cell_types_density.pdf}
-
-  \captionof{figure}{\small Mean density parameter for each one of the 
-  defined environments according to the chosen $\lambda_{th}$ value and 
-  for both classification schemes. Tweb (green lines) and Vweb (blue 
-  lines). The mean density parameter is calculated by averaging all the 
-  values  of the cells determined as a certain type of environment 
-  according to its eigenvalues. The optimal parameters found are 
-  $\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.}
-
-  \label{fig:mean_density}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-
-%.........................................................................
-%Visual impresion
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
-  width=0.7\textheight]{./figures/cosmicweb_visual_Tweb.pdf}
-  \includegraphics[trim = 42mm 15mm 37mm 10mm, clip, keepaspectratio=true,
-  width=0.7\textheight]{./figures/cosmicweb_visual_Vweb.pdf}
-
-  \captionof{figure}{\small Visual impression of the density field (left 
-  panels), and of each classification scheme with the $\lambda_{th}$ values 
-  obtained by our criteria (others panels). Our color convention for each 
-  environment is (white) - void, (light gray) - sheet, (gray) - filament, 
-  (black) - knot. For each web scheme, it has been used the previously 
-  established optimal threshold as a reference value, so plots are done 
-  with the next values $\lambda_{th} = 0.0$, $\lambda_{th} = 
-  \lambda_{opt}/2$, $\lambda_{th} = \lambda_{opt}$ and $\lambda_{th} = 
-  2\lambda_{opt}$.}
-
-  \label{fig:visual_impression}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-
-%.........................................................................
-%Percolation analysis
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 1mm 10mm 8mm 18mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/voids_regions_percolation.pdf}
-  \includegraphics[trim = 0mm 00mm 00mm 00mm, clip, keepaspectratio=true,
-  width=0.35\textheight]{./figures/voids_regions_volume.pdf}
-
-  \captionof{figure}{\small Percolation analysis of void regions for 
-  different $\lambda_{th}$ values and for both defined classification 
-  schemes. T-web (blue lines) and  V-web (green lines). Plot of the largest 
-  volume and the number of voids detected according to the threshold value 
-  $\lambda_{th}$ (left panels). Size distribution histogram of void cells
-  using the threshold value $\lambda_{th} = 0.0$ for both schemes 
-  (right panel).}
-
-  \label{fig:percolation_analysis}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-
-%.........................................................................
-%Distribution of eigenvalues of the inertia tensor
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/voids_inertia_tensor_Tweb}
-  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/voids_inertia_tensor_Vweb}
-
-  \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
-  vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
-  (left panel) and V-web (right panel). Number of cells per 
-  region in 2D histograms are indicated by the respective colour bar. 
-  Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
-  figure shows a normalized histogram of each ratio parameter. The 
-  adopted division for quantify the morphology of void regions is not
-  a well justified, it must be understood as a fuzzy and continuous 
-  limit, done just for illustrative purposes.}
-
-  \label{fig:distro_inertia}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-
-%.........................................................................
-%Distribution of eigenvalues of the web schemes
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen1_dist_Tweb}
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen2_dist_Tweb}
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen3_dist_Tweb}
-
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen1_dist_Vweb}
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen2_dist_Vweb}
-  \includegraphics[trim = 3mm 0mm 10mm 8mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/eigen3_dist_Vweb}
-  
-  \captionof{figure}{\small Distributions of eigenvalues for each defined
-  scheme. T-web (upper panels) and V-web (lower panels). In each figure is
-  calculated the distributions of eigenvalues for the volume cells of the 
-  simulation (black lines), evaluating the respective tensor on the 
-  geometric center of the cell. This is also done for \texttt{IP} 
-  (continuous lines) and \texttt{RIP} (dashed lines) samples (both BDM 
-  (red) and FOF (blue)), but the tensors are evaluated on the cell which 
-  contains the center of mass of the halo pair. The vertical dashed line
-  corresponds to the optimal threshold value $\lambda_{opt}$ for each 
-  scheme respectively.}
-
-  \label{fig:distro_cosmicweb}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
-
-%.........................................................................
-%Distribution of fractional anisotropy
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
-  width=0.3\textheight]{./figures/fractional_anisotrpy_Tweb}
-  \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, keepaspectratio=true,
-  width=0.3\textheight]{./figures/fractional_anisotrpy_Vweb}
-  
-  \captionof{figure}{\small Cumulative distribution of the fractional 
-  anisotropy for each web scheme. T-web (right panel) and V-web (left panel).
-  Distributions for each sample are also calculated, \texttt{GH} sample 
-  (black lines), \texttt{IP} sample (blue lines) and \texttt{RIP} sample 
-  (red lines). In order to compare each halo scheme, we also calculate 
-  distributions for each one, FOF (dashed lines) and BDM (continuous 
-  lines). }
-
-  \label{fig:fractional_anisotropy}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
-
 
 %.........................................................................
 %Distribution of size and distance to void regions respect to each sample
