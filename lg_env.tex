@@ -310,7 +310,7 @@ of the two more dominant types of environment (voids and sheets).
 \begin{figure}
 \centering
 
-  \includegraphics[trim = 0mm 10mm 12mm 19mm, clip, keepaspectratio=true,
+  \includegraphics[trim = 0mm 0mm 12mm 5mm, clip, keepaspectratio=true,
   width=0.3\textheight]{./figures/cell_types_density.pdf}
 
   \captionof{figure}{\small Mean density parameter for each one of the 
@@ -448,9 +448,9 @@ among them, we are just interested in detecting bulk regions.
 \begin{center}
 
   \includegraphics[trim = 1mm 10mm 8mm 18mm, clip, keepaspectratio=true,
-  width=0.24\textheight]{./figures/voids_regions_percolation.pdf}
+  width=0.25\textheight]{./figures/voids_regions_percolation.pdf}
   \includegraphics[trim = 0mm 00mm 00mm 00mm, clip, keepaspectratio=true,
-  width=0.35\textheight]{./figures/voids_regions_volume.pdf}
+  width=0.36\textheight]{./figures/voids_regions_volume.pdf}
 
   \captionof{figure}{\small Percolation analysis of void regions for 
   different $\lambda_{th}$ values and for both defined classification 
@@ -487,6 +487,37 @@ positions are measured from the respective center of mass of the region.
 
 
 
+%.........................................................................
+%FIGURE 4: Distribution of eigenvalues of the inertia tensor
+\begin{flushleft}
+\begin{figure}
+\begin{center}
+
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/voids_inertia_tensor_Tweb}
+  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
+  width=0.36\textheight]{./figures/voids_inertia_tensor_Vweb}
+
+  \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
+  vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
+  (upper panel) and V-web (lower panel). Number of cells per 
+  region in 2D histograms are indicated by the respective colour bar. 
+  Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
+  figure shows a normalized histogram of each ratio parameter. The 
+  adopted division for quantify the morphology of void regions is not
+  well justified, it should be understood as a fuzzy and continuous 
+  limit, done just for illustrative purposes.}
+
+  \label{fig:distro_inertia}
+  \vspace{0.1 cm}
+
+\end{center}
+\end{figure}
+\end{flushleft}
+%.........................................................................
+
+
+
 The eigenvalues of the reduced inertia tensor, i.e. the principal moments
 of inertia, are used to quantify the shape of void regions. They are 
 denoted as $\tau_1$, $\tau_2$ and $\tau_3$ such that $\tau_1 \leq \tau_2
@@ -502,37 +533,7 @@ that, we shall look for possible alignments between the plane of rotation
 of halo pairs and the principal directions of inertia of the nearest void 
 regions.
 
-
-
-%.........................................................................
-%FIGURE 4: Distribution of eigenvalues of the inertia tensor
-\begin{flushleft}
-\begin{figure*}
-\begin{center}
-
-  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/voids_inertia_tensor_Tweb}
-  \includegraphics[trim = 7mm 9mm 1mm 0mm, clip, keepaspectratio=true,
-  width=0.36\textheight]{./figures/voids_inertia_tensor_Vweb}
-
-  \captionof{figure}{\small Histogram of eigenvalue ratio $\tau_1/\tau_2$
-  vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
-  (left panel) and V-web (right panel). Number of cells per 
-  region in 2D histograms are indicated by the respective colour bar. 
-  Upper ($\tau_1/\tau_2$) and right ($\tau_2/\tau_3$) panels of each 
-  figure shows a normalized histogram of each ratio parameter. The 
-  adopted division for quantify the morphology of void regions is not
-  well justified, it should be understood as a fuzzy and continuous 
-  limit, done just for illustrative purposes.}
-
-  \label{fig:distro_inertia}
-  \vspace{0.1 cm}
-
-\end{center}
-\end{figure*}
-\end{flushleft}
-%.........................................................................
-
+ 
 
 
 %*************************************************************************
