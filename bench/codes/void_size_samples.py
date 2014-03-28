@@ -1,6 +1,7 @@
 #void_size_samples.py
 #
 #This code calculate histograms of the size of void regions near to each one of the defined sample
+#Usage: python void_size_samples.py <Web_Type>
 #
 #by: Sebastian Bustamante
 
