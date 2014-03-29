@@ -2,7 +2,7 @@
 #
 #This code calculate 2D histograms of distance vs volume of the nearest void regions for the 
 #defined samples
-#Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type>
+#Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type> <FA(0) or Environment(1)>
 #
 #by: Sebastian Bustamante
 
@@ -22,7 +22,7 @@ catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
 #Distance limits
-Dis_lim = (0.0, 14.0)
+Dis_lim = (0.0, 12.0)
 #Speherical comoving volume limits (radius)
 Vol_lim = (0.0, 6.0)
 
@@ -58,7 +58,7 @@ bottom_v, height = 0.1, 0.65
 bottom_h = left_h = left+width+0.02
 
 rect_hist2D = [left, bottom_v, width, height]
-rect_histx = [left, bottom_h, 1.335*width, 0.2]
+rect_histx = [left, bottom_h, 1.385*width, 0.2]
 rect_histy = [left_h, bottom_v, 0.2, height]
 
 #start with a rectangular Figure
@@ -97,7 +97,7 @@ for fold in folds:
     cmap = 'binary', extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]) )
     #Create the colorbar
     axc, kw = matplotlib.colorbar.make_axes( axHistx,\
-    orientation = "vertical", shrink=1., pad=.1, aspect=10 )
+    orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(0.3,1.3) )
     cb = matplotlib.colorbar.Colorbar( axc, map2d,\
     orientation = "vertical" )
     #Set the colorbar
@@ -136,45 +136,61 @@ for fold in folds:
 
 
     #Scatter of RIP systems
-    #Constructing volume and distances for each subsample according to their host environment
-    #Voids
-    i_RIP_voids = tmp.T[1,(eig1_RIP<=lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
-    vol_RIP_V = np.log10(void_size[voids1[i_RIP_voids.astype(int)-1,1].astype(int)-1,1])
-    dist_RIP_V = voids1[i_RIP_voids.astype(int)-1,0]
-    axHist2D.plot( dist_RIP_V, vol_RIP_V, "o", color = "dodgerblue", label = 'RIP in voids' )
-    #Sheets
-    i_RIP_sheets = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
-    vol_RIP_S = np.log10(void_size[voids1[i_RIP_sheets.astype(int)-1,1].astype(int)-1,1])
-    dist_RIP_S = voids1[i_RIP_sheets.astype(int)-1,0]
-    axHist2D.plot( dist_RIP_S, vol_RIP_S, "o", color = "red", label = 'RIP in sheets' )
-    #Filaments
-    i_RIP_filaments = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP<=lambda_th)]
-    vol_RIP_F = np.log10(void_size[voids1[i_RIP_filaments.astype(int)-1,1].astype(int)-1,1])
-    dist_RIP_F = voids1[i_RIP_filaments.astype(int)-1,0]
-    axHist2D.plot( dist_RIP_F, vol_RIP_F, "o", color = "darkgreen", label = 'RIP in filaments' )
-    #Knots
-    i_RIP_knots = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP>lambda_th)]
-    vol_RIP_K = np.log10(void_size[voids1[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
-    dist_RIP_K = voids1[i_RIP_knots.astype(int)-1,0]
-    axHist2D.plot( dist_RIP_K, vol_RIP_K, "o", color = "orange", label = 'RIP in knots' )
-
+    
+    if sys.argv[3] == "1":
+	#Constructing volume and distances for each subsample according to their host environment
+	#Voids
+	i_RIP_voids = tmp.T[1,(eig1_RIP<=lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_V = np.log10(void_size[voids1[i_RIP_voids.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_V = voids1[i_RIP_voids.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_V, vol_RIP_V, "o", color = "dodgerblue", label = 'RIP in voids' )
+	#Sheets
+	i_RIP_sheets = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_S = np.log10(void_size[voids1[i_RIP_sheets.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_S = voids1[i_RIP_sheets.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_S, vol_RIP_S, "o", color = "red", label = 'RIP in sheets' )
+	#Filaments
+	i_RIP_filaments = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_F = np.log10(void_size[voids1[i_RIP_filaments.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_F = voids1[i_RIP_filaments.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_F, vol_RIP_F, "o", color = "darkgreen", label = 'RIP in filaments' )
+	#Knots
+	i_RIP_knots = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP>lambda_th)]
+	vol_RIP_K = np.log10(void_size[voids1[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_K = voids1[i_RIP_knots.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_K, vol_RIP_K, "o", color = "orange", label = 'RIP in knots' )
+    else:
+	#Using colors according to FA
+	FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
+	scatter2d = axHist2D.scatter( dist_RIP, vol_RIP, c=FA_RIP, cmap='hot')
+	#Create the colorbar
+	axc, kw = matplotlib.colorbar.make_axes( axHistx,\
+	orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(.5,1.5) )
+	cb = matplotlib.colorbar.Colorbar( axc, scatter2d,\
+	orientation = "vertical" )
+	#Set the colorbar
+	map2d.colorbar = cb
 
     i_fold += 1
     
     
-axHistx.set_xlim( axHist2D.get_xlim() )
+#axHistx.set_xlim( axHist2D.get_xlim() )
+axHistx.set_xlim( Dis_lim )
 axHistx.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
 axHistx.set_yticks( dist_range )
 axHistx.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHistx.set_ylabel( "Normed distribution" )
 
-axHisty.set_ylim( axHist2D.get_ylim() )
+#axHisty.set_ylim( axHist2D.get_ylim() )
+axHisty.set_ylim( Vol_lim )
 axHisty.set_yticks( np.linspace( Vol_lim[0],Vol_lim[1],bins_IP+1 ) )
 axHisty.set_xticks( vol_range )
 axHisty.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHisty.set_xlabel( "Normed distribution" )
 
 axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHist2D.set_xlim( Dis_lim )
+axHist2D.set_ylim( Vol_lim )
 axHist2D.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
 axHist2D.set_yticks( np.linspace( Vol_lim[0],Vol_lim[1],bins_IP+1 ) )
 #Axis turned into equivalent radius of spherical comoving volume
