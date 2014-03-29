@@ -1,4 +1,4 @@
-#USED
+#USED AS FIGURE 1
 *******************************************************************************
 FIG NAME:	
 	cell_types_density.pdf
@@ -16,7 +16,7 @@ LOG:	28-04-14 (Modification, integrating both figures into a single one)
 *******************************************************************************
 
 
-#USED
+#USED AS FIGURE 2
 *******************************************************************************
 FIG NAME:	
 	cosmicweb_visual_Tweb.pdf
@@ -77,10 +77,30 @@ CODE:
 *******************************************************************************
 
 
-#USED
+#USED AS FIGURE 3
 *******************************************************************************
 FIG NAME:	
 	voids_regions_percolation.pdf
+	voids_regions_volume.pdf
+CAPTION:
+	Percolation analysis of void regions for 
+	different $\lambda_{th}$ values and for both defined classification 
+	schemes. T-web (blue lines). V-web (green lines). Plot of the largest 
+	volume and the number of voids detected according to the threshold value 
+	$\lambda_{th}$ (left panels). Size distribution histogram of void cells
+	using the threshold value $\lambda_{th} = 0.0$ for both schemes 
+	(right panel).
+CODE:
+	void_FOF_regions.py
+	void_volume_regions.py
+*******************************************************************************
+
+
+#USED
+*******************************************************************************
+FIG NAME:	
+	voids_inertia_tensor_Tweb.pdf
+	voids_inertia_tensor_Vweb.pdf
 CAPTION:
 	Histogram of eigenvalue ratio $\tau_1/\tau_2$
 	vs $\tau_2/\tau_3$ for the inertia tensor of void regions. T-web 
@@ -91,24 +111,6 @@ CAPTION:
 	adopted division for quantify the morphology of void regions is not
 	a well justified, it must be understood as a fuzzy and continuous 
 	limit, done just for illustrative purposes.
-CODE:
-	void_FOF_regions.py
-*******************************************************************************
-
-
-#USED
-*******************************************************************************
-FIG NAME:	
-	voids_inertia_tensor_Tweb.pdf
-	voids_inertia_tensor_Vweb.pdf
-CAPTION:
-	Percolation analysis of void regions for 
-	different $\lambda_{th}$ values and for both defined classification 
-	schemes. T-web (blue lines). V-web (green lines). Plot of the largest 
-	volume and the number of voids detected according to the threshold value 
-	$\lambda_{th}$ (left panels). Size distribution histogram of void cells
-	using the threshold value $\lambda_{th} = 0.0$ for both schemes 
-	(right panel).
 CODE:
 	void_inertia_distribution.py
 *******************************************************************************
@@ -157,7 +159,7 @@ CODE:
 *******************************************************************************
 
 
-#USED
+
 *******************************************************************************
 FIG NAME:	
 	voids_distances_samples_Tweb.pdf
@@ -290,7 +292,7 @@ CODE:
 *******************************************************************************
 
 
-
+#USED AS FIGURE 7
 *******************************************************************************
 FIG NAME:	
 	voids_statistics_samples_BDM_Tweb.pdf
