@@ -103,7 +103,7 @@ plt.grid()
 plt.xlim( (0.0,5.0) )
 plt.ylim( (0.0,1.0) )
 plt.text( 0.0, 0.05, " %s"%(web) )
-plt.xlabel( "Comovil volume $\log_{10}[ (0.98$ Mpc $h^{-1} )^{-3} ]$" )
+plt.xlabel( "Comoving volume $\log_{10}[ (0.98$ Mpc $h^{-1} )^{-3} ]$" )
 plt.ylabel( "Cumlative Distribution $P(\log_{10}V)$" )
 #plt.legend( loc='lower left', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
 

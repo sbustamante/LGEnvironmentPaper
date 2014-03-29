@@ -12,6 +12,7 @@ CAPTION:
 	$\lambda_{opt}^{T}=0.326$ and $\lambda_{opt}^{V}=0.188$.
 CODE:
 	regions_mean_density.py
+LOG:	28-04-14 (Modification, integrating both figures into a single one)
 *******************************************************************************
 
 
@@ -286,4 +287,19 @@ CAPTION:
 CODE:
 	samples_radialvelocity_vvolume.py
 	samples_radialvelocity_vvolume_singles.py
+*******************************************************************************
+
+
+
+*******************************************************************************
+FIG NAME:	
+	voids_statistics_samples_BDM_Tweb.pdf
+	voids_statistics_samples_FOF_Tweb.pdf
+	voids_statistics_samples_BDM_Vweb.pdf
+	voids_statistics_samples_FOF_Vweb.pdf
+	
+CAPTION:
+	
+CODE:
+	void_general_statistics_samples.py
 *******************************************************************************

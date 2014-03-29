@@ -1,7 +1,8 @@
-#void_distance_samples.py
+#void_general_statistics_samples.py
 #
-#This code calculate histograms of distance to void regions of the near one for each defined sample
-#Usage: python void_size_samples.py <Web_Type>
+#This code calculate 2D histograms of distance vs volume of the nearest void regions for the 
+#defined samples
+#Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type>
 #
 #by: Sebastian Bustamante
 
@@ -16,85 +17,174 @@ folds = ["BOLSHOI/"]
 N_sec = [256]
 #Smooth parameter
 smooth = '_s1'
-#Catalog Schemes
-catalog = ['FOF', 'BDM']
-#Web Scheme [Vweb, Tweb]
-web = sys.argv[1] 
-#Nbins
-bins = 50
+#Catalog Scheme [BDM, FOF]
+catalog = sys.argv[2]
+#Classification scheme [Tweb, Vweb]
+web = sys.argv[1]
+#Distance limits
+Dis_lim = (0.0, 14.0)
+#Speherical comoving volume limits (radius)
+Vol_lim = (0.0, 6.0)
 
+#Distribution ranges
+dist_range = [0, 0.05, 0.1, 0.15, 0.2]
+vol_range = [0, 0.1, 0.2, 0.3]
+
+#Bins of IP systems
+bins_IP  = 10
+#Bins of RIP systems
+bins_RIP  = 10
+
+#Lambda_th [ Vweb=0.188, Tweb=0.326 ]
+if web == "Vweb": lambda_th = 0.188
+else: lambda_th = 0.326
 
 #==================================================================================================
-#			CONSTRUCTING REGIONS VOLUME
+#			CONSTRUCTING STATISTICAL PROPERTIES OF VOIDS
 #==================================================================================================
+#Function to build the second axe
+def tick_function(X):
+    return ((10**X*(0.9765625)**3)/( 4*np.pi/3. ))**(1/3.)
 
+i_fold = 0
 N_sim = len(folds)
 
-plt.figure( figsize=(5,4) )
-i_fold = 0
+#no labels
+nullfmt = NullFormatter()
+
+#definitions for the axes
+left, width = 0.1, 0.65
+bottom_v, height = 0.1, 0.65
+bottom_h = left_h = left+width+0.02
+
+rect_hist2D = [left, bottom_v, width, height]
+rect_histx = [left, bottom_h, 1.335*width, 0.2]
+rect_histy = [left_h, bottom_v, 0.2, height]
+
+#start with a rectangular Figure
+plt.figure(1, figsize=(8,8))
+
+axHist2D = plt.axes(rect_hist2D)
+axHistx = plt.axes(rect_histx)
+axHisty = plt.axes(rect_histy)
+
+#no labels
+axHistx.xaxis.set_major_formatter(nullfmt)
+axHisty.yaxis.set_major_formatter(nullfmt)
+
 for fold in folds:
     print fold, web
-    
-    #Loading voids catalogue of general halos scheme 1 (FOF)
+        
+    #Loading voids catalogue of general halos detecting scheme
     voids1 = np.loadtxt('%s%s%s/%d/C_GH-voids%s_%s.dat'%\
-    (foldglobal,fold,web,N_sec[i_fold],smooth,catalog[0]))
-    #Histogram
-    dist_hist, distances = np.histogram( voids1[:,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "-" ,
-    color = 'black', linewidth = 3, label = 'GH$_{%s}$'%(catalog[0]) )
-   
-    #Loading voids catalogue of general halos scheme 2 (BDM)
-    voids2 = np.loadtxt('%s%s%s/%d/C_GH-voids%s_%s.dat'%\
-    (foldglobal,fold,web,N_sec[i_fold],smooth,catalog[1]))
-    #Histogram
-    dist_hist, distances = np.histogram( voids2[:,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "--" ,\
-    color = 'black', linewidth = 3, label = 'GH$_{%s}$'%(catalog[1]) )
-    
-    
-    #Loading Indexes of IP sample for scheme 1
-    tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog[0]))
-    i_IP1 = tmp.T[1] 
-    #Histogram
-    dist_hist, distances = np.histogram( voids1[i_IP1.astype(int)-1,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "-" ,\
-    color = 'blue', linewidth = 2, label = 'IP$_{%s}$'%(catalog[0]) )
-    
-    #Loading Indexes of IP sample for scheme 2
-    tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog[1]))
-    i_IP2 = tmp.T[1]
-    #Histogram
-    dist_hist, distances = np.histogram( voids1[i_IP2.astype(int)-1,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "--" ,\
-    color = 'blue', linewidth = 2, label = 'IP$_{%s}$'%(catalog[1]) )
+    (foldglobal,fold,web,N_sec[i_fold],smooth,catalog))
   
-  
-    #Loading Indexes of RIP sample for scheme 1
-    tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog[0]))
-    i_RIP1 = tmp.T[1]
-    #Histogram
-    dist_hist, distances = np.histogram( voids1[i_RIP1.astype(int)-1,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "-" ,\
-    color = 'red', linewidth = 2, label = 'RIP$_{%s}$'%(catalog[0]) )
+    #Loading file with sizes of found void regions
+    void_size = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/void_regions.dat"%\
+    (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
 
-    #Loading Indexes of RIP sample for scheme 2
-    tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog[1]))
-    i_RIP2 = tmp.T[1]    
-    #Histogram
-    dist_hist, distances = np.histogram( voids1[i_RIP2.astype(int)-1,0], bins = bins, normed = True, range=(0,30.0) )
-    plt.plot( distances[1:], np.cumsum(dist_hist[::-1])[::-1]/np.sum(dist_hist), linestyle = "--" ,\
-    color = 'red', linewidth = 2, label = 'RIP$_{%s}$'%(catalog[1]) )
-   
-   
+    #Loading Indexes of IP sample for halos detecting scheme
+    tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog))
+    i_IP = tmp.T[1] 
+    
+    #2D Histogram of distance vs Volume of GH
+    Hist_D_R = np.transpose(np.histogram2d( voids1[i_IP.astype('int')-1,0], 
+    np.log10(void_size[voids1[i_IP.astype('int')-1,1].astype('int')-1,1]), 
+    bins = bins_IP, normed = False, range = (Dis_lim, Vol_lim)  )[0][::,::-1])
+
+    #2D histogram
+    map2d = axHist2D.imshow( Hist_D_R[::,::], interpolation='nearest', aspect = 'auto',
+    cmap = 'binary', extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]) )
+    #Create the colorbar
+    axc, kw = matplotlib.colorbar.make_axes( axHistx,\
+    orientation = "vertical", shrink=1., pad=.1, aspect=10 )
+    cb = matplotlib.colorbar.Colorbar( axc, map2d,\
+    orientation = "vertical" )
+    #Set the colorbar
+    map2d.colorbar = cb
+    
+    #Countorn
+    axHist2D.contour( Hist_D_R[::-1,::], 7, aspect = 'auto', 
+    extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]), linewidth=2.0, interpolation = 'gaussian',\
+    colors="black" )
+  
+    #Histogram X
+    histx = np.histogram( voids1[i_IP.astype('int')-1,0], bins=bins_IP, normed=True, range=Dis_lim )
+    axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="gray" )
+    #Histogram Y
+    histy = np.histogram( np.log10(void_size[voids1[i_IP.astype('int')-1,1].astype('int')-1,1]), bins=bins_IP,
+    normed=True, range=Vol_lim )
+    axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="gray" )
+
+    #RIP systems (Cataloguing according to the host kind of environment)
+
+    #Loading Indexes of RIP sample for halos detecting scheme
+    tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
+    i_RIP = tmp.T[1] 
+    vol_RIP = np.log10(void_size[voids1[i_RIP.astype(int)-1,1].astype(int)-1,1])
+    dist_RIP = voids1[i_RIP.astype(int)-1,0]
+    
+    #Loading eigenvalues
+    eigV_filename = '%s%s%s/%d/Eigen%s'%(foldglobal,fold,web,N_sec[i_fold],smooth)
+    #Loading environment properties of halos classification scheme
+    eig = np.transpose(np.loadtxt('%s%s%s/%d/E_GH%s_%s.dat'%\
+    (foldglobal,fold,web,N_sec[i_fold],smooth,catalog)))
+    #Eigenvalues for the RIP sample
+    eig1_RIP = eig[1][i_RIP.astype(int)-1]
+    eig2_RIP = eig[2][i_RIP.astype(int)-1]
+    eig3_RIP = eig[3][i_RIP.astype(int)-1]
+
+
+    #Scatter of RIP systems
+    #Constructing volume and distances for each subsample according to their host environment
+    #Voids
+    i_RIP_voids = tmp.T[1,(eig1_RIP<=lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+    vol_RIP_V = np.log10(void_size[voids1[i_RIP_voids.astype(int)-1,1].astype(int)-1,1])
+    dist_RIP_V = voids1[i_RIP_voids.astype(int)-1,0]
+    axHist2D.plot( dist_RIP_V, vol_RIP_V, "o", color = "dodgerblue", label = 'RIP in voids' )
+    #Sheets
+    i_RIP_sheets = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+    vol_RIP_S = np.log10(void_size[voids1[i_RIP_sheets.astype(int)-1,1].astype(int)-1,1])
+    dist_RIP_S = voids1[i_RIP_sheets.astype(int)-1,0]
+    axHist2D.plot( dist_RIP_S, vol_RIP_S, "o", color = "red", label = 'RIP in sheets' )
+    #Filaments
+    i_RIP_filaments = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP<=lambda_th)]
+    vol_RIP_F = np.log10(void_size[voids1[i_RIP_filaments.astype(int)-1,1].astype(int)-1,1])
+    dist_RIP_F = voids1[i_RIP_filaments.astype(int)-1,0]
+    axHist2D.plot( dist_RIP_F, vol_RIP_F, "o", color = "darkgreen", label = 'RIP in filaments' )
+    #Knots
+    i_RIP_knots = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP>lambda_th)]
+    vol_RIP_K = np.log10(void_size[voids1[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
+    dist_RIP_K = voids1[i_RIP_knots.astype(int)-1,0]
+    axHist2D.plot( dist_RIP_K, vol_RIP_K, "o", color = "orange", label = 'RIP in knots' )
+
+
     i_fold += 1
     
+    
+axHistx.set_xlim( axHist2D.get_xlim() )
+axHistx.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
+axHistx.set_yticks( dist_range )
+axHistx.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHistx.set_ylabel( "Normed distribution" )
 
-plt.grid()
-plt.xlim( (0.0,14) )
-plt.ylim( (0.0,1.0) )
-plt.text( 0.0, 0.05, " %s"%(web) )
-plt.xlabel( "Distance to the nearest void region [Mpc $h^{-1}$]" )
-plt.ylabel( "Cumlative Distribution $P(d)$" )
-plt.legend( loc='upper right', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
+axHisty.set_ylim( axHist2D.get_ylim() )
+axHisty.set_yticks( np.linspace( Vol_lim[0],Vol_lim[1],bins_IP+1 ) )
+axHisty.set_xticks( vol_range )
+axHisty.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHisty.set_xlabel( "Normed distribution" )
+
+axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
+axHist2D.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
+axHist2D.set_yticks( np.linspace( Vol_lim[0],Vol_lim[1],bins_IP+1 ) )
+#Axis turned into equivalent radius of spherical comoving volume
+tick_locations = np.linspace( Vol_lim[0],Vol_lim[1],bins_IP+1 )
+tick_label = []
+for tick in tick_locations:
+    tick_label.append( "%1.1f"%tick_function(tick) )
+axHist2D.set_yticklabels( tick_label )
+axHist2D.set_xlabel( "Distance to nearest void [Mpc $h^{-1}$]" )
+axHist2D.set_ylabel( "Equivalent spherical comoving radius Mpc $h^{-1}$" )
+axHist2D.legend( loc='upper right', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
 
 plt.show()

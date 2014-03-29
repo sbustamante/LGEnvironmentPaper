@@ -1,7 +1,7 @@
 #void_distance_samples.py
 #
 #This code calculate histograms of distance to void regions of the near one for each defined sample
-#Usage: python void_size_samples.py <Web_Type>
+#Usage: python void_distance_samples.py <Web_Type>
 #
 #by: Sebastian Bustamante
 

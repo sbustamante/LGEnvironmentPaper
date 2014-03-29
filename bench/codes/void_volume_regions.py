@@ -52,7 +52,7 @@ for web in webs:
 #Axe 1    
 ax1.grid()
 ax1.set_ylabel( "Normed distribution" )
-ax1.set_xlabel( "Comovil volume $\log_{10}[ (0.98$ Mpc $h^{-1} )^{-3} ]$" )
+ax1.set_xlabel( "Comoving volume $\log_{10}[ (0.98$ Mpc $h^{-1} )^{-3} ]$" )
 ax1.legend(fancybox = True, shadow = True)
 
 #Axe 2
@@ -61,6 +61,6 @@ tick_label = []
 for tick in tick_locations:
     tick_label.append( "%1.2f"%tick_function(tick) )
 ax2.set_xticklabels( tick_label )
-ax2.set_xlabel( "Equivalent spherical comovil radius Mpc $h^{-1}$" )
+ax2.set_xlabel( "Equivalent spherical comoving radius Mpc $h^{-1}$" )
 
 plt.show()
