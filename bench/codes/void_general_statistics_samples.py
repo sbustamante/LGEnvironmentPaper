@@ -162,7 +162,7 @@ for fold in folds:
     else:
 	#Using colors according to FA
 	FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
-	scatter2d = axHist2D.scatter( dist_RIP, vol_RIP, c=FA_RIP, cmap='hot')
+	scatter2d = axHist2D.scatter( dist_RIP, vol_RIP, c=FA_RIP, s=50, cmap='hot')
 	#Create the colorbar
 	axc, kw = matplotlib.colorbar.make_axes( axHistx,\
 	orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(.5,1.5) )
