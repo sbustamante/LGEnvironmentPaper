@@ -307,7 +307,9 @@ CAPTION:
 	Gray colorbar indicates the number of \textit{IP} systems in each bin, 
 	whereas hot colorbar indicates the FA of the host cell of \textit{RIP} 
 	systems. Both web classification schemes has been used, Tweb (upper 
-	panel) and V-web (lower panel).
+	panel) and V-web (lower panel). Upper and right panels of each figure
+	indicate normed histograms of each single property for the \textit{IP}
+	sample.
 CODE:
 	void_general_statistics_samples.py
 *******************************************************************************
