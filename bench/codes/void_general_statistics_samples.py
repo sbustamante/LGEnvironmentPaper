@@ -94,7 +94,7 @@ for fold in folds:
 
     #2D histogram
     map2d = axHist2D.imshow( Hist_D_R[::,::], interpolation='nearest', aspect = 'auto',
-    cmap = 'binary', extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]) )
+    cmap = 'binary', extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]), alpha = 0.8 )
     #Create the colorbar
     axc, kw = matplotlib.colorbar.make_axes( axHistx,\
     orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(0.3,1.3) )
@@ -159,7 +159,7 @@ for fold in folds:
 	vol_RIP_K = np.log10(void_size[voids1[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
 	dist_RIP_K = voids1[i_RIP_knots.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_K, vol_RIP_K, "o", color = "orange", label = 'RIP in knots' )
-    else:
+    elif sys.argv[3] == "0":
 	#Using colors according to FA
 	FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
 	scatter2d = axHist2D.scatter( dist_RIP, vol_RIP, c=FA_RIP, s=50, cmap='hot')
@@ -170,6 +170,62 @@ for fold in folds:
 	orientation = "vertical" )
 	#Set the colorbar
 	map2d.colorbar = cb
+    elif sys.argv[3] == "2":
+      	#Using colors according to FA
+	FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
+	#Constructing volume and distances for each subsample according to their FA range
+	#Ranges according quartiles
+	FA_RIP_sorted = np.sort(FA_RIP)
+	R1 = FA_RIP_sorted[ int(len(FA_RIP)*1/4.) ]
+	R2 = FA_RIP_sorted[ int(len(FA_RIP)*2/4.) ]
+	R3 = FA_RIP_sorted[ int(len(FA_RIP)*3/4.) ]
+	#First range ----------------------------------------------------------------
+	i_RIP_R1 = tmp.T[1,(0<=FA_RIP)*(FA_RIP<R1)]
+	vol_RIP_R1 = np.log10(void_size[voids1[i_RIP_R1.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R1 = voids1[i_RIP_R1.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_R1, vol_RIP_R1, "o", color = "lime", label = '$%1.2f\leq FA<%1.2f$'%(np.min(FA_RIP), R1) )
+	#Histogram X
+	histx = np.histogram( dist_RIP_R1 , bins=bins_IP, normed=True, range=Dis_lim )
+	axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="lime", alpha = 0.3 )
+	#Histogram Y
+	histy = np.histogram( vol_RIP_R1, bins=bins_IP, normed=True, range=Vol_lim )
+	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="lime", alpha = 0.3 )
+	
+	#Second Range ----------------------------------------------------------------
+	i_RIP_R2 = tmp.T[1,(R1<=FA_RIP)*(FA_RIP<R2)]
+	vol_RIP_R2 = np.log10(void_size[voids1[i_RIP_R2.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R2 = voids1[i_RIP_R2.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_R2, vol_RIP_R2, "o", color = "yellow", label = '$%1.2f\leq FA<%1.2f$'%(R1, R2) )
+	#Histogram X
+	histx = np.histogram( dist_RIP_R2 , bins=bins_IP, normed=True, range=Dis_lim )
+	axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="yellow", alpha = 0.3 )
+	#Histogram Y
+	histy = np.histogram( vol_RIP_R2, bins=bins_IP, normed=True, range=Vol_lim )
+	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="yellow", alpha = 0.3 )
+	
+	#Third Range ----------------------------------------------------------------
+	i_RIP_R3 = tmp.T[1,(R2<=FA_RIP)*(FA_RIP<R3)]
+	vol_RIP_R3 = np.log10(void_size[voids1[i_RIP_R3.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R3 = voids1[i_RIP_R3.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_R3, vol_RIP_R3, "o", color = "red", label = '$%1.2f\leq FA<%1.2f$'%(R2, R3) )
+	#Histogram X
+	histx = np.histogram( dist_RIP_R3 , bins=bins_IP, normed=True, range=Dis_lim )
+	axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="red", alpha = 0.3 )
+	#Histogram Y
+	histy = np.histogram( vol_RIP_R3, bins=bins_IP, normed=True, range=Vol_lim )
+	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="red", alpha = 0.3 )
+	
+	#Fourth Range ----------------------------------------------------------------
+	i_RIP_R4 = tmp.T[1,(R3<=FA_RIP)*(FA_RIP<1.0)]
+	vol_RIP_R4 = np.log10(void_size[voids1[i_RIP_R4.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R4 = voids1[i_RIP_R4.astype(int)-1,0]
+	axHist2D.plot( dist_RIP_R4, vol_RIP_R4, "o", color = "black", label = '$%1.2f\leq FA<%1.2f$'%(R3, np.max(FA_RIP)) )
+	#Histogram X
+	histx = np.histogram( dist_RIP_R4 , bins=bins_IP, normed=True, range=Dis_lim )
+	axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="black", alpha = 0.3 )
+	#Histogram Y
+	histy = np.histogram( vol_RIP_R4, bins=bins_IP, normed=True, range=Vol_lim )
+	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="black", alpha = 0.3 )
 
     i_fold += 1
     
