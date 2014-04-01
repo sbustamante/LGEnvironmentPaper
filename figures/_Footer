@@ -96,7 +96,7 @@ CODE:
 *******************************************************************************
 
 
-#USED
+#USED AS FIGURE 4
 *******************************************************************************
 FIG NAME:	
 	voids_inertia_tensor_Tweb.pdf
@@ -116,7 +116,7 @@ CODE:
 *******************************************************************************
 
 
-#USED
+#USED AS FIGURE 5
 *******************************************************************************
 FIG NAME:	
 	eigen1_dist_Tweb.pdf
@@ -141,7 +141,7 @@ CODE:
 *******************************************************************************
 
 
-#USED
+#USED AS FIGURE 6
 *******************************************************************************
 FIG NAME:	
 	fractional_anisotrpy_Tweb.pdf
@@ -301,7 +301,13 @@ FIG NAME:
 	voids_statistics_samples_FOF_Vweb.pdf
 	
 CAPTION:
-	
+	Histograms of the distance and the volume of
+	the nearest bulk void to each system of the \textit{IP} (background 
+	histogram) and \textit{RIP} (scatter plot) samples for BDM catalogue. 
+	Gray colorbar indicates the number of \textit{IP} systems in each bin, 
+	whereas hot colorbar indicates the FA of the host cell of \textit{RIP} 
+	systems. Both web classification schemes has been used, Tweb (upper 
+	panel) and V-web (lower panel).
 CODE:
 	void_general_statistics_samples.py
 *******************************************************************************
