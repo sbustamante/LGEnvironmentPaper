@@ -433,7 +433,9 @@ def void_finder( void_matrix, ordered = True, out_folder='./voids', extra_info =
 #..................................................................................................
 #Correlator Function (FIGURES)
 #..................................................................................................
-def Correlator_Function( Prop_IP, EnvP_IP, Prop_RIP, EnvP_RIP, quintiles, subplot ):
+def Correlator_Function( Prop_IP, EnvP_IP, Prop_RIP, EnvP_RIP, quintiles, subplot, whiskers=0, 
+			 width="fixed", Norm = 1 ):
+    #whiskers = (maximum and minimum values)[0] or (1.5 Interquartile range)[1]
     #Quartiles of Current Propertie
     P_max = []; P_min = []; P_Q1 = []; P_Q3 = []; P_M = []
     #Fill plots of IP systems
@@ -441,16 +443,23 @@ def Correlator_Function( Prop_IP, EnvP_IP, Prop_RIP, EnvP_RIP, quintiles, subplo
 	#Selecting mass according to current quintile
 	P_tmp = Prop_IP[ (quintiles[i]<=EnvP_IP)*(EnvP_IP<quintiles[i+1]) ]
 	P_tmp_sorted = np.sort( P_tmp )
-	#Maxim value of this FA quintile
-	P_max.append( np.max( P_tmp ) )
-	#Minim value of this FA quintile
-	P_min.append( np.min( P_tmp ) )
 	#Median (Quartile 50%) of total mass for current quintile
 	P_M.append( P_tmp_sorted[ int(len(P_tmp)*1/2.) ] )
 	#Quartile 25% of total mass for current quintile
 	P_Q1.append( P_tmp_sorted[ int(len(P_tmp)*1/4.) ] )
 	#Quartile 75% of total mass for current quintile
 	P_Q3.append( P_tmp_sorted[ int(len(P_tmp)*3/4.) ] )
+	if whiskers == 0:
+	    #Maxim value of this quintile
+	    P_max.append( np.max( P_tmp ) )
+	    #Minim value of this quintile
+	    P_min.append( np.min( P_tmp ) )
+	else:
+	    #Maxim value of this quintile
+	    P_max.append( np.max( P_tmp[ P_tmp<=P_Q3[i] + 1.5*( P_Q3[i] - P_Q1[i] ) ] ) )
+	    #Minim value of this quintile
+	    P_min.append( np.min( P_tmp[ P_tmp>=P_Q1[i] - 1.5*( P_Q3[i] - P_Q1[i] ) ] ) )
+	
     #Plots
     #Extreme values
     subplot.fill_between( Quintiles, P_max, P_min, color = "gray", alpha = 0.5 )
@@ -464,17 +473,25 @@ def Correlator_Function( Prop_IP, EnvP_IP, Prop_RIP, EnvP_RIP, quintiles, subplo
 	#Selecting mass according to current quintile
 	P_tmp = Prop_RIP[ (quintiles[i]<=EnvP_RIP)*(EnvP_RIP<quintiles[i+1]) ]
 	P_tmp_sorted = np.sort( P_tmp )
-	#Maxim value of this FA quintile
-	P_max = np.max( P_tmp )
-	#Minim value of this FA quintile
-	P_min = np.min( P_tmp )
 	#Median (Quartile 50%) of total mass for current quintile
 	P_M = P_tmp_sorted[ int(len(P_tmp)*1/2.) ]
 	#Quartile 25% of total mass for current quintile
 	P_Q1 = P_tmp_sorted[ int(len(P_tmp)*1/4.) ]
 	#Quartile 75% of total mass for current quintile
 	P_Q3 = P_tmp_sorted[ int(len(P_tmp)*3/4.) ]
-	box_plot( i, P_min, P_max, P_Q1, P_Q3, P_M, subplot, "blue" )
+	if whiskers == 0:
+	    #Maxim value of this quintile
+	    P_max = np.max( P_tmp )
+	    #Minim value of this quintile
+	    P_min = np.min( P_tmp )
+	else:
+	    #Maxim value of this quintile
+	    P_max = np.max( P_tmp[ P_tmp<=P_Q3 + 1.5*( P_Q3 - P_Q1 ) ] )
+	    #Minim value of this quintile
+	    P_min = np.min( P_tmp[ P_tmp>=P_Q1 - 1.5*( P_Q3 - P_Q1 ) ] )
+	#Box plot
+	box_plot( i, P_min, P_max, P_Q1, P_Q3, P_M, subplot, "blue", width, len(P_tmp), Norm  )
+	
 	
     return 0
 	
@@ -498,11 +515,15 @@ def progress(width, percent):
 #..................................................................................................
 #Personalized box plot
 #..................................................................................................
-def box_plot( Quintile, min, max, Q1, Q3, Median, subplot, color ):
-    rect1 = matplotlib.patches.Rectangle((0.05+Quintile*0.9/4-0.02,Q1), 0.04, Q3-Q1, color=color, alpha = 0.4)
-    subplot.vlines( 0.05+Quintile*0.9/4, Q3, max, color, "--", linewidth = 1.5  )
-    subplot.vlines( 0.05+Quintile*0.9/4, min, Q1, color, "--", linewidth = 1.5 )
-    subplot.hlines( Median, 0.05+Quintile*0.9/4-0.02, 0.05+Quintile*0.9/4+0.02, color, "--", linewidth = 2 )
-    subplot.hlines( min, 0.05+Quintile*0.9/4-0.02, 0.05+Quintile*0.9/4+0.02, color, "--", linewidth = 2 )
-    subplot.hlines( max, 0.05+Quintile*0.9/4-0.02, 0.05+Quintile*0.9/4+0.02, color, "--", linewidth = 2 )
+def box_plot( Quintile, min, max, Q1, Q3, Median, subplot, color, width="fixed", N_sample = 0, Norm = 1 ):
+    tick = 0.02
+    if width != "fixed":
+	tick = 0.15*(N_sample/Norm)
+    rect1 = matplotlib.patches.Rectangle((0.05+Quintile*0.9/4-tick,Q1), 2*tick, Q3-Q1, color=color, alpha = 0.4,
+					  linewidth=2)
+    subplot.vlines( 0.05+Quintile*0.9/4, Q3, max, color, "-", linewidth = 2  )
+    subplot.vlines( 0.05+Quintile*0.9/4, min, Q1, color, "-", linewidth = 2 )
+    subplot.hlines( Median, 0.05+Quintile*0.9/4-tick, 0.05+Quintile*0.9/4+tick, color, "-", linewidth = 2 )
+    subplot.hlines( min, 0.05+Quintile*0.9/4-tick, 0.05+Quintile*0.9/4+tick, color, "-", linewidth = 2 )
+    subplot.hlines( max, 0.05+Quintile*0.9/4-tick, 0.05+Quintile*0.9/4+tick, color, "-", linewidth = 2 )
     subplot.add_patch(rect1)

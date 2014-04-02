@@ -102,8 +102,9 @@ if sys.argv[3] == "1":
     v_rad_IP, v_tan_IP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     v_rad_IP *= 1./Vel_norm; v_tan_IP *= 1./Vel_norm
     #Energy and Angular momentum
-    E_IP, L_IP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
+    E_IP, LS_IP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     E_IP *= 1./E_norm
+    L_IP = np.sqrt(LS_IP[:,0]**2 + LS_IP[:,1]**2 + LS_IP[:,2]**2)
     #Total mass and mass ratio
     M_tot_IP = (tmp.T[2] + tmp.T[5])/M_norm
     M_rat_IP = (tmp.T[5]/tmp.T[2])
@@ -136,8 +137,9 @@ if sys.argv[3] == "1":
     v_rad_RIP, v_tan_RIP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)    
     v_rad_RIP *= 1./Vel_norm; v_tan_RIP *= 1./Vel_norm
     #Energy and Angular momentum
-    E_RIP, L_RIP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
+    E_RIP, LS_RIP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     E_RIP *= 1./E_norm
+    L_RIP = np.sqrt(LS_RIP[:,0]**2 + LS_RIP[:,1]**2 + LS_RIP[:,2]**2)
     #Total mass and mass ratio
     M_tot_RIP = (tmp.T[2] + tmp.T[5])/M_norm
     M_rat_RIP = (tmp.T[5]/tmp.T[2])
@@ -171,43 +173,135 @@ if sys.argv[3] == "1":
     #TOTAL MASS VS FA
     #==============================================================================================
     P1 = plt.subplot(7,3,1)
-    Correlator_Function( M_tot_IP, FA_IP, M_tot_RIP, FA_RIP, FA_quintil, P1 )
-    
+    Correlator_Function( M_tot_IP, FA_IP, M_tot_RIP, FA_RIP, FA_quintil, P1, whiskers = 1, 
+			 width="variable", Norm = len(i_RIP) )
     #==============================================================================================
     #FIGURE 7-3-2
     #TOTAL MASS VS Distance
     #==============================================================================================
     P2 = plt.subplot(7,3,2)
-    Correlator_Function( M_tot_IP, distance_IP, M_tot_RIP, distance_RIP, dist_quintil, P2 )
-    
+    Correlator_Function( M_tot_IP, distance_IP, M_tot_RIP, distance_RIP, dist_quintil, P2, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
     #==============================================================================================
     #FIGURE 7-3-3
     #TOTAL MASS VS Volume
     #==============================================================================================
     P3 = plt.subplot(7,3,3)
-    Correlator_Function( M_tot_IP, volume_IP, M_tot_RIP, volume_RIP, vol_quintil, P3 )
+    Correlator_Function( M_tot_IP, volume_IP, M_tot_RIP, volume_RIP, vol_quintil, P3, whiskers = 1, 
+			 width="variable", Norm = len(i_RIP) )
     
     #==============================================================================================
     #FIGURE 7-3-4
     #MASS RATIO VS FA
     #==============================================================================================
     P4 = plt.subplot(7,3,4)
-    Correlator_Function( M_rat_IP, FA_IP, M_rat_RIP, FA_RIP, FA_quintil, P4 )
-    
+    Correlator_Function( M_rat_IP, FA_IP, M_rat_RIP, FA_RIP, FA_quintil, P4, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
     #==============================================================================================
     #FIGURE 7-3-5
     #MASS RATIO VS Distance
     #==============================================================================================
     P5 = plt.subplot(7,3,5)
-    Correlator_Function( M_rat_IP, distance_IP, M_rat_RIP, distance_RIP, dist_quintil, P5 )
-	
+    Correlator_Function( M_rat_IP, distance_IP, M_rat_RIP, distance_RIP, dist_quintil, P5, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
     #==============================================================================================
     #FIGURE 7-3-6
     #MASS RATIO VS Volume
     #==============================================================================================
     P6 = plt.subplot(7,3,6)
-    Correlator_Function( M_rat_IP, volume_IP, M_rat_RIP, volume_RIP, vol_quintil, P6 )
-        
+    Correlator_Function( M_rat_IP, volume_IP, M_rat_RIP, volume_RIP, vol_quintil, P6, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    
+    #==============================================================================================
+    #FIGURE 7-3-7
+    #RADIAL VELOCITY VS FA
+    #==============================================================================================
+    P7 = plt.subplot(7,3,7)
+    Correlator_Function( v_rad_IP, FA_IP, v_rad_RIP, FA_RIP, FA_quintil, P7, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-8
+    #RADIAL VELOCITY VS Distance
+    #==============================================================================================
+    P8 = plt.subplot(7,3,8)
+    Correlator_Function( v_rad_IP, distance_IP, v_rad_RIP, distance_RIP, dist_quintil, P8, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-9
+    #RADIAL VELOCITY VS Volume
+    #==============================================================================================
+    P9 = plt.subplot(7,3,9)
+    Correlator_Function( v_rad_IP, volume_IP, v_rad_RIP, volume_RIP, vol_quintil, P9, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    
+    #==============================================================================================
+    #FIGURE 7-3-10
+    #RADIAL VELOCITY VS FA
+    #==============================================================================================
+    P10 = plt.subplot(7,3,10)
+    Correlator_Function( v_tan_IP, FA_IP, v_tan_RIP, FA_RIP, FA_quintil, P10, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-11
+    #RADIAL VELOCITY VS Distance
+    #==============================================================================================
+    P11 = plt.subplot(7,3,11)
+    Correlator_Function( v_tan_IP, distance_IP, v_tan_RIP, distance_RIP, dist_quintil, P11, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-12
+    #RADIAL VELOCITY VS Volume
+    #==============================================================================================
+    P12 = plt.subplot(7,3,12)
+    Correlator_Function( v_tan_IP, volume_IP, v_tan_RIP, volume_RIP, vol_quintil, P12, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+
+    #==============================================================================================
+    #FIGURE 7-3-13
+    #ANGULAR MOMENTUM VS FA
+    #==============================================================================================
+    P13 = plt.subplot(7,3,13)
+    Correlator_Function( L_IP, FA_IP, L_RIP, FA_RIP, FA_quintil, P13, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-14
+    #ANGULAR MOMENTUM VS Distance
+    #==============================================================================================
+    P14 = plt.subplot(7,3,14)
+    Correlator_Function( L_IP, distance_IP, L_RIP, distance_RIP, dist_quintil, P14, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-15
+    #ANGULAR MOMENTUM VS Volume
+    #==============================================================================================
+    P15 = plt.subplot(7,3,15)
+    Correlator_Function( L_IP, volume_IP, L_RIP, volume_RIP, vol_quintil, P15, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    
+    
+    #==============================================================================================
+    #FIGURE 7-3-16
+    #ENERGY VS FA
+    #==============================================================================================
+    P16 = plt.subplot(7,3,16)
+    Correlator_Function( E_IP, FA_IP, E_RIP, FA_RIP, FA_quintil, P16, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-17
+    #ENERGY VS Distance
+    #==============================================================================================
+    P17 = plt.subplot(7,3,17)
+    Correlator_Function( E_IP, distance_IP, E_RIP, distance_RIP, dist_quintil, P17, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-18
+    #ENERGY VS Volume
+    #==============================================================================================
+    P18 = plt.subplot(7,3,18)
+    Correlator_Function( E_IP, volume_IP, E_RIP, volume_RIP, vol_quintil, P18, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    
+    
         
 #Adjusting subplots ===============================================================================
 plt.subplots_adjust( left = 0.1, right = 1.0, bottom = 0.07, top = 0.99, hspace = 0.09, wspace = 0.05 )
@@ -249,35 +343,35 @@ for i in xrange(4, 7):
 #Radial velocity ranges
 for i in xrange(7, 10):
     plt.subplot(7,3,i)
-    plt.ylim( (-2.5,0) )
+    plt.ylim( (-4,0) )
     if i == 7:
-	plt.yticks(np.linspace(-2.5,0,6), fontsize=10)
+	plt.yticks(np.linspace(-4,0,6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(-2.5,0,6), [""])
+	plt.yticks(np.linspace(-4,0,6), [""])
 #Tangential velocity ranges
 for i in xrange(10, 13):
     plt.subplot(7,3,i)
-    plt.ylim( (0,2.5) )
+    plt.ylim( (0,8) )
     if i == 10:
-	plt.yticks(np.linspace(0,2.5,6), fontsize=10)
+	plt.yticks(np.linspace(0,8,6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(0,2.5,6), [""])
+	plt.yticks(np.linspace(0,8,6), [""])
 #Angular momentum ranges
 for i in xrange(13, 16):
     plt.subplot(7,3,i)
-    plt.ylim( (0,30) )
+    plt.ylim( (0,45) )
     if i == 13:
-	plt.yticks(np.linspace(0,30,6), fontsize=10)
+	plt.yticks(np.linspace(0,45,6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(0,30,6), [""])
+	plt.yticks(np.linspace(0,45,6), [""])
 #Energy ranges
 for i in xrange(16, 19):
     plt.subplot(7,3,i)
-    plt.ylim( (-8,0) )
+    plt.ylim( (-15,5) )
     if i == 16:
-	plt.yticks(np.linspace(-8,0,6), fontsize=10)
+	plt.yticks(np.linspace(-15,5,6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(-8,0,6), [""])
+	plt.yticks(np.linspace(-15,5,6), [""])
 #Spin parameter ranges
 for i in xrange(19, 22):
     plt.subplot(7,3,i)
