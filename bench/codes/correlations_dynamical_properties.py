@@ -32,11 +32,16 @@ Lambda_th = 0.0
 M_norm = 1e12
 #Vel_norm
 Vel_norm = 1e2
+#Energy_norm
+E_norm = 1e-36
 
 #Bins of IP systems
 bins_IP  = 10
 #Bins of RIP systems
 bins_RIP  = 10
+
+#Quintiles ranges for x-axis plots
+Quintiles = np.linspace(0.05,0.95,5)
 
 #==================================================================================================
 #			COMPUTING TOTAL MASSES FOR EACH SAMPLE
@@ -94,9 +99,11 @@ if sys.argv[3] == "1":
     x2 = halos[ 1, I2 ];  y2 = halos[ 2, I2 ]; z2 = halos[ 3, I2 ]
     vx2 = halos[ 4, I2 ]; vy2 = halos[ 5, I2 ]; vz2 = halos[ 6, I2 ]
     #Radial and Tangential velocity
-    v_rad_IP, v_tan_IP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)/Vel_norm
+    v_rad_IP, v_tan_IP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
+    v_rad_IP *= 1./Vel_norm; v_tan_IP *= 1./Vel_norm
     #Energy and Angular momentum
     E_IP, L_IP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
+    E_IP *= 1./E_norm
     #Total mass and mass ratio
     M_tot_IP = (tmp.T[2] + tmp.T[5])/M_norm
     M_rat_IP = (tmp.T[5]/tmp.T[2])
@@ -126,9 +133,11 @@ if sys.argv[3] == "1":
     x2 = halos[ 1, I2 ];  y2 = halos[ 2, I2 ]; z2 = halos[ 3, I2 ]
     vx2 = halos[ 4, I2 ]; vy2 = halos[ 5, I2 ]; vz2 = halos[ 6, I2 ]
     #Radial and Tangential velocity
-    v_rad_RIP, v_tan_RIP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)/Vel_norm
+    v_rad_RIP, v_tan_RIP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)    
+    v_rad_RIP *= 1./Vel_norm; v_tan_RIP *= 1./Vel_norm
     #Energy and Angular momentum
     E_RIP, L_RIP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
+    E_RIP *= 1./E_norm
     #Total mass and mass ratio
     M_tot_RIP = (tmp.T[2] + tmp.T[5])/M_norm
     M_rat_RIP = (tmp.T[5]/tmp.T[2])
@@ -157,14 +166,37 @@ if sys.argv[3] == "1":
     for i in xrange(1,5):
 	vol_quintil[i] = volume_IP_sorted[ int(len(volume_IP)*i/5.) ]
 
-
+    #FIGURE 7-3-1
     #TOTAL MASS VS FA =============================================================================
-    #Quintiles of Total mass
+    #Quartiles of Total mass
+    M_tot_max = []; M_tot_min = []; M_tot_Q1 = []; M_tot_Q3 = []; M_tot_M = []
+    for i in xrange(5):
+	#Selecting mass according to current FA quintile
+	M_tot_tmp = M_tot_IP[ (FA_quintil[i]<=FA_IP)*(FA_IP<FA_quintil[i+1]) ]
+	M_tot_tmp_sorted = np.sort(M_tot_tmp)
+	#Maxim value of this FA quintile
+	M_tot_max.append( np.max( M_tot_tmp ) )
+	#Minim value of this FA quintile
+	M_tot_min.append( np.min( M_tot_tmp ) )
+	#Median (Quartile 50%) of total mass for this FA quintile
+	M_tot_M.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*1/2.) ] )
+	#Quartile 25% of total mass for this FA quintile
+	M_tot_Q1.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*1/4.) ] )
+	#Quartile 75% of total mass for this FA quintile
+	M_tot_Q3.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*3/4.) ] )
+    #Plots
+    plt.subplot(7,3,1)
+    #Extreme values
+    plt.fill_between( Quintiles, M_tot_max, M_tot_min, color = "gray", alpha = 0.5 )
+    #Quartiles values
+    plt.fill_between( Quintiles, M_tot_Q1, M_tot_Q3, color = "gray", alpha = 1.0 )
+    #Median curve
+    plt.plot( Quintiles, M_tot_M, ".-",linewidth = 1.5, color = "black" )
         
         
         
         
-#Adjusting subplots
+#Adjusting subplots ===============================================================================
 plt.subplots_adjust( left = 0.1, right = 1.0, bottom = 0.07, top = 0.99, hspace = 0.09, wspace = 0.05 )
 #Number of plots according represented properties
 FA_plots = 3*np.arange(7)+1
@@ -187,11 +219,11 @@ for i in xrange(1, 22):
 #Total mass ranges
 for i in xrange(1, 4):
     plt.subplot(7,3,i)
-    plt.ylim( (1,10) )
+    plt.ylim( (1,12) )
     if i == 1:
-	plt.yticks(np.linspace(1,10,6), fontsize=10)
+	plt.yticks(np.linspace(1,12,6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(1,10,6), [""])
+	plt.yticks(np.linspace(1,12,6), [""])
 #Ratio mass ranges
 for i in xrange(4, 7):
     plt.subplot(7,3,i)
