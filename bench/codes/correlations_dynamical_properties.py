@@ -120,7 +120,7 @@ if sys.argv[3] == "1":
     FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
     #Volume and distance of the nearest void region
     volume_RIP = np.log10(volume[voids.T[1][i_RIP].astype(int)-1,1])
-    distance_RIP = voids[i_IP,0]
+    distance_RIP = voids[i_RIP,0]
     #Loading all dynamical properties
     #Halo 1
     I1 = tmp.T[1].astype(int)-1
@@ -166,34 +166,47 @@ if sys.argv[3] == "1":
     for i in xrange(1,5):
 	vol_quintil[i] = volume_IP_sorted[ int(len(volume_IP)*i/5.) ]
 
+    #==============================================================================================
     #FIGURE 7-3-1
-    #TOTAL MASS VS FA =============================================================================
-    #Quartiles of Total mass
-    M_tot_max = []; M_tot_min = []; M_tot_Q1 = []; M_tot_Q3 = []; M_tot_M = []
-    for i in xrange(5):
-	#Selecting mass according to current FA quintile
-	M_tot_tmp = M_tot_IP[ (FA_quintil[i]<=FA_IP)*(FA_IP<FA_quintil[i+1]) ]
-	M_tot_tmp_sorted = np.sort(M_tot_tmp)
-	#Maxim value of this FA quintile
-	M_tot_max.append( np.max( M_tot_tmp ) )
-	#Minim value of this FA quintile
-	M_tot_min.append( np.min( M_tot_tmp ) )
-	#Median (Quartile 50%) of total mass for this FA quintile
-	M_tot_M.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*1/2.) ] )
-	#Quartile 25% of total mass for this FA quintile
-	M_tot_Q1.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*1/4.) ] )
-	#Quartile 75% of total mass for this FA quintile
-	M_tot_Q3.append( M_tot_tmp_sorted[ int(len(M_tot_tmp)*3/4.) ] )
-    #Plots
-    plt.subplot(7,3,1)
-    #Extreme values
-    plt.fill_between( Quintiles, M_tot_max, M_tot_min, color = "gray", alpha = 0.5 )
-    #Quartiles values
-    plt.fill_between( Quintiles, M_tot_Q1, M_tot_Q3, color = "gray", alpha = 1.0 )
-    #Median curve
-    plt.plot( Quintiles, M_tot_M, ".-",linewidth = 1.5, color = "black" )
-        
-        
+    #TOTAL MASS VS FA
+    #==============================================================================================
+    P1 = plt.subplot(7,3,1)
+    Correlator_Function( M_tot_IP, FA_IP, M_tot_RIP, FA_RIP, FA_quintil, P1 )
+    
+    #==============================================================================================
+    #FIGURE 7-3-2
+    #TOTAL MASS VS Distance
+    #==============================================================================================
+    P2 = plt.subplot(7,3,2)
+    Correlator_Function( M_tot_IP, distance_IP, M_tot_RIP, distance_RIP, dist_quintil, P2 )
+    
+    #==============================================================================================
+    #FIGURE 7-3-3
+    #TOTAL MASS VS Volume
+    #==============================================================================================
+    P3 = plt.subplot(7,3,3)
+    Correlator_Function( M_tot_IP, volume_IP, M_tot_RIP, volume_RIP, vol_quintil, P3 )
+    
+    #==============================================================================================
+    #FIGURE 7-3-4
+    #MASS RATIO VS FA
+    #==============================================================================================
+    P4 = plt.subplot(7,3,4)
+    Correlator_Function( M_rat_IP, FA_IP, M_rat_RIP, FA_RIP, FA_quintil, P4 )
+    
+    #==============================================================================================
+    #FIGURE 7-3-5
+    #MASS RATIO VS Distance
+    #==============================================================================================
+    P5 = plt.subplot(7,3,5)
+    Correlator_Function( M_rat_IP, distance_IP, M_rat_RIP, distance_RIP, dist_quintil, P5 )
+	
+    #==============================================================================================
+    #FIGURE 7-3-6
+    #MASS RATIO VS Volume
+    #==============================================================================================
+    P6 = plt.subplot(7,3,6)
+    Correlator_Function( M_rat_IP, volume_IP, M_rat_RIP, volume_RIP, vol_quintil, P6 )
         
         
 #Adjusting subplots ===============================================================================
@@ -203,12 +216,13 @@ FA_plots = 3*np.arange(7)+1
 dist_plots = 3*np.arange(7)+2
 vol_plots = 3*np.arange(7)+3
 
+
 #Formating subplots ================================================================================
 for i in xrange(1, 22):
     plt.subplot(7,3,i)
     plt.xlim( (0,1) )
     plt.xticks(np.linspace(0.05,0.95,5), [""])
-    plt.grid()	
+    plt.grid( linewidth=0.2 )	
 for i in xrange(1, 22):
     plt.subplot(7,3,i)
     plt.ylim( (0,1) )
