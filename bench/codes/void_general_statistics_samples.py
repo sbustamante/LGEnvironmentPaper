@@ -2,7 +2,8 @@
 #
 #This code calculate 2D histograms of distance vs volume of the nearest void regions for the 
 #defined samples
-#Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type> <FA(0) or Environment(1)>
+#Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type> <FA(0) or Environment(1)
+#or FA_ranges(2)>
 #
 #by: Sebastian Bustamante
 
