@@ -101,6 +101,8 @@ if sys.argv[3] == "1":
     #Radial and Tangential velocity
     v_rad_IP, v_tan_IP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     v_rad_IP *= 1./Vel_norm; v_tan_IP *= 1./Vel_norm
+    #Spin parameter
+    spin_IP = np.log10(spin_parameter( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2))
     #Energy and Angular momentum
     E_IP, LS_IP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     E_IP *= 1./E_norm
@@ -134,8 +136,10 @@ if sys.argv[3] == "1":
     x2 = halos[ 1, I2 ];  y2 = halos[ 2, I2 ]; z2 = halos[ 3, I2 ]
     vx2 = halos[ 4, I2 ]; vy2 = halos[ 5, I2 ]; vz2 = halos[ 6, I2 ]
     #Radial and Tangential velocity
-    v_rad_RIP, v_tan_RIP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)    
+    v_rad_RIP, v_tan_RIP = Velocities( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     v_rad_RIP *= 1./Vel_norm; v_tan_RIP *= 1./Vel_norm
+    #Spin parameter
+    spin_RIP = np.log10(spin_parameter( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2))
     #Energy and Angular momentum
     E_RIP, LS_RIP = Energy_AngularM( M1, x1, y1, z1, vx1, vy1, vz1, M2, x2, y2, z2, vx2, vy2, vz2)
     E_RIP *= 1./E_norm
@@ -299,6 +303,29 @@ if sys.argv[3] == "1":
     #==============================================================================================
     P18 = plt.subplot(7,3,18)
     Correlator_Function( E_IP, volume_IP, E_RIP, volume_RIP, vol_quintil, P18, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    
+    
+    #==============================================================================================
+    #FIGURE 7-3-19
+    #SPIN PARAMETER VS FA
+    #==============================================================================================
+    P19 = plt.subplot(7,3,19)
+    Correlator_Function( spin_IP, FA_IP, spin_RIP, FA_RIP, FA_quintil, P19, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-20
+    #SPIN PARAMETER VS Distance
+    #==============================================================================================
+    P20 = plt.subplot(7,3,20)
+    Correlator_Function( spin_IP, distance_IP, spin_RIP, distance_RIP, dist_quintil, P20, whiskers = 1,
+			 width="variable", Norm = len(i_RIP) )
+    #==============================================================================================
+    #FIGURE 7-3-21
+    #SPIN PARAMETER VS Volume
+    #==============================================================================================
+    P21 = plt.subplot(7,3,21)
+    Correlator_Function( spin_IP, volume_IP, spin_RIP, volume_RIP, vol_quintil, P21, whiskers = 1,
 			 width="variable", Norm = len(i_RIP) )
     
     
