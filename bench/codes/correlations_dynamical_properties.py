@@ -172,6 +172,13 @@ if sys.argv[3] == "1":
     for i in xrange(1,5):
 	vol_quintil[i] = volume_IP_sorted[ int(len(volume_IP)*i/5.) ]
 
+    #SHOWING QUINTILES ============================================================================
+    print "Quintiles for enviromental properties:\nFA\tDistance to Void\tVolume of Void (equivalent spherical radius)"
+    for i in xrange(6):
+	print '%1.3f\t%1.3f\t\t\t%1.3f\t(%1.3f)\n'%( FA_quintil[i], dist_quintil[i], vol_quintil[i], 
+	((10**vol_quintil[i]*(0.9765625)**3)/( 4*np.pi/3. ))**(1/3.))
+
+
     #==============================================================================================
     #FIGURE 7-3-1
     #TOTAL MASS VS FA
@@ -354,59 +361,66 @@ for i in xrange(1, 22):
 #Total mass ranges
 for i in xrange(1, 4):
     plt.subplot(7,3,i)
-    plt.ylim( (1,12) )
+    Mlims = [1,12]
+    plt.ylim( Mlims )
     if i == 1:
-	plt.yticks(np.linspace(1,12,6), fontsize=10)
+	plt.yticks(np.linspace(Mlims[0],Mlims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(1,12,6), [""])
+	plt.yticks(np.linspace(Mlims[0],Mlims[1],6), [""])
 #Ratio mass ranges
 for i in xrange(4, 7):
     plt.subplot(7,3,i)
-    plt.ylim( (0,1) )
+    MRlims = [0,1]
+    plt.ylim( MRlims )
     if i == 4:
-	plt.yticks(np.linspace(0,1,6), fontsize=10)
+	plt.yticks(np.linspace(MRlims[0],MRlims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(0,1,6), [""])
+	plt.yticks(np.linspace(MRlims[0],MRlims[1],6), [""])
 #Radial velocity ranges
 for i in xrange(7, 10):
     plt.subplot(7,3,i)
-    plt.ylim( (-4,0) )
+    Radlims = [-4,0]
+    plt.ylim( Radlims )
     if i == 7:
-	plt.yticks(np.linspace(-4,0,6), fontsize=10)
+	plt.yticks(np.linspace(Radlims[0],Radlims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(-4,0,6), [""])
+	plt.yticks(np.linspace(Radlims[0],Radlims[1],6), [""])
 #Tangential velocity ranges
 for i in xrange(10, 13):
     plt.subplot(7,3,i)
-    plt.ylim( (0,8) )
+    Tanlims = [0,8]
+    plt.ylim( Tanlims )
     if i == 10:
-	plt.yticks(np.linspace(0,8,6), fontsize=10)
+	plt.yticks(np.linspace(Tanlims[0],Tanlims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(0,8,6), [""])
+	plt.yticks(np.linspace(Tanlims[0],Tanlims[1],6), [""])
 #Angular momentum ranges
 for i in xrange(13, 16):
     plt.subplot(7,3,i)
-    plt.ylim( (0,45) )
+    Llims = [0,45]
+    plt.ylim( Llims )
     if i == 13:
-	plt.yticks(np.linspace(0,45,6), fontsize=10)
+	plt.yticks(np.linspace(Llims[0],Llims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(0,45,6), [""])
+	plt.yticks(np.linspace(Llims[0],Llims[1],6), [""])
 #Energy ranges
 for i in xrange(16, 19):
     plt.subplot(7,3,i)
-    plt.ylim( (-15,5) )
+    Elims = [-15,5]
+    plt.ylim( Elims )
     if i == 16:
-	plt.yticks(np.linspace(-15,5,6), fontsize=10)
+	plt.yticks(np.linspace(Elims[0],Elims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(-15,5,6), [""])
+	plt.yticks(np.linspace(Elims[0],Elims[1],6), [""])
 #Spin parameter ranges
 for i in xrange(19, 22):
     plt.subplot(7,3,i)
-    plt.ylim( (-3,0.5) )
+    Spinlims = [-2.4, -0.6]
+    plt.ylim( Spinlims )
     if i == 19:
-	plt.yticks(np.linspace(-3,0.5,6), fontsize=10)
+	plt.yticks(np.linspace(Spinlims[0],Spinlims[1],6), fontsize=10)
     else: 
-	plt.yticks(np.linspace(-3,0.5,6), [""])
+	plt.yticks(np.linspace(Spinlims[0],Spinlims[1],6), [""])
  
 #X - Labels =======================================================================================
 for i in xrange( 19, 22 ):
