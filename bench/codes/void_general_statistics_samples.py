@@ -3,7 +3,7 @@
 #This code calculate 2D histograms of distance vs volume of the nearest void regions for the 
 #defined samples
 #Usage: python void_general_statistics_samples.py <Web_Type> <Catalog_Type> <FA(0) or Environment(1)
-#or FA_ranges(2)>
+#or FA_ranges(2)> <Nearest cell(0) or Nearest void center(1)>
 #
 #by: Sebastian Bustamante
 
@@ -23,7 +23,8 @@ catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
 #Distance limits
-Dis_lim = (0.0, 12.0)
+if sys.argv[4] == "0": Dis_lim = (0.0, 12.0)
+else:		       Dis_lim = (0.0, 80.0)
 #Speherical comoving volume limits (radius)
 Vol_lim = (0.0, 6.0)
 
@@ -76,8 +77,12 @@ axHisty.yaxis.set_major_formatter(nullfmt)
 for fold in folds:
     print fold, web
         
-    #Loading voids catalogue of general halos detecting scheme
-    voids1 = np.loadtxt('%s%s%s/%d/C_GH-voids%s_%s.dat'%\
+    #Loading voids catalogue of general halos
+    voidsGH = np.loadtxt('%s%s%s/%d/C_GH-voids%s_%s.dat'%\
+    (foldglobal,fold,web,N_sec[i_fold],smooth,catalog))
+  
+    #Loading voids catalogue of IP sample
+    voidsIP = np.loadtxt('%s%s%s/%d/C_IP-GC_voids%s_%s.dat'%\
     (foldglobal,fold,web,N_sec[i_fold],smooth,catalog))
   
     #Loading file with sizes of found void regions
@@ -85,12 +90,29 @@ for fold in folds:
     (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
 
     #Loading Indexes of IP sample for halos detecting scheme
-    tmp = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog))
-    i_IP = tmp.T[1] 
+    IP = np.loadtxt('%s%s/C_IP_%s.dat'%(foldglobal,fold,catalog))
+    i_IP = IP.T[1].astype('int')-1
+        
+    #Distance and volume of nearest void
+    dist_IP = np.zeros( len(i_IP) )
+    vol_IP = np.zeros( len(i_IP) )
+    pindex_IP = {}
+    #According to the nearest cell of the nearest void
+    if sys.argv[4] == "0":
+	dist_IP = voidsGH[i_IP,0]
+	vol_IP = np.log10(void_size[voidsGH[i_IP,1].astype('int')-1,1])
+    #According to the nearest center of the void
+    else:
+	for i_ip in range( len(i_IP) ):
+	    dist_array = voidsIP[ i_ip, [1,3,5] ]
+	    i_min = dist_array.argsort()[-1]
+	    dist_IP[i_ip] = voidsIP[i_ip, 1+2*i_min]
+	    vol_IP[i_ip] = np.log10(void_size[voidsIP[i_ip,2+2*i_min].astype('int')-1,1])
+	    #Creating dictionary of Pair index for the RIP sample
+	    pindex_IP[ "%d"%(IP[i_ip,0]) ] = i_ip
     
-    #2D Histogram of distance vs Volume of GH
-    Hist_D_R = np.transpose(np.histogram2d( voids1[i_IP.astype('int')-1,0], 
-    np.log10(void_size[voids1[i_IP.astype('int')-1,1].astype('int')-1,1]), 
+    #2D Histogram of distance vs Volume of IP sample
+    Hist_D_R = np.transpose(np.histogram2d( dist_IP, vol_IP,
     bins = bins_IP, normed = False, range = (Dis_lim, Vol_lim)  )[0][::,::-1])
 
     #2D histogram
@@ -109,22 +131,32 @@ for fold in folds:
     extent = (Dis_lim[0],Dis_lim[1],Vol_lim[0],Vol_lim[1]), linewidth=2.0, interpolation = 'gaussian',\
     colors="black" )
   
-    #Histogram X
-    histx = np.histogram( voids1[i_IP.astype('int')-1,0], bins=bins_IP, normed=True, range=Dis_lim )
+    #Histogram X (Distance)
+    histx = np.histogram( dist_IP, bins=bins_IP, normed=True, range=Dis_lim )
     axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="gray" )
-    #Histogram Y
-    histy = np.histogram( np.log10(void_size[voids1[i_IP.astype('int')-1,1].astype('int')-1,1]), bins=bins_IP,
-    normed=True, range=Vol_lim )
+    #Histogram Y (Volume)
+    histy = np.histogram( vol_IP, bins=bins_IP, normed=True, range=Vol_lim )
     axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="gray" )
 
-    #RIP systems (Cataloguing according to the host kind of environment)
-
+    #RIP systems
     #Loading Indexes of RIP sample for halos detecting scheme
-    tmp = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
-    i_RIP = tmp.T[1] 
-    vol_RIP = np.log10(void_size[voids1[i_RIP.astype(int)-1,1].astype(int)-1,1])
-    dist_RIP = voids1[i_RIP.astype(int)-1,0]
+    RIP = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
+    i_RIP = RIP.T[1].astype(int)-1
     
+    #Distance and volume of nearest void
+    dist_RIP = np.zeros( len(i_RIP) )
+    vol_RIP = np.zeros( len(i_RIP) )
+    #According to the nearest cell of the nearest void
+    if sys.argv[4] == "0":
+	dist_RIP = voidsGH[i_RIP,0]
+	vol_RIP = np.log10(void_size[voidsGH[i_RIP,1].astype(int)-1,1])
+    #According to the nearest center of the void
+    else:
+	for i_rip in range( len(i_RIP) ):
+	    pindex_rip = pindex_IP[ "%d"%(RIP[i_rip,0]) ]
+	    dist_RIP[i_rip] = dist_IP[pindex_rip]
+	    vol_RIP[i_rip] = vol_IP[pindex_rip]
+	        
     #Loading eigenvalues
     eigV_filename = '%s%s%s/%d/Eigen%s'%(foldglobal,fold,web,N_sec[i_fold],smooth)
     #Loading environment properties of halos classification scheme
@@ -141,24 +173,24 @@ for fold in folds:
     if sys.argv[3] == "1":
 	#Constructing volume and distances for each subsample according to their host environment
 	#Voids
-	i_RIP_voids = tmp.T[1,(eig1_RIP<=lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
-	vol_RIP_V = np.log10(void_size[voids1[i_RIP_voids.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_V = voids1[i_RIP_voids.astype(int)-1,0]
+	i_RIP_voids = RIP.T[1,(eig1_RIP<=lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_V = np.log10(void_size[voidsGH[i_RIP_voids.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_V = voidsGH[i_RIP_voids.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_V, vol_RIP_V, "o", color = "dodgerblue", label = 'RIP in voids' )
 	#Sheets
-	i_RIP_sheets = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
-	vol_RIP_S = np.log10(void_size[voids1[i_RIP_sheets.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_S = voids1[i_RIP_sheets.astype(int)-1,0]
+	i_RIP_sheets = RIP.T[1,(eig1_RIP>lambda_th)*(eig2_RIP<=lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_S = np.log10(void_size[voidsGH[i_RIP_sheets.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_S = voidsGH[i_RIP_sheets.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_S, vol_RIP_S, "o", color = "red", label = 'RIP in sheets' )
 	#Filaments
-	i_RIP_filaments = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP<=lambda_th)]
-	vol_RIP_F = np.log10(void_size[voids1[i_RIP_filaments.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_F = voids1[i_RIP_filaments.astype(int)-1,0]
+	i_RIP_filaments = RIP.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP<=lambda_th)]
+	vol_RIP_F = np.log10(void_size[voidsGH[i_RIP_filaments.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_F = voidsGH[i_RIP_filaments.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_F, vol_RIP_F, "o", color = "darkgreen", label = 'RIP in filaments' )
 	#Knots
-	i_RIP_knots = tmp.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP>lambda_th)]
-	vol_RIP_K = np.log10(void_size[voids1[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_K = voids1[i_RIP_knots.astype(int)-1,0]
+	i_RIP_knots = RIP.T[1,(eig1_RIP>lambda_th)*(eig2_RIP>lambda_th)*(eig3_RIP>lambda_th)]
+	vol_RIP_K = np.log10(void_size[voidsGH[i_RIP_knots.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_K = voidsGH[i_RIP_knots.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_K, vol_RIP_K, "o", color = "orange", label = 'RIP in knots' )
     elif sys.argv[3] == "0":
 	#Using colors according to FA
@@ -181,9 +213,9 @@ for fold in folds:
 	R2 = FA_RIP_sorted[ int(len(FA_RIP)*2/4.) ]
 	R3 = FA_RIP_sorted[ int(len(FA_RIP)*3/4.) ]
 	#First range ----------------------------------------------------------------
-	i_RIP_R1 = tmp.T[1,(0<=FA_RIP)*(FA_RIP<R1)]
-	vol_RIP_R1 = np.log10(void_size[voids1[i_RIP_R1.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_R1 = voids1[i_RIP_R1.astype(int)-1,0]
+	i_RIP_R1 = RIP.T[1,(0<=FA_RIP)*(FA_RIP<R1)]
+	vol_RIP_R1 = np.log10(void_size[voidsGH[i_RIP_R1.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R1 = voidsGH[i_RIP_R1.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R1, vol_RIP_R1, "o", color = "lime", label = '$%1.2f\leq FA<%1.2f$'%(np.min(FA_RIP), R1) )
 	#Histogram X
 	histx = np.histogram( dist_RIP_R1 , bins=bins_IP, normed=True, range=Dis_lim )
@@ -193,9 +225,9 @@ for fold in folds:
 	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="lime", alpha = 0.3 )
 	
 	#Second Range ----------------------------------------------------------------
-	i_RIP_R2 = tmp.T[1,(R1<=FA_RIP)*(FA_RIP<R2)]
-	vol_RIP_R2 = np.log10(void_size[voids1[i_RIP_R2.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_R2 = voids1[i_RIP_R2.astype(int)-1,0]
+	i_RIP_R2 = RIP.T[1,(R1<=FA_RIP)*(FA_RIP<R2)]
+	vol_RIP_R2 = np.log10(void_size[voidsGH[i_RIP_R2.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R2 = voidsGH[i_RIP_R2.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R2, vol_RIP_R2, "o", color = "yellow", label = '$%1.2f\leq FA<%1.2f$'%(R1, R2) )
 	#Histogram X
 	histx = np.histogram( dist_RIP_R2 , bins=bins_IP, normed=True, range=Dis_lim )
@@ -205,7 +237,7 @@ for fold in folds:
 	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="yellow", alpha = 0.3 )
 	
 	#Third Range ----------------------------------------------------------------
-	i_RIP_R3 = tmp.T[1,(R2<=FA_RIP)*(FA_RIP<R3)]
+	i_RIP_R3 = RIP.T[1,(R2<=FA_RIP)*(FA_RIP<R3)]
 	vol_RIP_R3 = np.log10(void_size[voids1[i_RIP_R3.astype(int)-1,1].astype(int)-1,1])
 	dist_RIP_R3 = voids1[i_RIP_R3.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R3, vol_RIP_R3, "o", color = "red", label = '$%1.2f\leq FA<%1.2f$'%(R2, R3) )
@@ -217,7 +249,7 @@ for fold in folds:
 	axHisty.barh( histy[1][:-1], histy[0], height = (Vol_lim[1]-Vol_lim[0])/bins_IP, linewidth=2.0, color="red", alpha = 0.3 )
 	
 	#Fourth Range ----------------------------------------------------------------
-	i_RIP_R4 = tmp.T[1,(R3<=FA_RIP)*(FA_RIP<1.0)]
+	i_RIP_R4 = RIP.T[1,(R3<=FA_RIP)*(FA_RIP<1.0)]
 	vol_RIP_R4 = np.log10(void_size[voids1[i_RIP_R4.astype(int)-1,1].astype(int)-1,1])
 	dist_RIP_R4 = voids1[i_RIP_R4.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R4, vol_RIP_R4, "o", color = "black", label = '$%1.2f\leq FA<%1.2f$'%(R3, np.max(FA_RIP)) )
