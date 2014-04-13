@@ -238,8 +238,8 @@ for fold in folds:
 	
 	#Third Range ----------------------------------------------------------------
 	i_RIP_R3 = RIP.T[1,(R2<=FA_RIP)*(FA_RIP<R3)]
-	vol_RIP_R3 = np.log10(void_size[voids1[i_RIP_R3.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_R3 = voids1[i_RIP_R3.astype(int)-1,0]
+	vol_RIP_R3 = np.log10(void_size[voidsGH[i_RIP_R3.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R3 = voidsGH[i_RIP_R3.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R3, vol_RIP_R3, "o", color = "red", label = '$%1.2f\leq FA<%1.2f$'%(R2, R3) )
 	#Histogram X
 	histx = np.histogram( dist_RIP_R3 , bins=bins_IP, normed=True, range=Dis_lim )
@@ -250,8 +250,8 @@ for fold in folds:
 	
 	#Fourth Range ----------------------------------------------------------------
 	i_RIP_R4 = RIP.T[1,(R3<=FA_RIP)*(FA_RIP<1.0)]
-	vol_RIP_R4 = np.log10(void_size[voids1[i_RIP_R4.astype(int)-1,1].astype(int)-1,1])
-	dist_RIP_R4 = voids1[i_RIP_R4.astype(int)-1,0]
+	vol_RIP_R4 = np.log10(void_size[voidsGH[i_RIP_R4.astype(int)-1,1].astype(int)-1,1])
+	dist_RIP_R4 = voidsGH[i_RIP_R4.astype(int)-1,0]
 	axHist2D.plot( dist_RIP_R4, vol_RIP_R4, "o", color = "black", label = '$%1.2f\leq FA<%1.2f$'%(R3, np.max(FA_RIP)) )
 	#Histogram X
 	histx = np.histogram( dist_RIP_R4 , bins=bins_IP, normed=True, range=Dis_lim )

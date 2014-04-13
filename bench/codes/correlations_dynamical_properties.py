@@ -86,7 +86,7 @@ if sys.argv[3] == "1":
     FA_IP = Fractional_Anisotropy( eig1_IP, eig2_IP, eig3_IP )
     #Volume and distance of the nearest void region
     volume_IP = np.log10(volume[voids.T[1][i_IP].astype(int)-1,1])
-    distance_IP = voids[i_IP,0]
+    distance_IP = voids[i_IP,0]/((10**volume_IP*(0.9765625)**3)/( 4*np.pi/3. ))**(1/3.)
     #Loading all dynamical properties
     #Halo 1
     I1 = tmp.T[1].astype(int)-1
@@ -123,7 +123,7 @@ if sys.argv[3] == "1":
     FA_RIP = Fractional_Anisotropy( eig1_RIP, eig2_RIP, eig3_RIP )
     #Volume and distance of the nearest void region
     volume_RIP = np.log10(volume[voids.T[1][i_RIP].astype(int)-1,1])
-    distance_RIP = voids[i_RIP,0]
+    distance_RIP = voids[i_RIP,0]**3/((10**volume_RIP*(0.9765625)**3)/( 4*np.pi/3. ))**(1/3.)
     #Loading all dynamical properties
     #Halo 1
     I1 = tmp.T[1].astype(int)-1
@@ -358,10 +358,46 @@ for i in xrange(1, 22):
 	plt.yticks(np.linspace(0,1,6), [""])
     else:
 	plt.yticks(np.linspace(0,1,6), fontsize=10)
+
+
+#Y-ranges of each plot ============================================================================
+yranges = "complete"
+if yranges == "complete":
+    #TOTAL MASS
+    Mlims = [1,12]
+    #MASS RATIO
+    MRlims = [0,1]
+    #RADIAL VELOCITY
+    Radlims = [-4,0]
+    #TANGENTIAL VELOCITY
+    Tanlims = [0,8]
+    #ANGULAR MOMENTUM
+    Llims = [0,45]
+    #SPECIFIC ENERGY
+    Elims = [-15,5]
+    #DIMENSIONLESS SPIN PARAMETER
+    Spinlims = [-2.4, -0.6]
+else:
+    #TOTAL MASS
+    Mlims = [2.8,6]
+    #MASS RATIO
+    MRlims = [0.3, 0.6]
+    #RADIAL VELOCITY
+    Radlims = [-1.6,-0.7]
+    #TANGENTIAL VELOCITY
+    Tanlims = [1.8,3.0]
+    #ANGULAR MOMENTUM
+    Llims = [10,17]
+    #SPECIFIC ENERGY
+    Elims = [-7,-3]
+    #DIMENSIONLESS SPIN PARAMETER
+    Spinlims = [-1.65, -1.32]
+
+#Applying changes =================================================================================
+
 #Total mass ranges
 for i in xrange(1, 4):
     plt.subplot(7,3,i)
-    Mlims = [1,12]
     plt.ylim( Mlims )
     if i == 1:
 	plt.yticks(np.linspace(Mlims[0],Mlims[1],6), fontsize=10)
@@ -370,7 +406,6 @@ for i in xrange(1, 4):
 #Ratio mass ranges
 for i in xrange(4, 7):
     plt.subplot(7,3,i)
-    MRlims = [0,1]
     plt.ylim( MRlims )
     if i == 4:
 	plt.yticks(np.linspace(MRlims[0],MRlims[1],6), fontsize=10)
@@ -379,7 +414,6 @@ for i in xrange(4, 7):
 #Radial velocity ranges
 for i in xrange(7, 10):
     plt.subplot(7,3,i)
-    Radlims = [-4,0]
     plt.ylim( Radlims )
     if i == 7:
 	plt.yticks(np.linspace(Radlims[0],Radlims[1],6), fontsize=10)
@@ -388,7 +422,6 @@ for i in xrange(7, 10):
 #Tangential velocity ranges
 for i in xrange(10, 13):
     plt.subplot(7,3,i)
-    Tanlims = [0,8]
     plt.ylim( Tanlims )
     if i == 10:
 	plt.yticks(np.linspace(Tanlims[0],Tanlims[1],6), fontsize=10)
@@ -397,7 +430,6 @@ for i in xrange(10, 13):
 #Angular momentum ranges
 for i in xrange(13, 16):
     plt.subplot(7,3,i)
-    Llims = [0,45]
     plt.ylim( Llims )
     if i == 13:
 	plt.yticks(np.linspace(Llims[0],Llims[1],6), fontsize=10)
@@ -406,7 +438,6 @@ for i in xrange(13, 16):
 #Energy ranges
 for i in xrange(16, 19):
     plt.subplot(7,3,i)
-    Elims = [-15,5]
     plt.ylim( Elims )
     if i == 16:
 	plt.yticks(np.linspace(Elims[0],Elims[1],6), fontsize=10)
@@ -415,7 +446,6 @@ for i in xrange(16, 19):
 #Spin parameter ranges
 for i in xrange(19, 22):
     plt.subplot(7,3,i)
-    Spinlims = [-2.4, -0.6]
     plt.ylim( Spinlims )
     if i == 19:
 	plt.yticks(np.linspace(Spinlims[0],Spinlims[1],6), fontsize=10)
