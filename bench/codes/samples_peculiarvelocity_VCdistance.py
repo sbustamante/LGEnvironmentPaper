@@ -32,8 +32,9 @@ Vel_lim = (0.0, 10.0)
 V_norm = 1e2
 
 #Distribution ranges
-dist_range = [0, 0.05, 0.1, 0.15, 0.2]
-vel_range = [0, 0.001, 0.002]
+if sys.argv[3] == "0": dist_range = [0, 0.05, 0.1, 0.15, 0.2]
+else:		       dist_range = [0, 0.02, 0.04, 0.06]
+vel_range = [0, 0.1, 0.2, 0.3]
 
 #Bins of IP systems
 bins_IP  = 10
@@ -136,6 +137,7 @@ for fold in folds:
     orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(0.3,1.3) )
     cb = matplotlib.colorbar.Colorbar( axc, map2d,\
     orientation = "vertical" )
+    cb.set_label("IP systems", labelpad=-40, fontsize=10, fontweight="bold")
     #Set the colorbar
     map2d.colorbar = cb
     
@@ -184,6 +186,7 @@ for fold in folds:
     orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(.5,1.5) )
     cb = matplotlib.colorbar.Colorbar( axc, scatter2d,\
     orientation = "vertical" )
+    cb.set_label("FA", labelpad=-50, fontsize=10, fontweight="bold")
     #Set the colorbar
     map2d.colorbar = cb
     
@@ -212,7 +215,11 @@ axHist2D.set_yticks( np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 ) )
 tick_locations = np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 )
 axHist2D.set_yticklabels( tick_locations )
 axHist2D.set_xlabel( "Distance to center of the nearest void [Mpc $h^{-1}$]" )
+if sys.argv[3] == "0":
+    axHist2D.set_xlabel( "Distance to the nearest void [Mpc $h^{-1}$]" )
 axHist2D.set_ylabel( "Peculiar velocity [$\\times 10^{2} $km s$^{-1}$]" )
 axHist2D.legend( loc='upper right', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
+axHist2D.text( Dis_lim[-1]*0.8, Vel_lim[-1]*0.03 , "%s %s"%(web,catalog), fontweight="bold", color="black",\
+fontsize=11 )
 
 plt.show()
