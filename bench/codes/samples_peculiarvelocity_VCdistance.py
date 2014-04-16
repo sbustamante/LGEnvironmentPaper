@@ -2,8 +2,16 @@
 #
 #This code calculate 2D histograms of total peculiar velocity regarding the distance to the geometric
 #center of the nearest void.
-#Usage: python samples_peculiarvelocity_VCdistance.py <Web_Type> <Catalog_Type> <Nearest cell(0) or 
-#Nearest void center(1)>
+#Usage: python samples_peculiarvelocity_VCdistance.py 
+#	* <Web_Type> 
+#	* <Catalog_Type> 
+#	* <Nearest cell(0),
+#	   the nearest void center(1)> 
+#	* <total peculiar velocity(0),
+#	   radial projection to void geometric center (1),
+#	   radial projection to the nearest void cell (2),
+#	   tangential projection to void geometric center (3),
+#	   tangential projection to the nearest void cell (4)>
 #
 #by: Sebastian Bustamante
 
@@ -16,18 +24,14 @@ execfile('_Head.py')
 folds = ["BOLSHOI/"]
 #Number of sections
 N_sec = [256]
+#Lenght of box [Mpc]
+L_box = [250.0]
 #Smooth parameter
 smooth = '_s1'
 #Catalog Scheme [BDM, FOF]
 catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
-#Distance limits
-if sys.argv[3] == "0": Dis_lim = (0.0, 12.0)
-else:		       Dis_lim = (0.0, 80.0)
-#Total peculiar velocity
-Vel_lim = (0.0, 10.0)
-
 #Velocity normalization
 V_norm = 1e2
 
@@ -44,6 +48,9 @@ bins_RIP  = 10
 #Lambda_th [ Vweb=0.188, Tweb=0.326 ]
 if web == "Vweb": lambda_th = 0.188
 else: lambda_th = 0.326
+
+#Label fontsize
+lab_font = 14
 
 #==================================================================================================
 #			CONSTRUCTING STATISTICAL PROPERTIES OF VOIDS
@@ -88,6 +95,9 @@ for fold in folds:
     #Loading file with sizes of found void regions
     void_size = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/void_regions.dat"%\
     (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
+    #Loading file with geometric center of void regions
+    GC = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/GC.dat"%\
+    (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
 
     #Loading information 
     GH = np.loadtxt('%s%s/C_GH_%s.dat'%(foldglobal,fold,catalog))
@@ -100,13 +110,15 @@ for fold in folds:
     #Halo 1
     i_IP1 = GH.T[1].astype(int)-1
     M_IP1 = GH[ i_IP1, 8 ]
+    r_IP1 = np.transpose( [GH[ i_IP1, 1 ], GH[ i_IP1, 2 ], GH[ i_IP1, 3 ]] )
     v_IP1 = np.transpose( [GH[ i_IP1, 4 ], GH[ i_IP1, 5 ], GH[ i_IP1, 6 ]] )
     #Halo 2
     i_IP2 = GH.T[4].astype(int)-1
     M_IP2 = GH[ i_IP2, 8 ]
+    r_IP2 = np.transpose( [GH[ i_IP2, 1 ], GH[ i_IP2, 2 ], GH[ i_IP2, 3 ]] )
     v_IP2 = np.transpose( [GH[ i_IP2, 4 ], GH[ i_IP2, 5 ], GH[ i_IP2, 6 ]] )
         
-    #Distance of the nearest void
+    #Distance to the nearest void
     dist_IP = np.zeros( len(i_IP) )
     vel_IP = np.zeros( len(i_IP) )
     pindex_IP = {}
@@ -120,11 +132,80 @@ for fold in folds:
 	pindex_IP[ "%d"%(IP[i_ip,0]) ] = i_ip
 	#Total peculiar velocity
 	tot_v_vector = ( M_IP1[i_ip]*v_IP1[i_ip] + M_IP2[i_ip]*v_IP2[i_ip] )/( M_IP1[i_ip] + M_IP2[i_ip] )
-	vel_IP[i_ip] = np.sqrt( tot_v_vector[0]**2 + tot_v_vector[1]**2 + tot_v_vector[2]**2 )/V_norm
+	#Center of mass of the pair
+	r_vector = ( M_IP1[i_ip]*r_IP1[i_ip] + M_IP2[i_ip]*r_IP2[i_ip] )/( M_IP1[i_ip] + M_IP2[i_ip] )
+	
+	#Vector towards void center from IP system
+	u_center = np.zeros(3)
+	try:
+	    for i_u in xrange( 3 ):
+		u_center[i_u] =  GC[ voidsGH[i_ip,1].astype(int)-1, i_u+1 ] - r_vector[i_u]
+		if abs(u_center[i_u]) >= L_box[i_fold]/2.0 and u_center[i_u] > 0:
+		    u_center[i_u] -= L_box[i_fold]
+		if abs(u_center[i_u]) >= L_box[i_fold]/2.0 and u_center[i_u] < 0:
+		    u_center[i_u] += L_box[i_fold]
+	    #normalization
+	    u_center *= 1.0/norm( u_center )
+	except: pass
+	
+	#Vector towards the nearest cell of the nearest void from IP system
+	u_cell = np.zeros(3)
+	for i_u in xrange( 3 ):
+	    u_cell[i_u] =  (voidsGH[i_ip,2+i_u] + 0.5)*L_box[i_fold]/(1.0*N_sec[i_fold]) - r_vector[i_u]
+	    if abs(u_cell[i_u]) >= L_box[i_fold]/2.0 and u_cell[i_u] > 0:
+		u_cell[i_u] -= L_box[i_fold]
+	    if abs(u_cell[i_u]) >= L_box[i_fold]/2.0 and u_cell[i_u] < 0:
+		u_cell[i_u] += L_box[i_fold]
+	#normalization
+	u_cell *= 1.0/norm( u_cell )
+		
+	#Different cases of peculiar velocity------------------------------------------------------
+	# 0 -- Total magnitude of the peculiar velocity of the Pair
+	if sys.argv[4] == '0':
+	    vel_IP[i_ip] = norm( tot_v_vector )/V_norm
+	# 1 -- Projection on the unitary vector towards the geometric center of the nearest void
+	elif sys.argv[4] == '1':
+	    vel_IP[i_ip] = np.sum( tot_v_vector*u_center )/V_norm
+	# 2 -- Projection on the unitary vector towards the nearest cell of the nearest void
+	elif sys.argv[4] == '2':
+	    vel_IP[i_ip] = np.sum( tot_v_vector*u_cell )/V_norm
+	# 3 -- Perpendicular projection on the unitary vector towards the geometric center of the nearest void
+	elif sys.argv[4] == '3':
+	    vel_IP[i_ip] = norm( tot_v_vector - tot_v_vector*u_center )/V_norm
+	# 4 -- Perpendicular projection on the unitary vector towards the nearest cell of the nearest void
+	elif sys.argv[4] == '4':
+	    vel_IP[i_ip] = norm( tot_v_vector - tot_v_vector*u_cell )/V_norm
+	    
     #Distance to the nearest cell of the nearest void
     if sys.argv[3] == "0":
 	dist_IP = voidsGH[i_IP,0]
+
+    #RIP systems ----------------------------------------------------------------------------------
+    #Loading Indexes of RIP sample for halos detecting scheme
+    RIP = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
+    i_RIP = RIP.T[1].astype(int)-1
     
+    #Distance to the nearest void
+    dist_RIP = np.zeros( len(i_RIP) )
+    #Peculiar velocity
+    vel_RIP = np.zeros( len(i_RIP) )
+    #According to the nearest center of the void
+    for i_rip in range( len(i_RIP) ):
+	pindex_rip = pindex_IP[ "%d"%(RIP[i_rip,0]) ]
+	dist_RIP[i_rip] = dist_IP[pindex_rip]
+	vel_RIP[i_rip] = vel_IP[pindex_rip]
+	
+    #Calculating limits of plots
+    #Distance limits
+    Dis_lim = (np.min( np.floor(dist_RIP) ), np.max( np.ceil(dist_RIP) ))
+    #Total peculiar velocity
+    Vel_lim = (np.min( np.floor(vel_RIP) ), np.max( np.ceil(vel_RIP) ))
+    if sys.argv[4] == '1' or sys.argv[4] == '2':
+	Vel_ext = np.max( np.abs(Vel_lim) )
+	Vel_lim = (-Vel_ext,Vel_ext)
+
+    #Side histograms of IP systems ----------------------------------------------------------------
+
     #2D Histogram of distance vs peculiar velocity of IP sample
     Hist_D_R = np.transpose(np.histogram2d( dist_IP, vel_IP,
     bins = bins_IP, normed = False, range = (Dis_lim, Vel_lim)  )[0][::,::-1])
@@ -137,7 +218,7 @@ for fold in folds:
     orientation = "vertical", shrink=1., pad=.0, aspect=10, anchor=(0.3,1.3) )
     cb = matplotlib.colorbar.Colorbar( axc, map2d,\
     orientation = "vertical" )
-    cb.set_label("IP systems", labelpad=-40, fontsize=10, fontweight="bold")
+    cb.set_label("IP systems", labelpad=-50, fontsize=10, fontweight="bold")
     #Set the colorbar
     map2d.colorbar = cb
     
@@ -153,20 +234,8 @@ for fold in folds:
     histy = np.histogram( vel_IP, bins=bins_IP, normed=True, range=Vel_lim )
     axHisty.barh( histy[1][:-1], histy[0], height = (Vel_lim[1]-Vel_lim[0])/bins_IP, linewidth=2.0, color="gray" )
 
-    #RIP systems
-    #Loading Indexes of RIP sample for halos detecting scheme
-    RIP = np.loadtxt('%s%s/C_RIP_%s.dat'%(foldglobal,fold,catalog))
-    i_RIP = RIP.T[1].astype(int)-1
-    
-    #Distance of the nearest void
-    dist_RIP = np.zeros( len(i_RIP) )
-    vel_RIP = np.zeros( len(i_RIP) )
-    #According to the nearest center of the void
-    for i_rip in range( len(i_RIP) ):
-	pindex_rip = pindex_IP[ "%d"%(RIP[i_rip,0]) ]
-	dist_RIP[i_rip] = dist_IP[pindex_rip]
-	vel_RIP[i_rip] = vel_IP[pindex_rip]
-	
+
+    #Calculating properties of RIP systems --------------------------------------------------------
     #Loading eigenvalues
     eigV_filename = '%s%s%s/%d/Eigen%s'%(foldglobal,fold,web,N_sec[i_fold],smooth)
     #Loading environment properties of halos classification scheme
@@ -214,12 +283,35 @@ axHist2D.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
 axHist2D.set_yticks( np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 ) )
 tick_locations = np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 )
 axHist2D.set_yticklabels( tick_locations )
-axHist2D.set_xlabel( "Distance to center of the nearest void [Mpc $h^{-1}$]" )
-if sys.argv[3] == "0":
-    axHist2D.set_xlabel( "Distance to the nearest void [Mpc $h^{-1}$]" )
-axHist2D.set_ylabel( "Peculiar velocity [$\\times 10^{2} $km s$^{-1}$]" )
+
+#X-label
+if sys.argv[3] == '0':
+    axHist2D.set_xlabel( "Distance to the nearest void [Mpc $h^{-1}$]", fontsize = 12 )
+elif sys.argv[3] == '1':
+    axHist2D.set_xlabel( "Distance to center of the nearest void [Mpc $h^{-1}$]", fontsize = 12 )
+
+#Y-label
+# 0 -- Total magnitude of the peculiar velocity of the Pair
+if sys.argv[4] == '0':
+    axHist2D.set_ylabel( "$|\\vec{v_{pec}}|$ [$\\times 10^{2} $km s$^{-1}$]", fontsize = lab_font )
+# 1 -- Projection on the unitary vector towards the geometric center of the nearest void
+elif sys.argv[4] == '1':
+    axHist2D.set_ylabel( "$\\vec{v_{pec}}\ \cdot\ \hat{u}_{center}$ [$\\times 10^{2} $km s$^{-1}$]", fontsize = lab_font )
+# 2 -- Projection on the unitary vector towards the nearest cell of the nearest void
+elif sys.argv[4] == '2':
+    axHist2D.set_ylabel( "$\\vec{v_{pec}}\ \cdot\ \hat{u}_{cell}$ [$\\times 10^{2} $km s$^{-1}$]", fontsize = lab_font )
+# 3 -- Perpendicular projection on the unitary vector towards the geometric center of the nearest void
+elif sys.argv[4] == '3':
+    axHist2D.set_ylabel( "$|\\vec{v_{pec}} - (\\vec{v_{pec}}\ \cdot\ \hat{u}_{center})\hat{u}_{center}|$ [$\\times 10^{2} $km s$^{-1}$]",\
+    fontsize = lab_font )
+# 4 -- Perpendicular projection on the unitary vector towards the nearest cell of the nearest void
+elif sys.argv[4] == '4':
+    axHist2D.set_ylabel( "$|\\vec{v_{pec}} - (\\vec{v_{pec}}\ \cdot\ \hat{u}_{cell})\hat{u}_{cell}|$ [$\\times 10^{2} $km s$^{-1}$]",\
+    fontsize = lab_font )
+
 axHist2D.legend( loc='upper right', fancybox = True, shadow = True, ncol = 1, prop={'size':10} )
-axHist2D.text( Dis_lim[-1]*0.8, Vel_lim[-1]*0.03 , "%s %s"%(web,catalog), fontweight="bold", color="black",\
+axHist2D.text( Dis_lim[-1]*0.8, Vel_lim[0] + (Vel_lim[-1]-Vel_lim[0])*0.03 , "%s %s"%(web,catalog),\
+fontweight="bold", color="black",\
 fontsize=11 )
 
-plt.show()
+plt.savefig( 'plotvel.pdf' )
