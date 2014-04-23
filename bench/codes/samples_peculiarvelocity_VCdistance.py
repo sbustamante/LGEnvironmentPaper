@@ -12,6 +12,7 @@
 #	   radial projection to the nearest void cell (2),
 #	   tangential projection to void geometric center (3),
 #	   tangential projection to the nearest void cell (4)>
+#	* <show(0) or save(1)>
 #
 #by: Sebastian Bustamante
 
@@ -32,22 +33,21 @@ smooth = '_s1'
 catalog = sys.argv[2]
 #Classification scheme [Tweb, Vweb]
 web = sys.argv[1]
+#Void finder scheme (FOF or LAY)
+void_scheme = 'FOF'
 #Velocity normalization
 V_norm = 1e2
 
 #Distribution ranges
-if sys.argv[3] == "0": dist_range = [0, 0.05, 0.1, 0.15, 0.2]
+if sys.argv[3] == "0": dist_range = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 else:		       dist_range = [0, 0.02, 0.04, 0.06]
 vel_range = [0, 0.1, 0.2, 0.3]
 
 #Bins of IP systems
-bins_IP  = 10
+bins_IP  = 24
 #Bins of RIP systems
 bins_RIP  = 10
 
-#Lambda_th [ Vweb=0.188, Tweb=0.326 ]
-if web == "Vweb": lambda_th = 0.188
-else: lambda_th = 0.326
 
 #Label fontsize
 lab_font = 14
@@ -94,10 +94,10 @@ for fold in folds:
   
     #Loading file with sizes of found void regions
     void_size = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/void_regions.dat"%\
-    (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
+    (foldglobal, fold, web, N_sec[i_fold], void_scheme, 0.0 ))
     #Loading file with geometric center of void regions
     GC = np.loadtxt("%s/%s/%s/%d/voids%s/voids_%1.2f/GC.dat"%\
-    (foldglobal, fold, web, N_sec[i_fold], smooth, 0.0 ))
+    (foldglobal, fold, web, N_sec[i_fold], void_scheme, 0.0 ))
 
     #Loading information 
     GH = np.loadtxt('%s%s/C_GH_%s.dat'%(foldglobal,fold,catalog))
@@ -202,12 +202,13 @@ for fold in folds:
     Vel_lim = (np.min( np.floor(vel_RIP) ), np.max( np.ceil(vel_RIP) ))
     if sys.argv[4] == '1' or sys.argv[4] == '2':
 	Vel_ext = np.max( np.abs(Vel_lim) )
+	Vel_ext = 3.6
 	Vel_lim = (-Vel_ext,Vel_ext)
 
     #Side histograms of IP systems ----------------------------------------------------------------
 
     #2D Histogram of distance vs peculiar velocity of IP sample
-    Hist_D_R = np.transpose(np.histogram2d( dist_IP, vel_IP,
+    Hist_D_R = np.transpose(np.histogram2d( dist_IP[abs(vel_IP)>1e-3], vel_IP[abs(vel_IP)>1e-3],
     bins = bins_IP, normed = False, range = (Dis_lim, Vel_lim)  )[0][::,::-1])
 
     #2D histogram
@@ -228,10 +229,10 @@ for fold in folds:
     colors="black" )
   
     #Histogram X (Distance)
-    histx = np.histogram( dist_IP, bins=bins_IP, normed=True, range=Dis_lim )
+    histx = np.histogram( dist_IP[abs(vel_IP)>1e-3], bins=bins_IP, normed=True, range=Dis_lim )
     axHistx.bar( histx[1][:-1], histx[0], width = (Dis_lim[1]-Dis_lim[0])/bins_IP, linewidth=2.0, color="gray" )
     #Histogram Y (Velocity)
-    histy = np.histogram( vel_IP, bins=bins_IP, normed=True, range=Vel_lim )
+    histy = np.histogram( vel_IP[abs(vel_IP)>1e-3], bins=bins_IP, normed=True, range=Vel_lim )
     axHisty.barh( histy[1][:-1], histy[0], height = (Vel_lim[1]-Vel_lim[0])/bins_IP, linewidth=2.0, color="gray" )
 
 
@@ -260,8 +261,14 @@ for fold in folds:
     map2d.colorbar = cb
     
     i_fold += 1
-    
-    
+        
+#Label of ticks
+def tick_label( x ):
+    label = []
+    for i in xrange( len(x) ):
+	label.append( "%1.1f"%(x[i]) )
+    return label
+        
 #axHistx.set_xlim( axHist2D.get_xlim() )
 axHistx.set_xlim( Dis_lim )
 axHistx.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
@@ -279,10 +286,12 @@ axHisty.set_xlabel( "Normed distribution" )
 axHist2D.grid( color='black', linestyle='--', linewidth=1., alpha=0.3 )
 axHist2D.set_xlim( Dis_lim )
 axHist2D.set_ylim( Vel_lim )
-axHist2D.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 ) )
+
+axHist2D.set_xticks( np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 )[::3] )
+axHist2D.set_xticklabels( tick_label(np.linspace( Dis_lim[0],Dis_lim[1],bins_IP+1 )[::3]) )
+
 axHist2D.set_yticks( np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 ) )
-tick_locations = np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 )
-axHist2D.set_yticklabels( tick_locations )
+axHist2D.set_yticklabels( tick_label(np.linspace( Vel_lim[0],Vel_lim[1],bins_IP+1 )) )
 
 #X-label
 if sys.argv[3] == '0':
@@ -314,4 +323,7 @@ axHist2D.text( Dis_lim[-1]*0.8, Vel_lim[0] + (Vel_lim[-1]-Vel_lim[0])*0.03 , "%s
 fontweight="bold", color="black",\
 fontsize=11 )
 
-plt.savefig( 'plotvel.pdf' )
+if sys.argv[5] == '0':
+    plt.show()
+else:
+    plt.savefig( 'plotvel.pdf' )
